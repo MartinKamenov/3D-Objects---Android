@@ -48,7 +48,7 @@ public class Cube extends Object3D {
         walls.add(new DeepPoint[] {a, b, b1, a1});
         walls.add(new DeepPoint[] {b, c, c1, b1});
         walls.add(new DeepPoint[] {c, d, d1, c1});
-        walls.add(new DeepPoint[] {d, a, a1, d});
+        walls.add(new DeepPoint[] {d, a, a1, d1});
     }
 
     public ArrayList<DeepPoint[]> getEdges() {
