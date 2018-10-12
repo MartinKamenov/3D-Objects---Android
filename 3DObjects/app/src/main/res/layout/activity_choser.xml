@@ -7,36 +7,43 @@
     tools:context="com.kamenov.martin.a3dobjects.choser.ChoserActivity">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#000000">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="60dp">
+            android:layout_marginBottom="60dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:orientation="vertical">
-                <CalendarView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></CalendarView>
-                <CalendarView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></CalendarView>
-                <CalendarView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></CalendarView>
+                <TextView
+                    android:id="@+id/status_shower"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+                <TextView
+                    android:textAlignment="center"
+                    android:textSize="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Console"
+                    android:textStyle="bold"
+                    android:background="#000000"
+                    android:textColor="#ffffff"/>
+                <EditText
+                    android:id="@+id/console"
+                    android:padding="5dp"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </ScrollView>
         <LinearLayout
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="60dp">
-            <Button
-                android:id="@+id/startBtn"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Start engine"/>
         </LinearLayout>
     </RelativeLayout>
 </FrameLayout>
