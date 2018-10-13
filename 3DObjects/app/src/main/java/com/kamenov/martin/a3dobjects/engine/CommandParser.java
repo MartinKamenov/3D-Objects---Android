@@ -14,6 +14,7 @@ public class CommandParser {
     private final Starter mStarter;
 
     private String[] commands = {
+            "start",
             "cube",
             "para",
             "pira",
