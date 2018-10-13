@@ -1,11 +1,12 @@
-package com.kamenov.martin.a3dobjects;
+package com.kamenov.martin.a3dobjects.game;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.kamenov.martin.a3dobjects.models.Constants;
 
 public class GameActivity extends Activity {
 

@@ -5,14 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.kamenov.martin.a3dobjects.GameActivity;
+import com.kamenov.martin.a3dobjects.game.GameActivity;
 import com.kamenov.martin.a3dobjects.R;
 
 public class ChoserActivity extends Activity implements TextWatcher {

@@ -1,10 +1,10 @@
-package com.kamenov.martin.a3dobjects.game_objects;
+package com.kamenov.martin.a3dobjects.models.game_objects;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.kamenov.martin.a3dobjects.Constants;
+import com.kamenov.martin.a3dobjects.models.Constants;
 import com.kamenov.martin.a3dobjects.contracts.GameObject;
 
 /**

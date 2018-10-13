@@ -1,4 +1,4 @@
-package com.kamenov.martin.a3dobjects;
+package com.kamenov.martin.a3dobjects.models;
 
 /**
  * Created by Martin on 10.3.2018 г..

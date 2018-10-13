@@ -1,11 +1,10 @@
-package com.kamenov.martin.a3dobjects.game_objects_3d.contracts;
+package com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts;
 
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 
-import com.kamenov.martin.a3dobjects.DeepPoint;
+import com.kamenov.martin.a3dobjects.models.DeepPoint;
 import com.kamenov.martin.a3dobjects.contracts.GameObject;
 import com.kamenov.martin.a3dobjects.contracts.Rotatable;
 

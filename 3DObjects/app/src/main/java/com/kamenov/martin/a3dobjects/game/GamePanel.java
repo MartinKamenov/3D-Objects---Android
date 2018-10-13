@@ -1,4 +1,4 @@
-package com.kamenov.martin.a3dobjects;
+package com.kamenov.martin.a3dobjects.game;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,14 +8,12 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.kamenov.martin.a3dobjects.game_objects_3d.contracts.Object3D;
-import com.kamenov.martin.a3dobjects.game_objects.Background;
-import com.kamenov.martin.a3dobjects.game_objects_3d.ComplexObject;
-import com.kamenov.martin.a3dobjects.game_objects_3d.Cube;
+import com.kamenov.martin.a3dobjects.models.Constants;
+import com.kamenov.martin.a3dobjects.models.game_objects.Background;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
 import com.kamenov.martin.a3dobjects.contracts.GameObject;
-import com.kamenov.martin.a3dobjects.game_objects_3d.Parallelepiped;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
 import com.kamenov.martin.a3dobjects.contracts.Rotatable;
-import com.kamenov.martin.a3dobjects.game_objects_3d.Piramid;
 
 import java.util.ArrayList;
 

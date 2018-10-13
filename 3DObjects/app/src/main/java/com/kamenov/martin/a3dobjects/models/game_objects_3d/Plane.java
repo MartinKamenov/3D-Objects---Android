@@ -1,9 +1,9 @@
-package com.kamenov.martin.a3dobjects.game_objects_3d;
+package com.kamenov.martin.a3dobjects.models.game_objects_3d;
 
 import android.graphics.Paint;
 
-import com.kamenov.martin.a3dobjects.DeepPoint;
-import com.kamenov.martin.a3dobjects.game_objects_3d.contracts.Object3D;
+import com.kamenov.martin.a3dobjects.models.DeepPoint;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
 
 import java.util.ArrayList;
 

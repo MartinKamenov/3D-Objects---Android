@@ -1,7 +1,9 @@
-package com.kamenov.martin.a3dobjects;
+package com.kamenov.martin.a3dobjects.game;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
+
+import com.kamenov.martin.a3dobjects.game.GamePanel;
 
 /**
  * Created by Martin on 6.3.2018 г..
