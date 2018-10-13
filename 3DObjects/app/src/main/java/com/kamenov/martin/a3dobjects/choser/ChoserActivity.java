@@ -10,18 +10,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.kamenov.martin.a3dobjects.engine.CommandParser;
+import com.kamenov.martin.a3dobjects.engine.contracts.Starter;
 import com.kamenov.martin.a3dobjects.game.GameActivity;
 import com.kamenov.martin.a3dobjects.R;
+import com.kamenov.martin.a3dobjects.models.factory.FigureFactory;
 
-public class ChoserActivity extends Activity implements TextWatcher {
+public class ChoserActivity extends Activity implements TextWatcher, Starter {
     private Button mStartButton;
     private EditText mConsole;
     private TextView mStatusShower;
+    private CommandParser mCommandParser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mCommandParser = new CommandParser(this, FigureFactory.getInstance());
         setContentView(R.layout.activity_choser);
         mStatusShower = (TextView) findViewById(R.id.status_shower);
         mConsole = (EditText) findViewById(R.id.console);
@@ -46,7 +51,8 @@ public class ChoserActivity extends Activity implements TextWatcher {
 
     }
 
-    private void startEngine() {
+    @Override
+    public void startEngine() {
         Intent gameIntent = new Intent(this, GameActivity.class);
         startActivity(gameIntent);
     }
@@ -57,9 +63,7 @@ public class ChoserActivity extends Activity implements TextWatcher {
     }
 
     private void extractCommand(String commandLine) {
-        commandLine = commandLine.toLowerCase();
-        if(commandLine.equals("start")) {
-            startEngine();
-        }
+        commandLine = commandLine.toLowerCase().trim();
+        mCommandParser.execute(commandLine);
     }
 }
