@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import com.kamenov.martin.a3dobjects.contracts.Rotatable;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Piramid;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
 
 import java.util.ArrayList;
@@ -48,6 +50,28 @@ public class FigureFactory {
             return "Parallelepiped was created";
         } catch (Exception ex) {
             return "Params: x, y, z, aLength, bLength, cLength, colorEdge, colorWall, rotation";
+        }
+    }
+
+    public String createPyramid(float x, float y, float z, Paint edgePaint,
+                                 Paint wallPaint, float rotation, float aLength, float bLength, float h) {
+        try {
+            Piramid pyramid = new Piramid(x, y, z, edgePaint, wallPaint, rotation, aLength, bLength, h);
+            figures.add(pyramid);
+            return "Pyramid was created";
+        } catch (Exception ex) {
+            return "Params: x, y, z, edgeColor, wallColor, rotation, aLength, bLength, h";
+        }
+    }
+
+    public String createPlane(float x, float y, float z, Paint edgePaint, Paint wallPaint,
+                              float rotation, float aLength, float bLength) {
+        try {
+            Plane plane = new Plane(x, y, z, edgePaint, wallPaint, rotation, aLength, bLength);
+            figures.add(plane);
+            return "Plane was created";
+        } catch (Exception ex) {
+            return "Params: x, y, z, edgeColor, wallColor, rotation, aLength, bLength";
         }
     }
 

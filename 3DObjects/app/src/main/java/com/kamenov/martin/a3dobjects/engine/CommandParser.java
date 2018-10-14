@@ -23,7 +23,10 @@ public class CommandParser {
             "cube",
             "para",
             "pira",
-            "plan"
+            "plane",
+            "clear",
+            "cls",
+            "help"
     };
 
     private String[] colors = {
@@ -65,7 +68,16 @@ public class CommandParser {
                     break;
                 case "cube":
                 case "para":
+                case "pira":
+                case "plane":
                     createObject(commandWords);
+                    break;
+                case "clear":
+                case "cls":
+                    clearConsole();
+                    break;
+                case "help":
+                    writeLine(showCommands());
                     break;
             }
         } else {
@@ -85,6 +97,19 @@ public class CommandParser {
         write(message + "\n");
         int pos = mConsole.getText().length();
         mConsole.setSelection(pos);
+    }
+
+    private String showCommands() {
+        StringBuilder commandsString = new StringBuilder();
+        commandsString.append("Commands:\n");
+        for (int i = 0; i < commands.length; i++) {
+            commandsString.append("[" + commands[i] + "]");
+            if(i != commands.length - 1) {
+                commandsString.append("\n");
+            }
+        }
+
+        return commandsString.toString();
     }
 
     private String findCommand(String commands[], String command) {
@@ -121,6 +146,16 @@ public class CommandParser {
                     writeLine(mFigureFactory
                             .createParallelepiped(x, y, z, aLength, bLength, cLength, edgePaint, wallPaint, rotation));
                     break;
+                case "pira":
+                    edgePaint = createEdgePaint(commandWords[4]);
+                    wallPaint = createWallPaint(commandWords[5]);
+                    rotation = Float.valueOf(commandWords[6]);
+                    aLength = Float.valueOf(commandWords[7]);
+                    bLength = Float.valueOf(commandWords[8]);
+                    float h = Float.valueOf(commandWords[9]);
+                    writeLine(mFigureFactory
+                            .createPyramid(x, y, z, edgePaint, wallPaint, rotation, aLength, bLength, h));
+                    break;
             }
         } catch (Exception ex) {
             switch (commandWords[0]) {
@@ -129,6 +164,12 @@ public class CommandParser {
                     break;
                 case "para":
                     writeLine("Params: x, y, z, aLength, bLength, cLength, colorEdge, colorWall, rotation");
+                    break;
+                case "pira":
+                    writeLine("Params: x, y, z, edgePaint, wallPaint, rotation, aLength, bLength, h");
+                    break;
+                case "plane":
+                    writeLine("Params: x, y, z, edgeColor, wallColor, rotation, aLength, bLength");
                     break;
                 default:
                     writeLine("Invalid params");
@@ -140,7 +181,7 @@ public class CommandParser {
     private Paint createEdgePaint(String color) {
         Paint paint = new Paint();
         paint.setColor(parseColor(color));
-        paint.setStrokeWidth(3);
+        paint.setStrokeWidth(5);
         paint.setStyle(Paint.Style.STROKE);
         return paint;
     }
@@ -148,7 +189,6 @@ public class CommandParser {
     private Paint createWallPaint(String color) {
         Paint paint = new Paint();
         paint.setColor(parseColor(color));
-        paint.setStrokeWidth(3);
         paint.setStyle(Paint.Style.FILL);
         return paint;
     }
@@ -160,6 +200,14 @@ public class CommandParser {
             }
         }
 
+        if((colorName.length() == 7 || colorName.length() == 9) && colorName.charAt(0) == '#') {
+            return Color.parseColor(colorName);
+        }
+
         return Color.parseColor("#00000000");
+    }
+
+    private void clearConsole() {
+        mConsole.setText("");
     }
 }
