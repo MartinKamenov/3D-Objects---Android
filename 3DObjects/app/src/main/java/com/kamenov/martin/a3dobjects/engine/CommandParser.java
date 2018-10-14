@@ -108,20 +108,32 @@ public class CommandParser {
                     Paint edgePaint = createEdgePaint(commandWords[5]);
                     Paint wallPaint = createWallPaint(commandWords[6]);
                     float rotation = Float.valueOf(commandWords[7]);
-                    mFigureFactory.createCube(x, y, z, edgeLength, edgePaint, wallPaint, rotation);
+                    writeLine(mFigureFactory
+                            .createCube(x, y, z, edgeLength, edgePaint, wallPaint, rotation));
                     break;
                 case "para":
                     float aLength = Float.valueOf(commandWords[4]);
-                    float bLength = Float.valueOf(commandWords[4]);
-                    float cLength = Float.valueOf(commandWords[4]);
-                    edgePaint = createEdgePaint(commandWords[5]);
-                    wallPaint = createWallPaint(commandWords[6]);
-                    rotation = Float.valueOf(commandWords[7]);
-                    mFigureFactory.createParallelepiped(x, y, z, aLength, bLength, cLength, edgePaint, wallPaint, rotation);
+                    float bLength = Float.valueOf(commandWords[5]);
+                    float cLength = Float.valueOf(commandWords[6]);
+                    edgePaint = createEdgePaint(commandWords[7]);
+                    wallPaint = createWallPaint(commandWords[8]);
+                    rotation = Float.valueOf(commandWords[9]);
+                    writeLine(mFigureFactory
+                            .createParallelepiped(x, y, z, aLength, bLength, cLength, edgePaint, wallPaint, rotation));
                     break;
             }
         } catch (Exception ex) {
-            writeLine("Problem with parameters");
+            switch (commandWords[0]) {
+                case "cube":
+                    writeLine("Params: x, y, z, edgeLength, colorEdge, colorWall, rotation");
+                    break;
+                case "para":
+                    writeLine("Params: x, y, z, aLength, bLength, cLength, colorEdge, colorWall, rotation");
+                    break;
+                default:
+                    writeLine("Invalid params");
+                    break;
+            }
         }
     }
 
@@ -129,7 +141,7 @@ public class CommandParser {
         Paint paint = new Paint();
         paint.setColor(parseColor(color));
         paint.setStrokeWidth(3);
-        paint.setStyle(Paint.Style.FILL);
+        paint.setStyle(Paint.Style.STROKE);
         return paint;
     }
 
@@ -137,7 +149,7 @@ public class CommandParser {
         Paint paint = new Paint();
         paint.setColor(parseColor(color));
         paint.setStrokeWidth(3);
-        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.FILL);
         return paint;
     }
 
