@@ -9,11 +9,13 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.kamenov.martin.a3dobjects.models.Constants;
+import com.kamenov.martin.a3dobjects.models.factory.FigureFactory;
 import com.kamenov.martin.a3dobjects.models.game_objects.Background;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
 import com.kamenov.martin.a3dobjects.contracts.GameObject;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
 import com.kamenov.martin.a3dobjects.contracts.Rotatable;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
 
 import java.util.ArrayList;
 
@@ -34,24 +36,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ga
         super(context);
         x1 = -1;
         x2 = -1;
-        figures = new ArrayList<>();
-
-        Paint paintBlue = new Paint();
-        paintBlue.setColor(Color.parseColor("#0291DB"));
-        paintBlue.setStyle(Paint.Style.FILL_AND_STROKE);
-        paintBlue.setStrokeWidth(5);
-        Paint paintRed = new Paint();
-        paintRed.setColor(Color.parseColor("#F52C6E"));
-        paintRed.setStyle(Paint.Style.FILL_AND_STROKE);
-        paintRed.setStrokeWidth(7);
-        Paint paintYellow = new Paint();
-        paintYellow.setColor(Color.parseColor("#f3ff19"));
-        paintYellow.setStyle(Paint.Style.FILL);
-        Paint paintGreen = new Paint();
-        paintGreen.setColor(Color.WHITE);
-        paintGreen.setStyle(Paint.Style.FILL);
-        figures.add(new Parallelepiped(Constants.SCREEN_WIDTH/2, Constants.SCREEN_HEIGHT/2, 0, 100, 200, 300, paintRed, null, 2));
-        figures.add(new Cube(250, 250, 0, 200, paintBlue, paintYellow, 6));
+        figures = FigureFactory.getInstance().getFigures();
         background = new Background(Color.BLACK);
 
         getHolder().addCallback(this);

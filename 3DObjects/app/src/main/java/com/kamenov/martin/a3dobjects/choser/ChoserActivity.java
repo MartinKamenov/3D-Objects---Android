@@ -17,19 +17,16 @@ import com.kamenov.martin.a3dobjects.R;
 import com.kamenov.martin.a3dobjects.models.factory.FigureFactory;
 
 public class ChoserActivity extends Activity implements TextWatcher, Starter {
-    private Button mStartButton;
     private EditText mConsole;
-    private TextView mStatusShower;
     private CommandParser mCommandParser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mCommandParser = new CommandParser(this, FigureFactory.getInstance());
         setContentView(R.layout.activity_choser);
-        mStatusShower = (TextView) findViewById(R.id.status_shower);
-        mConsole = (EditText) findViewById(R.id.console);
+        mConsole = findViewById(R.id.console);
+        mCommandParser = new CommandParser(this, FigureFactory.getInstance(), mConsole);
         mConsole.addTextChangedListener(this);
     }
 
