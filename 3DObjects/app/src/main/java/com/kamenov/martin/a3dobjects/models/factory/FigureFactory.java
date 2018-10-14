@@ -3,6 +3,7 @@ package com.kamenov.martin.a3dobjects.models.factory;
 import android.graphics.Paint;
 
 import com.kamenov.martin.a3dobjects.contracts.Rotatable;
+import com.kamenov.martin.a3dobjects.models.Constants;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Piramid;
@@ -33,6 +34,8 @@ public class FigureFactory {
 
     public String createCube(float x, float y, float z, float edgeLength, Paint edgePaint, Paint wallPaint, float rotation) {
         try {
+            x += Constants.SCREEN_WIDTH / 2;
+            y += Constants.SCREEN_HEIGHT / 2;
             Cube cube = new Cube(x, y, z, edgeLength, edgePaint, wallPaint, rotation);
             figures.add(cube);
             return "Cube was created";
@@ -45,6 +48,8 @@ public class FigureFactory {
                                             float aLength, float bLength, float cLength,
                                             Paint edgePaint, Paint wallPaint, float rotation) {
         try {
+            x += Constants.SCREEN_WIDTH / 2;
+            y += Constants.SCREEN_HEIGHT / 2;
             Parallelepiped para = new Parallelepiped(x, y, z, aLength, bLength, cLength, edgePaint, wallPaint, rotation);
             figures.add(para);
             return "Parallelepiped was created";
@@ -56,6 +61,8 @@ public class FigureFactory {
     public String createPyramid(float x, float y, float z, Paint edgePaint,
                                  Paint wallPaint, float rotation, float aLength, float bLength, float h) {
         try {
+            x += Constants.SCREEN_WIDTH / 2;
+            y += Constants.SCREEN_HEIGHT / 2;
             Piramid pyramid = new Piramid(x, y, z, edgePaint, wallPaint, rotation, aLength, bLength, h);
             figures.add(pyramid);
             return "Pyramid was created";
@@ -67,6 +74,8 @@ public class FigureFactory {
     public String createPlane(float x, float y, float z, Paint edgePaint, Paint wallPaint,
                               float rotation, float aLength, float bLength) {
         try {
+            x += Constants.SCREEN_WIDTH / 2;
+            y += Constants.SCREEN_HEIGHT / 2;
             Plane plane = new Plane(x, y, z, edgePaint, wallPaint, rotation, aLength, bLength);
             figures.add(plane);
             return "Plane was created";

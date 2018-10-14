@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,17 +16,25 @@ import com.kamenov.martin.a3dobjects.engine.CommandParser;
 import com.kamenov.martin.a3dobjects.engine.contracts.Starter;
 import com.kamenov.martin.a3dobjects.game.GameActivity;
 import com.kamenov.martin.a3dobjects.R;
+import com.kamenov.martin.a3dobjects.models.Constants;
 import com.kamenov.martin.a3dobjects.models.factory.FigureFactory;
 
 public class ChoserActivity extends Activity implements TextWatcher, Starter {
     private EditText mConsole;
     private CommandParser mCommandParser;
+    private int mLastConsoleElements;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        Constants.SCREEN_WIDTH = dm.widthPixels;
+        Constants.SCREEN_HEIGHT = dm.heightPixels;
         setContentView(R.layout.activity_choser);
+        mLastConsoleElements = 0;
         mConsole = findViewById(R.id.console);
         mCommandParser = new CommandParser(this, FigureFactory.getInstance(), mConsole);
         mConsole.addTextChangedListener(this);
@@ -38,9 +48,11 @@ public class ChoserActivity extends Activity implements TextWatcher, Starter {
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         String text = charSequence.toString();
-        if(text.length() > 0 && text.charAt(text.length() - 1) == '\n') {
+        boolean textWasAdded = (text.length() > mLastConsoleElements);
+        if(text.length() > 0 && text.charAt(text.length() - 1) == '\n' && textWasAdded) {
             extractCommand(getLastCommand(text));
         }
+        mLastConsoleElements = text.length();
     }
 
     @Override
