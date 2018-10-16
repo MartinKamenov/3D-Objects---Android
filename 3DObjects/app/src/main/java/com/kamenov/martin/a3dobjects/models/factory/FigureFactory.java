@@ -18,11 +18,13 @@ import java.util.ArrayList;
  */
 
 public class FigureFactory {
+    public boolean shouldBeAdded;
     private static FigureFactory figureFactory;
     private ArrayList<Rotatable> figures;
 
     private FigureFactory() {
         figures = new ArrayList<>();
+        shouldBeAdded = true;
     }
 
     public static FigureFactory getInstance() {
@@ -37,7 +39,9 @@ public class FigureFactory {
         x += Constants.SCREEN_WIDTH / 2;
         y += Constants.SCREEN_HEIGHT / 2;
         Cube cube = new Cube(x, y, z, edgeLength, edgePaint, wallPaint, rotation);
-        figures.add(cube);
+        if(shouldBeAdded) {
+            figures.add(cube);
+        }
         return cube;
     }
 
@@ -47,7 +51,9 @@ public class FigureFactory {
         x += Constants.SCREEN_WIDTH / 2;
         y += Constants.SCREEN_HEIGHT / 2;
         Parallelepiped para = new Parallelepiped(x, y, z, aLength, bLength, cLength, edgePaint, wallPaint, rotation);
-        figures.add(para);
+        if(shouldBeAdded) {
+            figures.add(para);
+        }
         return para;
     }
 
@@ -56,7 +62,9 @@ public class FigureFactory {
         x += Constants.SCREEN_WIDTH / 2;
         y += Constants.SCREEN_HEIGHT / 2;
         Piramid pyramid = new Piramid(x, y, z, edgePaint, wallPaint, rotation, aLength, bLength, h);
-        figures.add(pyramid);
+        if(shouldBeAdded) {
+            figures.add(pyramid);
+        }
         return pyramid;
     }
 
@@ -65,16 +73,20 @@ public class FigureFactory {
         x += Constants.SCREEN_WIDTH / 2;
         y += Constants.SCREEN_HEIGHT / 2;
         Plane plane = new Plane(x, y, z, edgePaint, wallPaint, rotation, aLength, bLength);
-        figures.add(plane);
+        if(shouldBeAdded) {
+            figures.add(plane);
+        }
         return plane;
     }
 
     public ComplexObject createComplexObject(float x, float y, float z, Paint edgePaint,
-                                             Paint wallPaint, float rotation, ArrayList<Object3D> figures) {
+                                             Paint wallPaint, float rotation, ArrayList<Object3D> objects) {
         x += Constants.SCREEN_WIDTH / 2;
         y += Constants.SCREEN_HEIGHT / 2;
-        ComplexObject complexObject = new ComplexObject(x, y, z, edgePaint, wallPaint, rotation, figures);
-        figures.add(complexObject);
+        ComplexObject complexObject = new ComplexObject(x, y, z, edgePaint, wallPaint, rotation, objects);
+        if(shouldBeAdded) {
+            figures.add(complexObject);
+        }
         return complexObject;
     }
 

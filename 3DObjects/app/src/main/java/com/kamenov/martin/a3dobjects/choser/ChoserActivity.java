@@ -52,6 +52,7 @@ public class ChoserActivity extends Activity implements TextWatcher, Starter {
         if(text.length() > 0 && text.charAt(text.length() - 1) == '\n' && textWasAdded) {
             extractCommand(getLastCommand(text));
         }
+
         mLastConsoleElements = text.length();
     }
 

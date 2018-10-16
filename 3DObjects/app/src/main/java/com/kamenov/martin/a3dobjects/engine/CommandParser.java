@@ -43,7 +43,7 @@ public class CommandParser {
             "co",
             "complexobject",
             "finish",
-            "stop",
+            "end",
             "restart",
             "reset",
             "clear",
@@ -107,16 +107,17 @@ public class CommandParser {
                     }
                     break;
                 case "finish":
-                case "stop":
+                case "end":
                     if(isCreatingComplexObject) {
                         try {
+                            mFigureFactory.shouldBeAdded = true;
                             mFigureFactory.createComplexObject(coX, coY, coZ, coEdgePaint,
                                     coWallPaint, coRotation, complexObjectFigures);
                             writeLine("Object was created");
                         } catch (Exception ex) {
                             writeLine("Invalid params of complex object");
                         }
-                        complexObjectFigures = new ArrayList<>();
+                        //complexObjectFigures = new ArrayList<>();
                         isCreatingComplexObject = false;
                     } else {
                         writeLine("No complex object was being created");
@@ -258,7 +259,8 @@ public class CommandParser {
                     coRotation = Float.valueOf(commandWords[6]);
                     complexObjectFigures = new ArrayList<>();
                     isCreatingComplexObject = true;
-                    writeLine("Start adding figures\nType finish or stop to create complex object");
+                    mFigureFactory.shouldBeAdded = false;
+                    writeLine("Start adding figures\nType finish or end to create complex object");
                     break;
             }
         } catch (Exception ex) {
