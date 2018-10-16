@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.widget.EditText;
 
+import com.kamenov.martin.a3dobjects.contracts.Rotatable;
 import com.kamenov.martin.a3dobjects.engine.contracts.Starter;
 import com.kamenov.martin.a3dobjects.models.factory.FigureFactory;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
@@ -48,7 +49,8 @@ public class CommandParser {
             "reset",
             "clear",
             "cls",
-            "help"
+            "help",
+            "status"
     };
 
     private String[] colors = {
@@ -117,7 +119,7 @@ public class CommandParser {
                         } catch (Exception ex) {
                             writeLine("Invalid params of complex object");
                         }
-                        //complexObjectFigures = new ArrayList<>();
+                        complexObjectFigures = new ArrayList<>();
                         isCreatingComplexObject = false;
                     } else {
                         writeLine("No complex object was being created");
@@ -129,6 +131,17 @@ public class CommandParser {
                     break;
                 case "help":
                     writeLine(showCommands());
+                    break;
+                case "status":
+                    if(commandWords.length > 1) {
+                        try {
+                            showFigure(Integer.parseInt(commandWords[1]));
+                        } catch (Exception ex) {
+                            writeLine("Second param should be number");
+                        }
+                    } else {
+                        showAllFigures();
+                    }
                     break;
             }
         } else {
@@ -319,5 +332,23 @@ public class CommandParser {
 
     private void clearConsole() {
         mConsole.setText("");
+    }
+
+    private void showFigure(int i) {
+        try {
+            Rotatable figure = mFigureFactory.getFigures().get(i);
+            String fullClassName = figure.getClass().toString();
+            String className = fullClassName.substring(fullClassName.lastIndexOf(".") + 1);
+            writeLine(i + ": " + className);
+        } catch (IndexOutOfBoundsException ex) {
+            writeLine("Index out of range");
+        }
+    }
+
+    private void showAllFigures() {
+        List<Rotatable> figures = mFigureFactory.getFigures();
+        for(int i = 0; i < figures.size(); i++) {
+            showFigure(i);
+        }
     }
 }
