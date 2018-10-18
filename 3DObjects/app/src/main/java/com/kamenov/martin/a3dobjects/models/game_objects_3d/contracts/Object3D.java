@@ -94,6 +94,32 @@ public abstract class Object3D implements GameObject, Rotatable {
     public void draw(Canvas canvas) {
         ArrayList<DeepPoint[]> wallsAndEdges = new ArrayList<>();
         ArrayList<Float> zts = new ArrayList<>();
+
+        addAndSortWallsAndEdges(wallsAndEdges, zts);
+
+        drawWallsAndEdges(canvas, wallsAndEdges);
+    }
+
+    private void drawWallsAndEdges(Canvas canvas, ArrayList<DeepPoint[]> wallsAndEdges) {
+        for (int i = 0; i < wallsAndEdges.size(); i++) {
+            DeepPoint[] wallOrEdge = wallsAndEdges.get(i);
+            if (wallsAndEdges.get(i).length == 2) {
+                canvas.drawLine(wallOrEdge[0].getX() + x, wallOrEdge[0].getY() + y,
+                        wallOrEdge[1].getX() + x, wallOrEdge[1].getY() + y, edgePaint);
+            } else {
+                if (wallPaint != null) {
+                    Path wallPath = new Path();
+                    wallPath.moveTo(wallOrEdge[0].getX() + x, wallOrEdge[0].getY() + y);
+                    for (int j = 1; j < wallOrEdge.length; j++) {
+                        wallPath.lineTo(wallOrEdge[j].getX() + x, wallOrEdge[j].getY() + y);
+                    }
+                    canvas.drawPath(wallPath, wallPaint);
+                }
+            }
+        }
+    }
+
+    private void addAndSortWallsAndEdges(ArrayList<DeepPoint[]> wallsAndEdges, ArrayList<Float> zts) {
         for (int i = 0; i < edges.size(); i++)
         {
             boolean added = false;
@@ -106,7 +132,7 @@ public abstract class Object3D implements GameObject, Rotatable {
             }
             for(int j = 0; j < zts.size(); j++)
             {
-                if(avg>zts.get(j))
+                if(avg > zts.get(j))
                 {
                     zts.add(j, avg);
                     wallsAndEdges.add(j, edges.get(i));
@@ -146,43 +172,6 @@ public abstract class Object3D implements GameObject, Rotatable {
                 wallsAndEdges.add(walls.get(i));
             }
         }
-        for (int i = 0; i < wallsAndEdges.size(); i++)
-        {
-            DeepPoint[] wallOrEdge = wallsAndEdges.get(i);
-            if(wallsAndEdges.get(i).length==2)
-            {
-                canvas.drawLine(wallOrEdge[0].getX() + x, wallOrEdge[0].getY() + y,
-                        wallOrEdge[1].getX() + x, wallOrEdge[1].getY() + y, edgePaint);
-            }
-            else
-            {
-                if(wallPaint!=null) {
-                    Path wallPath = new Path();
-                    wallPath.moveTo(wallOrEdge[0].getX() + x, wallOrEdge[0].getY() + y);
-                    for(int j = 1; j < wallOrEdge.length; j++) {
-                        wallPath.lineTo(wallOrEdge[j].getX() + x, wallOrEdge[j].getY() + y);
-                    }
-                    canvas.drawPath(wallPath, wallPaint);
-                }
-            }
-        }
-        /*if(wallPaint != null) {
-            for (int i = 0; i < walls.size(); i++) {
-                DeepPoint[] wall = walls.get(i);
-                Path wallPath = new Path();
-                wallPath.moveTo(wall[0].getX() + x, wall[0].getY() + y);
-                for(int j = 1; j < wall.length; j++) {
-                    wallPath.lineTo(wall[j].getX() + x, wall[j].getY() + y);
-                }
-                canvas.drawPath(wallPath, wallPaint);
-            }
-        }
-
-        for (int i = 0; i < edges.size(); i++)
-        {
-            canvas.drawLine(edges.get(i)[0].getX() + x, edges.get(i)[0].getY() + y,
-                    edges.get(i)[1].getX() + x, edges.get(i)[1].getY() + y, edgePaint);
-        }*/
     }
 
     public void setRotateX(boolean rotateX) {
