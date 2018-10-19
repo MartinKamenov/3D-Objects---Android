@@ -1,4 +1,4 @@
-package com.kamenov.martin.a3dobjects.models.factory;
+package com.kamenov.martin.a3dobjects.models.factories;
 
 import android.graphics.Paint;
 

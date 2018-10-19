@@ -3,19 +3,14 @@ package com.kamenov.martin.a3dobjects.game;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.kamenov.martin.a3dobjects.models.Constants;
-import com.kamenov.martin.a3dobjects.models.factory.FigureFactory;
+import com.kamenov.martin.a3dobjects.models.factories.FigureFactory;
 import com.kamenov.martin.a3dobjects.models.game_objects.Background;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
 import com.kamenov.martin.a3dobjects.contracts.GameObject;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
 import com.kamenov.martin.a3dobjects.contracts.Rotatable;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
 
 import java.util.ArrayList;
 

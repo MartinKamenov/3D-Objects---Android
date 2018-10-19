@@ -7,6 +7,7 @@ import android.graphics.Path;
 import com.kamenov.martin.a3dobjects.models.DeepPoint;
 import com.kamenov.martin.a3dobjects.contracts.GameObject;
 import com.kamenov.martin.a3dobjects.contracts.Rotatable;
+import com.kamenov.martin.a3dobjects.models.services.DrawingService;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,8 @@ public abstract class Object3D implements GameObject, Rotatable {
     private boolean rotateY;
     private boolean rotateZ;
 
-    public Object3D(float x, float y, float z, Paint edgePaint, Paint wallPaint, float rotation) {
+    public Object3D(float x, float y, float z, Paint edgePaint, Paint wallPaint,
+                    float rotation) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -193,7 +195,7 @@ public abstract class Object3D implements GameObject, Rotatable {
         {
             avrg += points[i].getZ();
         }
-        avrg/=points.length;
+        avrg /= points.length;
         return avrg;
     }
 }

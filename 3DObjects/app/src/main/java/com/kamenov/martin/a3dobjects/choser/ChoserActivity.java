@@ -8,16 +8,14 @@ import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.kamenov.martin.a3dobjects.engine.CommandParser;
 import com.kamenov.martin.a3dobjects.engine.contracts.Starter;
 import com.kamenov.martin.a3dobjects.game.GameActivity;
 import com.kamenov.martin.a3dobjects.R;
 import com.kamenov.martin.a3dobjects.models.Constants;
-import com.kamenov.martin.a3dobjects.models.factory.FigureFactory;
+import com.kamenov.martin.a3dobjects.models.factories.FigureFactory;
 
 public class ChoserActivity extends Activity implements TextWatcher, Starter {
     private EditText mConsole;

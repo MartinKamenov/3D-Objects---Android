@@ -1,13 +1,12 @@
 package com.kamenov.martin.a3dobjects.engine;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.widget.EditText;
 
 import com.kamenov.martin.a3dobjects.contracts.Rotatable;
 import com.kamenov.martin.a3dobjects.engine.contracts.Starter;
-import com.kamenov.martin.a3dobjects.models.factory.FigureFactory;
+import com.kamenov.martin.a3dobjects.models.factories.FigureFactory;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Piramid;
