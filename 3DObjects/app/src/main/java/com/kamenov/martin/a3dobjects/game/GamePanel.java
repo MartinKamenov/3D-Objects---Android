@@ -129,7 +129,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ga
             e.printStackTrace();
         }
         finally {
-            if(canvas!=null) {
+            if(canvas != null) {
                 try {
                     getHolder().unlockCanvasAndPost(canvas);
                 }
