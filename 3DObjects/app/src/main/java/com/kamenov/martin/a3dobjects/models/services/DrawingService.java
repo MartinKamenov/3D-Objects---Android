@@ -39,19 +39,19 @@ public class DrawingService {
     private void drawWallsAndEdges(Canvas canvas, List<Object3D> figures) {
         for (int i = 0; i < figures.size(); i++) {
             Object3D figure = figures.get(i);
-            // Sort figure parts
             sortingService.sortParts(figure.parts);
             for(int k = 0; k < figure.parts.size(); k++) {
-                DeepPoint[] wallOrEdge = figure.parts.get(k);
-                if (wallOrEdge.length == 2) {
-                    canvas.drawLine(wallOrEdge[0].getX() + figure.x, wallOrEdge[0].getY() + figure.y,
-                            wallOrEdge[1].getX() + figure.x, wallOrEdge[1].getY() + figure.y, figure.edgePaint);
+                DeepPoint[] part = figure.parts.get(k);
+                if (part.length == 2) {
+                    canvas.drawLine(part[0].getX() + figure.x, part[0].getY() + figure.y,
+                            part[1].getX() + figure.x, part[1].getY() + figure.y, figure.edgePaint);
                 } else {
+                    // Doesn't draw wall if no walls added
                     if (figure.wallPaint != null) {
                         Path wallPath = new Path();
-                        wallPath.moveTo(wallOrEdge[0].getX() + figure.x, wallOrEdge[0].getY() + figure.y);
-                        for (int j = 1; j < wallOrEdge.length; j++) {
-                            wallPath.lineTo(wallOrEdge[j].getX() + figure.x, wallOrEdge[j].getY() + figure.y);
+                        wallPath.moveTo(part[0].getX() + figure.x, part[0].getY() + figure.y);
+                        for (int j = 1; j < part.length; j++) {
+                            wallPath.lineTo(part[j].getX() + figure.x, part[j].getY() + figure.y);
                         }
                         canvas.drawPath(wallPath, figure.wallPaint);
                     }

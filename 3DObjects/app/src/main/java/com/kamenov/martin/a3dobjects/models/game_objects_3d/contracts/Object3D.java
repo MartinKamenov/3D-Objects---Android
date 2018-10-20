@@ -101,11 +101,4 @@ public abstract class Object3D implements GameObject, Rotatable {
     public void setRotateZ(boolean rotateZ) {
         this.rotateZ = rotateZ;
     }
-
-    public ArrayList<DeepPoint[]> sortWallsAndEdgesZ(SortingService sortingService) {
-        ArrayList<DeepPoint[]> sorted =
-                sortingService.sortParts(this.parts);
-
-        return sorted;
-    }
 }

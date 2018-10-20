@@ -19,7 +19,7 @@ public class Background implements GameObject {
         this.paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
     }
-    @Override
+
     public void draw(Canvas canvas) {
         String[] colors = new String[] {
             "#000000", "#111111", "#222222", "#333333",

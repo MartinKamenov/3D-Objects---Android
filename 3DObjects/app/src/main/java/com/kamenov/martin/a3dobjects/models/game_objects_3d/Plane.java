@@ -24,13 +24,12 @@ public class Plane extends Object3D {
         DeepPoint c = new DeepPoint(0+aLength/2, 0+bLength/2, 0);
         DeepPoint d = new DeepPoint(0+aLength/2, 0-bLength/2, 0);
         points = new DeepPoint[] {a, b, c, d};
-        edges = new ArrayList<>();
-        walls = new ArrayList<>();
-        edges.add(new DeepPoint[] {a, b});
-        edges.add(new DeepPoint[] {b, c});
-        edges.add(new DeepPoint[] {c, d});
-        edges.add(new DeepPoint[] {d, a});
-        walls.add(new DeepPoint[] {a, b, c, d});
+        parts = new ArrayList<>();
+        parts.add(new DeepPoint[] {a, b});
+        parts.add(new DeepPoint[] {b, c});
+        parts.add(new DeepPoint[] {c, d});
+        parts.add(new DeepPoint[] {d, a});
+        parts.add(new DeepPoint[] {a, b, c, d});
     }
 
     @Override

@@ -23,6 +23,28 @@ public class SortingService {
     public ArrayList<DeepPoint[]> sortParts(ArrayList<DeepPoint[]> parts) {
         // Should sort points depending on z of each part
         // using best sorting algorithm for the case
+        // maybe this should change arrange of parts of figure
+        // in order to be faster next iteration
+
+        if(!checkIfSorted(parts)) {
+            parts = mergeSortParts(parts);
+        }
+        return parts;
+    }
+
+    private boolean checkIfSorted(ArrayList<DeepPoint[]> parts) {
+        for(int i = 1; i < parts.size(); i++) {
+            if(avrgZ(parts.get(i - 1)) > avrgZ(parts.get(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private ArrayList<DeepPoint[]> mergeSortParts(ArrayList<DeepPoint[]> parts) {
+        // To Do:
+        // Implement merge sort with one arrayList
         return parts;
     }
 

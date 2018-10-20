@@ -26,8 +26,7 @@ public class ComplexObject extends Object3D {
             objects.get(i).setRotateZ(false);
         }
         points = new DeepPoint[pointsLength];
-        edges = new ArrayList<>();
-        walls = new ArrayList<>();
+        parts = new ArrayList<>();
         int index = 0;
         for(int i = 0; i < objects.size(); i++)
         {
@@ -42,13 +41,9 @@ public class ComplexObject extends Object3D {
                 point.setZ(point.getZ()+differenceZ);
                 points[index++] = point;
             }
-            for(int j = 0; j < objects.get(i).edges.size(); j++)
+            for(int j = 0; j < objects.get(i).parts.size(); j++)
             {
-                edges.add(objects.get(i).edges.get(j));
-            }
-            for(int j = 0; j < objects.get(i).walls.size(); j++)
-            {
-                walls.add(objects.get(i).walls.get(j));
+                parts.add(objects.get(i).parts.get(j));
             }
         }
     }
