@@ -8,6 +8,9 @@ import android.graphics.Paint;
 
 public class DrawingPart {
     public DrawingPart(float x, float y, float z, DeepPoint[] part, Paint paint) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
         this.part = part;
         this.paint = paint;
     }

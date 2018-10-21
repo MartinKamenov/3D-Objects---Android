@@ -72,7 +72,6 @@ public class SortingService {
                     sortedParts.add(parts.get(middle + rightIndex));
                     rightIndex++;
                 }
-                continue;
             }
             else if(leftIndex < middle - start) {
                 sortedParts.add(parts.get(start + leftIndex));

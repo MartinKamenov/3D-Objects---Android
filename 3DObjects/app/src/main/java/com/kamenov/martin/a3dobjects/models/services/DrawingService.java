@@ -42,15 +42,26 @@ public class DrawingService {
             sortingService.sortParts(figure.parts);
 
             for(int j = 0; j < figure.parts.size(); j++) {
-                drawingParts.add(new DrawingPart(
-                        figure.x,
-                        figure.y,
-                        figure.z,
-                        figure.parts.get(j),
-                        figure.edgePaint));
+                if(figure.parts.get(j).length <= 2) {
+                    drawingParts.add(new DrawingPart(
+                            figure.x,
+                            figure.y,
+                            figure.z,
+                            figure.parts.get(j),
+                            figure.edgePaint));
+                } else {
+                    drawingParts.add(new DrawingPart(
+                            figure.x,
+                            figure.y,
+                            figure.z,
+                            figure.parts.get(j),
+                            figure.wallPaint));
+                }
             }
         }
 
+        // Draw part depending how many points it has
+        // If part has 2 points then it's an edge else it's a wall
         for(int k = 0; k < drawingParts.size(); k++) {
             DrawingPart drawingPart = drawingParts.get(k);
             DeepPoint[] part = drawingPart.part;
