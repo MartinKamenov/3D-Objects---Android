@@ -7,6 +7,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.kamenov.martin.a3dobjects.models.Constants;
+import com.kamenov.martin.a3dobjects.models.services.DrawingService;
+import com.kamenov.martin.a3dobjects.models.services.SortingService;
 
 public class GameActivity extends Activity {
 
@@ -15,6 +17,7 @@ public class GameActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(new GamePanel(this));
+        setContentView(new GamePanel(this,
+                DrawingService.getInstance(SortingService.getInstance())));
     }
 }

@@ -32,31 +32,30 @@ public class Parallelepiped extends Object3D {
         DeepPoint c1 = new DeepPoint(0+aLength/2, 0+bLength/2, 0+cLength/2);
         DeepPoint d1 = new DeepPoint(0+aLength/2, 0-bLength/2, 0+cLength/2);
         points = new DeepPoint[] {a, b, c, d, a1, b1, c1, d1};
-        edges = new ArrayList<>();
-        walls = new ArrayList<>();
-        edges.add(new DeepPoint[] {a, b});
-        edges.add(new DeepPoint[] {b, c});
-        edges.add(new DeepPoint[] {c, d});
-        edges.add(new DeepPoint[] {d, a});
-        edges.add(new DeepPoint[] {a1, b1});
-        edges.add(new DeepPoint[] {b1, c1});
-        edges.add(new DeepPoint[] {c1, d1});
-        edges.add(new DeepPoint[] {d1, a1});
-        edges.add(new DeepPoint[] {a, a1});
-        edges.add(new DeepPoint[] {b, b1});
-        edges.add(new DeepPoint[] {c, c1});
-        edges.add(new DeepPoint[] {d, d1});
+        parts = new ArrayList<>();
+        parts.add(new DeepPoint[] {a, b});
+        parts.add(new DeepPoint[] {b, c});
+        parts.add(new DeepPoint[] {c, d});
+        parts.add(new DeepPoint[] {d, a});
+        parts.add(new DeepPoint[] {a1, b1});
+        parts.add(new DeepPoint[] {b1, c1});
+        parts.add(new DeepPoint[] {c1, d1});
+        parts.add(new DeepPoint[] {d1, a1});
+        parts.add(new DeepPoint[] {a, a1});
+        parts.add(new DeepPoint[] {b, b1});
+        parts.add(new DeepPoint[] {c, c1});
+        parts.add(new DeepPoint[] {d, d1});
 
-        walls.add(new DeepPoint[] {a, b, c, d});
-        walls.add(new DeepPoint[] {a1, b1, c1, d1});
-        walls.add(new DeepPoint[] {a, b, b1, a1});
-        walls.add(new DeepPoint[] {b, c, c1, b1});
-        walls.add(new DeepPoint[] {c, d, d1, c1});
-        walls.add(new DeepPoint[] {d, a, a1, d1});
+        parts.add(new DeepPoint[] {a, b, c, d});
+        parts.add(new DeepPoint[] {a1, b1, c1, d1});
+        parts.add(new DeepPoint[] {a, b, b1, a1});
+        parts.add(new DeepPoint[] {b, c, c1, b1});
+        parts.add(new DeepPoint[] {c, d, d1, c1});
+        parts.add(new DeepPoint[] {d, a, a1, d1});
     }
 
     public ArrayList<DeepPoint[]> getEdges() {
-        return this.edges;
+        return this.parts;
     }
 
     @Override

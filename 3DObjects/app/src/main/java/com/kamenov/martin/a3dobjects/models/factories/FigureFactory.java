@@ -2,7 +2,6 @@ package com.kamenov.martin.a3dobjects.models.factories;
 
 import android.graphics.Paint;
 
-import com.kamenov.martin.a3dobjects.contracts.Rotatable;
 import com.kamenov.martin.a3dobjects.models.Constants;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.ComplexObject;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 public class FigureFactory {
     public boolean shouldBeAdded;
     private static FigureFactory figureFactory;
-    private ArrayList<Rotatable> figures;
+    private ArrayList<Object3D> figures;
 
     private FigureFactory() {
         figures = new ArrayList<>();
@@ -90,7 +89,7 @@ public class FigureFactory {
         return complexObject;
     }
 
-    public ArrayList<Rotatable> getFigures() {
+    public ArrayList<Object3D> getFigures() {
         return this.figures;
     }
 

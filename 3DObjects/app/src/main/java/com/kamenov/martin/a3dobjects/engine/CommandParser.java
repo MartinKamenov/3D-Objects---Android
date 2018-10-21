@@ -345,7 +345,7 @@ public class CommandParser {
     }
 
     private void showAllFigures() {
-        List<Rotatable> figures = mFigureFactory.getFigures();
+        List<Object3D> figures = mFigureFactory.getFigures();
         for(int i = 0; i < figures.size(); i++) {
             showFigure(i);
         }

@@ -1,13 +1,11 @@
 package com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts;
 
-import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
 
 import com.kamenov.martin.a3dobjects.models.DeepPoint;
 import com.kamenov.martin.a3dobjects.contracts.GameObject;
 import com.kamenov.martin.a3dobjects.contracts.Rotatable;
-import com.kamenov.martin.a3dobjects.models.services.DrawingService;
+import com.kamenov.martin.a3dobjects.models.services.SortingService;
 
 import java.util.ArrayList;
 
@@ -17,14 +15,13 @@ import java.util.ArrayList;
 
 public abstract class Object3D implements GameObject, Rotatable {
     public DeepPoint[] points;
-    public ArrayList<DeepPoint[]> edges;
-    public ArrayList<DeepPoint[]> walls;
+    public ArrayList<DeepPoint[]> parts;
     public float x;
     public float y;
     public float z;
-    protected Paint wallPaint;
-    protected Paint edgePaint;
-    protected float rotation;
+    public Paint wallPaint;
+    public Paint edgePaint;
+    public float rotation;
     private boolean rotateX;
     private boolean rotateY;
     private boolean rotateZ;
@@ -93,89 +90,6 @@ public abstract class Object3D implements GameObject, Rotatable {
         }
     }
 
-    public void draw(Canvas canvas) {
-        ArrayList<DeepPoint[]> wallsAndEdges = new ArrayList<>();
-        ArrayList<Float> zts = new ArrayList<>();
-
-        addAndSortWallsAndEdges(wallsAndEdges, zts);
-
-        drawWallsAndEdges(canvas, wallsAndEdges);
-    }
-
-    private void drawWallsAndEdges(Canvas canvas, ArrayList<DeepPoint[]> wallsAndEdges) {
-        for (int i = 0; i < wallsAndEdges.size(); i++) {
-            DeepPoint[] wallOrEdge = wallsAndEdges.get(i);
-            if (wallsAndEdges.get(i).length == 2) {
-                canvas.drawLine(wallOrEdge[0].getX() + x, wallOrEdge[0].getY() + y,
-                        wallOrEdge[1].getX() + x, wallOrEdge[1].getY() + y, edgePaint);
-            } else {
-                if (wallPaint != null) {
-                    Path wallPath = new Path();
-                    wallPath.moveTo(wallOrEdge[0].getX() + x, wallOrEdge[0].getY() + y);
-                    for (int j = 1; j < wallOrEdge.length; j++) {
-                        wallPath.lineTo(wallOrEdge[j].getX() + x, wallOrEdge[j].getY() + y);
-                    }
-                    canvas.drawPath(wallPath, wallPaint);
-                }
-            }
-        }
-    }
-
-    private void addAndSortWallsAndEdges(ArrayList<DeepPoint[]> wallsAndEdges, ArrayList<Float> zts) {
-        for (int i = 0; i < edges.size(); i++)
-        {
-            boolean added = false;
-            float avg = avrgZ(edges.get(i));
-            if(zts.size()==0)
-            {
-                zts.add(avg);
-                wallsAndEdges.add(edges.get(i));
-                continue;
-            }
-            for(int j = 0; j < zts.size(); j++)
-            {
-                if(avg > zts.get(j))
-                {
-                    zts.add(j, avg);
-                    wallsAndEdges.add(j, edges.get(i));
-                    added = true;
-                    break;
-                }
-            }
-            if(!added)
-            {
-                zts.add(avg);
-                wallsAndEdges.add(edges.get(i));
-            }
-        }
-        for (int i = 0; i < walls.size(); i++)
-        {
-            boolean added = false;
-            float avg = avrgZ(walls.get(i));
-            if(zts.size()==0)
-            {
-                zts.add(avg);
-                wallsAndEdges.add(walls.get(i));
-                continue;
-            }
-            for(int j = 0; j < zts.size(); j++)
-            {
-                if(avg>zts.get(j))
-                {
-                    zts.add(j, avg);
-                    wallsAndEdges.add(j, walls.get(i));
-                    added = true;
-                    break;
-                }
-            }
-            if(!added)
-            {
-                zts.add(avg);
-                wallsAndEdges.add(walls.get(i));
-            }
-        }
-    }
-
     public void setRotateX(boolean rotateX) {
         this.rotateX = rotateX;
     }
@@ -186,16 +100,5 @@ public abstract class Object3D implements GameObject, Rotatable {
 
     public void setRotateZ(boolean rotateZ) {
         this.rotateZ = rotateZ;
-    }
-
-    private float avrgZ(DeepPoint[] points)
-    {
-        float avrg = 0;
-        for(int i = 0; i < points.length; i++)
-        {
-            avrg += points[i].getZ();
-        }
-        avrg /= points.length;
-        return avrg;
     }
 }

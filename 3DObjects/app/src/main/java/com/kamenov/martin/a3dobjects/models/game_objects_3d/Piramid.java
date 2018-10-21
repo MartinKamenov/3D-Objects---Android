@@ -20,23 +20,22 @@ public class Piramid extends Object3D {
         DeepPoint d = new DeepPoint(0+aLength/2, 0-bLength/2, 0);
         DeepPoint e = new DeepPoint(0, 0, 0 + h);
         points = new DeepPoint[] {a, b, c, d, e};
-        edges = new ArrayList<>();
-        walls = new ArrayList<>();
+        parts = new ArrayList<>();
 
-        edges.add(new DeepPoint[] {a, b});
-        edges.add(new DeepPoint[] {b, c});
-        edges.add(new DeepPoint[] {c, d});
-        edges.add(new DeepPoint[] {d, a});
-        edges.add(new DeepPoint[] {a, e});
-        edges.add(new DeepPoint[] {b, e});
-        edges.add(new DeepPoint[] {c, e});
-        edges.add(new DeepPoint[] {d, e});
+        parts.add(new DeepPoint[] {a, b});
+        parts.add(new DeepPoint[] {b, c});
+        parts.add(new DeepPoint[] {c, d});
+        parts.add(new DeepPoint[] {d, a});
+        parts.add(new DeepPoint[] {a, e});
+        parts.add(new DeepPoint[] {b, e});
+        parts.add(new DeepPoint[] {c, e});
+        parts.add(new DeepPoint[] {d, e});
 
-        walls.add(new DeepPoint[] {a, b, c, d});
-        walls.add(new DeepPoint[] {a, b, e});
-        walls.add(new DeepPoint[] {b, c, e});
-        walls.add(new DeepPoint[] {c, d, e});
-        walls.add(new DeepPoint[] {d, a, e});
+        parts.add(new DeepPoint[] {a, b, c, d});
+        parts.add(new DeepPoint[] {a, b, e});
+        parts.add(new DeepPoint[] {b, c, e});
+        parts.add(new DeepPoint[] {c, d, e});
+        parts.add(new DeepPoint[] {d, a, e});
     }
 
     @Override
