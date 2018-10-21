@@ -42,25 +42,30 @@ public class DrawingService {
             sortingService.sortParts(figure.parts);
 
             for(int j = 0; j < figure.parts.size(); j++) {
-                drawingParts.add(new DrawingPart(figure.parts.get(j),
+                drawingParts.add(new DrawingPart(
+                        figure.x,
+                        figure.y,
+                        figure.z,
+                        figure.parts.get(j),
                         figure.edgePaint));
             }
         }
 
-        for(int k = 0; k < figure.parts.size(); k++) {
-            DeepPoint[] part = figure.parts.get(k);
+        for(int k = 0; k < drawingParts.size(); k++) {
+            DrawingPart drawingPart = drawingParts.get(k);
+            DeepPoint[] part = drawingPart.part;
             if (part.length == 2) {
-                canvas.drawLine(part[0].getX() + figure.x, part[0].getY() + figure.y,
-                        part[1].getX() + figure.x, part[1].getY() + figure.y, figure.edgePaint);
+                canvas.drawLine(part[0].getX() + drawingPart.x, part[0].getY() + drawingPart.y,
+                        part[1].getX() + drawingPart.x, part[1].getY() + drawingPart.y, drawingPart.paint);
             } else {
                 // Doesn't draw wall if no wall paint has been added
-                if (figure.wallPaint != null) {
+                if (drawingPart.paint != null) {
                     Path wallPath = new Path();
-                    wallPath.moveTo(part[0].getX() + figure.x, part[0].getY() + figure.y);
+                    wallPath.moveTo(part[0].getX() + drawingPart.x, part[0].getY() + drawingPart.y);
                     for (int j = 1; j < part.length; j++) {
-                        wallPath.lineTo(part[j].getX() + figure.x, part[j].getY() + figure.y);
+                        wallPath.lineTo(part[j].getX() + drawingPart.x, part[j].getY() + drawingPart.y);
                     }
-                    canvas.drawPath(wallPath, figure.wallPaint);
+                    canvas.drawPath(wallPath, drawingPart.paint);
                 }
             }
         }

@@ -7,10 +7,13 @@ import android.graphics.Paint;
  */
 
 public class DrawingPart {
-    public DrawingPart(DeepPoint[] part, Paint paint) {
+    public DrawingPart(float x, float y, float z, DeepPoint[] part, Paint paint) {
         this.part = part;
         this.paint = paint;
     }
     public DeepPoint[] part;
     public Paint paint;
+    public float x;
+    public float y;
+    public float z;
 }
