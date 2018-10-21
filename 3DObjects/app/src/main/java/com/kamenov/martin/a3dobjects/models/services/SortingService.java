@@ -29,6 +29,7 @@ public class SortingService {
         if(!checkIfSorted(parts)) {
             parts = mergeSortParts(parts);
         }
+
         return parts;
     }
 
@@ -43,8 +44,50 @@ public class SortingService {
     }
 
     private ArrayList<DeepPoint[]> mergeSortParts(ArrayList<DeepPoint[]> parts) {
-        // To Do:
-        // Implement merge sort with one arrayList
+        mergeSortParts(0, parts.size(), parts);
+        return parts;
+    }
+
+    private ArrayList<DeepPoint[]> mergeSortParts(int start, int end, ArrayList<DeepPoint[]> parts) {
+        if(end - start <= 1) {
+            return parts;
+        }
+
+        int middle = start + ((end - start) / 2);
+
+        mergeSortParts(start, middle, parts);
+        mergeSortParts(middle, end, parts);
+
+        int leftIndex = 0;
+        int rightIndex = 0;
+        ArrayList<DeepPoint[]> sortedParts = new ArrayList<>();
+
+        // Merge part
+        while (leftIndex < middle - start || rightIndex < end - middle) {
+            if(leftIndex < middle - start && rightIndex < end - middle) {
+                if(avrgZ(parts.get(start + leftIndex)) >= avrgZ(parts.get(middle + rightIndex))) {
+                    sortedParts.add(parts.get(start + leftIndex));
+                    leftIndex++;
+                } else {
+                    sortedParts.add(parts.get(middle + rightIndex));
+                    rightIndex++;
+                }
+                continue;
+            }
+            else if(leftIndex < middle - start) {
+                sortedParts.add(parts.get(start + leftIndex));
+                leftIndex++;
+            }
+            else {
+                sortedParts.add(parts.get(middle + rightIndex));
+                rightIndex++;
+            }
+        }
+
+        for(int i = 0; i < sortedParts.size(); i++) {
+            parts.set(start + i, sortedParts.get(i));
+        }
+
         return parts;
     }
 
