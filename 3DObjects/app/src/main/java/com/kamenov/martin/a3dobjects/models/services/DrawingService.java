@@ -38,25 +38,35 @@ public class DrawingService {
     private void drawParts(Canvas canvas, List<Object3D> figures) {
         ArrayList<DrawingPart> drawingParts = new ArrayList<>();
         for (int i = 0; i < figures.size(); i++) {
+            ArrayList<DrawingPart> figureDrawingParts = new ArrayList<>();
             Object3D figure = figures.get(i);
             sortingService.sortParts(figure.parts);
 
             for(int j = 0; j < figure.parts.size(); j++) {
+                DrawingPart drawingPart;
                 if(figure.parts.get(j).length <= 2) {
-                    drawingParts.add(new DrawingPart(
+                    drawingPart = new DrawingPart(
                             figure.x,
                             figure.y,
                             figure.z,
                             figure.parts.get(j),
-                            figure.edgePaint));
+                            figure.edgePaint);
+                    figureDrawingParts.add(drawingPart);
                 } else {
-                    drawingParts.add(new DrawingPart(
+                    drawingPart = new DrawingPart(
                             figure.x,
                             figure.y,
                             figure.z,
                             figure.parts.get(j),
-                            figure.wallPaint));
+                            figure.wallPaint);
+                    figureDrawingParts.add(drawingPart);
                 }
+            }
+
+            if(i == 0) {
+                drawingParts = figureDrawingParts;
+            } else {
+                drawingParts = sortingService.mergeSortedDrawingParts(drawingParts, figureDrawingParts);
             }
         }
 

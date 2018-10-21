@@ -1,6 +1,7 @@
 package com.kamenov.martin.a3dobjects.models.services;
 
 import com.kamenov.martin.a3dobjects.models.DeepPoint;
+import com.kamenov.martin.a3dobjects.models.DrawingPart;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,35 @@ public class SortingService {
         }
 
         return parts;
+    }
+
+    public ArrayList<DrawingPart> mergeSortedDrawingParts(ArrayList<DrawingPart> left, ArrayList<DrawingPart> right) {
+        int leftIndex = 0;
+        int rightIndex = 0;
+        ArrayList<DrawingPart> mergedParts = new ArrayList<>();
+
+        // Merge part
+        while (leftIndex < left.size() || rightIndex < right.size()) {
+            if(leftIndex < left.size() && rightIndex < right.size()) {
+                if(avrgZ(left.get(leftIndex).part) >= avrgZ(right.get(rightIndex).part)) {
+                    mergedParts.add(left.get(leftIndex));
+                    leftIndex++;
+                } else {
+                    mergedParts.add(right.get(rightIndex));
+                    rightIndex++;
+                }
+            }
+            else if(leftIndex < left.size()) {
+                mergedParts.add(left.get(leftIndex));
+                leftIndex++;
+            }
+            else {
+                mergedParts.add(right.get(rightIndex));
+                rightIndex++;
+            }
+        }
+
+        return mergedParts;
     }
 
     private boolean checkIfSorted(ArrayList<DeepPoint[]> parts) {
@@ -83,6 +113,7 @@ public class SortingService {
             }
         }
 
+        // Changing the original array
         for(int i = 0; i < sortedParts.size(); i++) {
             parts.set(start + i, sortedParts.get(i));
         }
