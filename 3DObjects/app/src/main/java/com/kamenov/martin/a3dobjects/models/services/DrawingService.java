@@ -50,7 +50,8 @@ public class DrawingService {
                             figure.y,
                             figure.z,
                             figure.parts.get(j),
-                            figure.edgePaint);
+                            figure.edgePaint,
+                            figure.getClass());
                     figureDrawingParts.add(drawingPart);
                 } else {
                     drawingPart = new DrawingPart(
@@ -58,7 +59,8 @@ public class DrawingService {
                             figure.y,
                             figure.z,
                             figure.parts.get(j),
-                            figure.wallPaint);
+                            figure.wallPaint,
+                            figure.getClass());
                     figureDrawingParts.add(drawingPart);
                 }
             }
