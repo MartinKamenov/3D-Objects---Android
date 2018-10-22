@@ -101,4 +101,9 @@ public abstract class Object3D implements GameObject, Rotatable {
     public void setRotateZ(boolean rotateZ) {
         this.rotateZ = rotateZ;
     }
+
+    @Override
+    public void update() {
+        //rotateY3D(0.005f);
+    }
 }

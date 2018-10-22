@@ -47,8 +47,4 @@ public class ComplexObject extends Object3D {
             }
         }
     }
-
-    @Override
-    public void update() {
-    }
 }

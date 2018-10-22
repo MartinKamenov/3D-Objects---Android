@@ -53,29 +53,28 @@ public class DrawingService {
                         figure.parts.get(0),
                         figure.edgePaint,
                         figure.getClass()));
-                continue;
-            }
-
-            for(int j = 0; j < figure.parts.size(); j++) {
-                DrawingPart drawingPart;
-                if(figure.parts.get(j).length <= 2) {
-                    drawingPart = new DrawingPart(
-                            figure.x,
-                            figure.y,
-                            figure.z,
-                            figure.parts.get(j),
-                            figure.edgePaint,
-                            figure.getClass());
-                    figureDrawingParts.add(drawingPart);
-                } else {
-                    drawingPart = new DrawingPart(
-                            figure.x,
-                            figure.y,
-                            figure.z,
-                            figure.parts.get(j),
-                            figure.wallPaint,
-                            figure.getClass());
-                    figureDrawingParts.add(drawingPart);
+            } else {
+                for (int j = 0; j < figure.parts.size(); j++) {
+                    DrawingPart drawingPart;
+                    if (figure.parts.get(j).length <= 2) {
+                        drawingPart = new DrawingPart(
+                                figure.x,
+                                figure.y,
+                                figure.z,
+                                figure.parts.get(j),
+                                figure.edgePaint,
+                                figure.getClass());
+                        figureDrawingParts.add(drawingPart);
+                    } else {
+                        drawingPart = new DrawingPart(
+                                figure.x,
+                                figure.y,
+                                figure.z,
+                                figure.parts.get(j),
+                                figure.wallPaint,
+                                figure.getClass());
+                        figureDrawingParts.add(drawingPart);
+                    }
                 }
             }
 
@@ -94,7 +93,7 @@ public class DrawingService {
             if (drawingPart.clazz == Sphere.class) {
                 canvas.drawCircle(part[0].getX(), part[0].getY(), drawingPart.radius, drawingPart.paint);
             }
-            if (part.length == 2) {
+            else if (part.length == 2) {
                 canvas.drawLine(part[0].getX() + drawingPart.x, part[0].getY() + drawingPart.y,
                         part[1].getX() + drawingPart.x, part[1].getY() + drawingPart.y, drawingPart.paint);
             } else {

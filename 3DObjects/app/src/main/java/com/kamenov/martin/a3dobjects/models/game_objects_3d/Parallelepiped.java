@@ -57,9 +57,4 @@ public class Parallelepiped extends Object3D {
     public ArrayList<DeepPoint[]> getEdges() {
         return this.parts;
     }
-
-    @Override
-    public void update() {
-        //rotateX3D(0.005f);
-    }
 }

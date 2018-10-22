@@ -33,9 +33,4 @@ public class Sphere extends Object3D {
                 new DeepPoint(x, y, z)
         });
     }
-
-    @Override
-    public void update() {
-
-    }
 }

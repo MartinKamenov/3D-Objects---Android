@@ -31,9 +31,4 @@ public class Plane extends Object3D {
         parts.add(new DeepPoint[] {d, a});
         parts.add(new DeepPoint[] {a, b, c, d});
     }
-
-    @Override
-    public void update() {
-
-    }
 }
