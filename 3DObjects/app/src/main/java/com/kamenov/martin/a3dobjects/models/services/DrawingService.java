@@ -49,7 +49,7 @@ public class DrawingService {
                         figure.x,
                         figure.y,
                         figure.z,
-                        ((Sphere)figure).rotation,
+                        ((Sphere)figure).radius,
                         figure.parts.get(0),
                         figure.edgePaint,
                         figure.getClass()));
@@ -91,7 +91,9 @@ public class DrawingService {
             DrawingPart drawingPart = drawingParts.get(k);
             DeepPoint[] part = drawingPart.part;
             if (drawingPart.clazz == Sphere.class) {
-                canvas.drawCircle(part[0].getX(), part[0].getY(), drawingPart.radius, drawingPart.paint);
+                canvas.drawCircle(part[0].getX() + drawingPart.x
+                        , part[0].getY() + drawingPart.y,
+                        drawingPart.radius, drawingPart.paint);
             }
             else if (part.length == 2) {
                 canvas.drawLine(part[0].getX() + drawingPart.x, part[0].getY() + drawingPart.y,
