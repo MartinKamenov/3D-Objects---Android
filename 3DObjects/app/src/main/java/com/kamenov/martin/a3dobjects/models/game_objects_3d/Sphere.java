@@ -13,15 +13,18 @@ import java.util.ArrayList;
 
 public class Sphere extends Object3D {
     private ArrayList<DeepPoint[]> parts;
-    private float radius;
+    public float radius;
     public Sphere(float x, float y, float z, Paint edgePaint, Paint wallPaint,
                   float rotation, float radius) {
         super(x, y, z, edgePaint, wallPaint, rotation);
         this.radius = radius;
+        DeepPoint a = new DeepPoint(x, y, z);
+        points = new DeepPoint[] {a};
         parts = new ArrayList<>();
-        parts.add(new DeepPoint[] {
-            new DeepPoint(x, y, z)
-        });
+        parts.add(new DeepPoint[]{a});
+        /*parts.add(new DeepPoint[] {
+            new DeepPoint(x, y, z + radius)
+        });*/
     }
 
     public Sphere(float x, float y, float z, Paint edgePaint, Paint wallPaint,
@@ -32,5 +35,8 @@ public class Sphere extends Object3D {
         parts.add(new DeepPoint[] {
                 new DeepPoint(x, y, z)
         });
+        /*parts.add(new DeepPoint[] {
+                new DeepPoint(x, y, z + radius)
+        });*/
     }
 }

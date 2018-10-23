@@ -8,6 +8,7 @@ import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Piramid;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
 
 import java.util.ArrayList;
@@ -76,6 +77,17 @@ public class FigureFactory {
             figures.add(plane);
         }
         return plane;
+    }
+
+    public Sphere createSphere(float x, float y, float z, Paint edgePaint, Paint wallPaint,
+                               float rotation, float radius) {
+        x += Constants.SCREEN_WIDTH / 2;
+        y += Constants.SCREEN_HEIGHT / 2;
+        Sphere sphere = new Sphere(x, y, z, edgePaint, wallPaint, rotation, radius);
+        if(shouldBeAdded) {
+            figures.add(sphere);
+        }
+        return sphere;
     }
 
     public ComplexObject createComplexObject(float x, float y, float z, Paint edgePaint,

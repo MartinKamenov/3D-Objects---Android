@@ -64,6 +64,9 @@ public class SortingService {
     }
 
     private boolean checkIfSorted(ArrayList<DeepPoint[]> parts) {
+        if (parts.size() < 2) {
+            return true;
+        }
         for(int i = 1; i < parts.size(); i++) {
             if(avrgZ(parts.get(i - 1)) > avrgZ(parts.get(i))) {
                 return false;

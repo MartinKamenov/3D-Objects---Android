@@ -11,6 +11,7 @@ import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Piramid;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class CommandParser {
             "para",
             "pira",
             "plane",
+            "sphere",
             "co",
             "complexobject",
             "finish",
@@ -94,6 +96,7 @@ public class CommandParser {
                 case "para":
                 case "pira":
                 case "plane":
+                case "sphere":
                 case "co":
                 case "complexobject":
                     createObject(commandWords);
@@ -261,6 +264,23 @@ public class CommandParser {
                         writeLine("Plane was added");
                     }
                     break;
+                case "sphere":
+                    edgePaint = createEdgePaint(commandWords[4]);
+                    wallPaint = createWallPaint(commandWords[5]);
+                    rotation = Float.valueOf(commandWords[6]);
+                    float radius = Float.valueOf(commandWords[7]);
+                    if(!isCreatingComplexObject) {
+                        mFigureFactory.createSphere(x, y, z,
+                                edgePaint, wallPaint, rotation, radius);
+                        writeLine("Sphere was created");
+                    } else {
+                        Sphere sphere = mFigureFactory
+                                .createSphere(x, y, z,
+                                        edgePaint, wallPaint, rotation, radius);
+                        complexObjectFigures.add(sphere);
+                        writeLine("Sphere was added");
+                    }
+                    break;
                 case "co":
                 case "complexobject":
                     coX = x;
@@ -288,6 +308,9 @@ public class CommandParser {
                     break;
                 case "plane":
                     writeLine("Params: x, y, z, edgeColor, wallColor, rotation, aLength, bLength");
+                    break;
+                case "sphere":
+                    writeLine("Params: x, y, z, edgePaint, wallPaint, rotation, radius");
                     break;
                 case "co":
                 case "complexobject":
