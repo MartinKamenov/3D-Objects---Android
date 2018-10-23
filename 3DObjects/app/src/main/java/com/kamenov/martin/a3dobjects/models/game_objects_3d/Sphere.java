@@ -17,12 +17,10 @@ public class Sphere extends Object3D {
                   float rotation, float radius) {
         super(x, y, z, edgePaint, wallPaint, rotation);
         this.radius = radius;
-        DeepPoint a = new DeepPoint(0, 0, 0);
-        points = new DeepPoint[] {a};
+        DeepPoint edgeAndWall = new DeepPoint(0, 0, 0);
+        points = new DeepPoint[] {edgeAndWall};
+
         parts = new ArrayList<>();
-        parts.add(new DeepPoint[]{a});
-        /*parts.add(new DeepPoint[] {
-            new DeepPoint(x, y, z + radius)
-        });*/
+        parts.add(new DeepPoint[]{edgeAndWall});
     }
 }
