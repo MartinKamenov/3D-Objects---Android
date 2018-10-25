@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import com.kamenov.martin.a3dobjects.models.DeepPoint;
 import com.kamenov.martin.a3dobjects.contracts.GameObject;
 import com.kamenov.martin.a3dobjects.contracts.Rotatable;
+import com.kamenov.martin.a3dobjects.models.DrawingPart;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.services.SortingService;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 public abstract class Object3D implements GameObject, Rotatable {
     public DeepPoint[] points;
     public ArrayList<DeepPoint[]> parts;
+    public ArrayList<DrawingPart> drawingParts;
     public float x;
     public float y;
     public float z;
@@ -104,6 +107,52 @@ public abstract class Object3D implements GameObject, Rotatable {
 
     @Override
     public void update() {
-        //rotateY3D(0.005f);
+        // Write moving logic here
+    }
+
+    protected void setDrawingParts() {
+        for(int i = 0; i < parts.size(); i++) {
+            if(getClass() == Sphere.class) {
+                drawingParts.add(new DrawingPart(
+                        x,
+                        y,
+                        z,
+                        ((Sphere)this).radius,
+                        parts.get(0),
+                        edgePaint,
+                        getClass()));
+                drawingParts.add(new DrawingPart(
+                        x,
+                        y,
+                        z,
+                        ((Sphere)this).radius,
+                        parts.get(0),
+                        wallPaint,
+                        getClass()));
+            } else {
+                for (int j = 0; j < parts.size(); j++) {
+                    DrawingPart drawingPart;
+                    if (parts.get(j).length <= 2) {
+                        drawingPart = new DrawingPart(
+                                x,
+                                y,
+                                z,
+                                parts.get(j),
+                                edgePaint,
+                                getClass());
+                        drawingParts.add(drawingPart);
+                    } else {
+                        drawingPart = new DrawingPart(
+                                x,
+                                y,
+                                z,
+                                parts.get(j),
+                                wallPaint,
+                                getClass());
+                        drawingParts.add(drawingPart);
+                    }
+                }
+            }
+        }
     }
 }

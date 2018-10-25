@@ -44,48 +44,6 @@ public class DrawingService {
             Object3D figure = figures.get(i);
             sortingService.sortParts(figure.parts);
 
-            if(figure.getClass() == Sphere.class) {
-                figureDrawingParts.add(new DrawingPart(
-                        figure.x,
-                        figure.y,
-                        figure.z,
-                        ((Sphere)figure).radius,
-                        figure.parts.get(0),
-                        figure.edgePaint,
-                        figure.getClass()));
-                figureDrawingParts.add(new DrawingPart(
-                        figure.x,
-                        figure.y,
-                        figure.z,
-                        ((Sphere)figure).radius,
-                        figure.parts.get(0),
-                        figure.wallPaint,
-                        figure.getClass()));
-            } else {
-                for (int j = 0; j < figure.parts.size(); j++) {
-                    DrawingPart drawingPart;
-                    if (figure.parts.get(j).length <= 2) {
-                        drawingPart = new DrawingPart(
-                                figure.x,
-                                figure.y,
-                                figure.z,
-                                figure.parts.get(j),
-                                figure.edgePaint,
-                                figure.getClass());
-                        figureDrawingParts.add(drawingPart);
-                    } else {
-                        drawingPart = new DrawingPart(
-                                figure.x,
-                                figure.y,
-                                figure.z,
-                                figure.parts.get(j),
-                                figure.wallPaint,
-                                figure.getClass());
-                        figureDrawingParts.add(drawingPart);
-                    }
-                }
-            }
-
             if(i == 0) {
                 drawingParts = figureDrawingParts;
             } else {
