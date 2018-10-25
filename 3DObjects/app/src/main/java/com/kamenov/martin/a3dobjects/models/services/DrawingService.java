@@ -40,14 +40,10 @@ public class DrawingService {
     private void drawParts(Canvas canvas, List<Object3D> figures) {
         ArrayList<DrawingPart> drawingParts = new ArrayList<>();
         for (int i = 0; i < figures.size(); i++) {
-            ArrayList<DrawingPart> figureDrawingParts = new ArrayList<>();
             Object3D figure = figures.get(i);
-            sortingService.sortParts(figure.parts);
-
-            if(i == 0) {
-                drawingParts = figureDrawingParts;
-            } else {
-                drawingParts = sortingService.mergeSortedDrawingParts(drawingParts, figureDrawingParts);
+            sortingService.sortParts(figure.drawingParts);
+            if(i > 0) {
+                drawingParts = sortingService.mergeSortedDrawingParts(drawingParts, figure.drawingParts);
             }
         }
 
@@ -55,7 +51,7 @@ public class DrawingService {
         // If part has 2 points then it's an edge else it's a wall
         for(int k = 0; k < drawingParts.size(); k++) {
             DrawingPart drawingPart = drawingParts.get(k);
-            DeepPoint[] part = drawingPart.part;
+            DeepPoint[] part = drawingPart.parts;
             if (drawingPart.clazz == Sphere.class) {
                 canvas.drawCircle(part[0].getX() + drawingPart.x
                         , part[0].getY() + drawingPart.y,

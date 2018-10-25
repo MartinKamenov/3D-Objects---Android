@@ -21,7 +21,8 @@ public class SortingService {
         return instance;
     }
 
-    public ArrayList<DeepPoint[]> sortParts(ArrayList<DeepPoint[]> parts) {
+
+    public ArrayList<DrawingPart> sortParts(ArrayList<DrawingPart> parts) {
         // Should sort points depending on z of each part
         // using best sorting algorithm for the case
         // maybe this should change arrange of parts of figure
@@ -42,7 +43,7 @@ public class SortingService {
         // Merge part
         while (leftIndex < left.size() || rightIndex < right.size()) {
             if(leftIndex < left.size() && rightIndex < right.size()) {
-                if(avrgZ(left.get(leftIndex).part) >= avrgZ(right.get(rightIndex).part)) {
+                if(avrgZ(left.get(leftIndex)) >= avrgZ(right.get(rightIndex))) {
                     mergedParts.add(left.get(leftIndex));
                     leftIndex++;
                 } else {
@@ -63,7 +64,7 @@ public class SortingService {
         return mergedParts;
     }
 
-    private boolean checkIfSorted(ArrayList<DeepPoint[]> parts) {
+    private boolean checkIfSorted(ArrayList<DrawingPart> parts) {
         if (parts.size() < 2) {
             return true;
         }
@@ -76,12 +77,12 @@ public class SortingService {
         return true;
     }
 
-    private ArrayList<DeepPoint[]> mergeSortParts(ArrayList<DeepPoint[]> parts) {
+    private ArrayList<DrawingPart> mergeSortParts(ArrayList<DrawingPart> parts) {
         mergeSortParts(0, parts.size(), parts);
         return parts;
     }
 
-    private ArrayList<DeepPoint[]> mergeSortParts(int start, int end, ArrayList<DeepPoint[]> parts) {
+    private ArrayList<DrawingPart> mergeSortParts(int start, int end, ArrayList<DrawingPart> parts) {
         if(end - start <= 1) {
             return parts;
         }
@@ -93,7 +94,7 @@ public class SortingService {
 
         int leftIndex = 0;
         int rightIndex = 0;
-        ArrayList<DeepPoint[]> sortedParts = new ArrayList<>();
+        ArrayList<DrawingPart> sortedParts = new ArrayList<>();
 
         // Merge part
         while (leftIndex < middle - start || rightIndex < end - middle) {
@@ -124,8 +125,9 @@ public class SortingService {
         return parts;
     }
 
-    private float avrgZ(DeepPoint[] points)
+    private float avrgZ(DrawingPart part)
     {
+        DeepPoint[] points = part.parts;
         float avrg = 0;
         for(int i = 0; i < points.length; i++)
         {

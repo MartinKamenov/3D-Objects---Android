@@ -22,5 +22,7 @@ public class Sphere extends Object3D {
 
         parts = new ArrayList<>();
         parts.add(new DeepPoint[]{edgeAndWall});
+
+        setDrawingParts();
     }
 }

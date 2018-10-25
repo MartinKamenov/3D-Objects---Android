@@ -111,6 +111,7 @@ public abstract class Object3D implements GameObject, Rotatable {
     }
 
     protected void setDrawingParts() {
+        drawingParts = new ArrayList<>();
         for(int i = 0; i < parts.size(); i++) {
             if(getClass() == Sphere.class) {
                 drawingParts.add(new DrawingPart(

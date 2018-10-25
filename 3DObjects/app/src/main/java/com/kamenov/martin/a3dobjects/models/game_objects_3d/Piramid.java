@@ -36,5 +36,7 @@ public class Piramid extends Object3D {
         parts.add(new DeepPoint[] {b, c, e});
         parts.add(new DeepPoint[] {c, d, e});
         parts.add(new DeepPoint[] {d, a, e});
+
+        setDrawingParts();
     }
 }
