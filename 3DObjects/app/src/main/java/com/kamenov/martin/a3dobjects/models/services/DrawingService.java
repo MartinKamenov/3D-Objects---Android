@@ -34,10 +34,11 @@ public class DrawingService {
     }
 
     public void drawFigures(Canvas canvas, ArrayList<Object3D> figures) {
-        drawParts(canvas, figures);
+        List<DrawingPart> drawingParts = arrangeDrawingParts(figures);
+        drawParts(canvas, drawingParts);
     }
 
-    private void drawParts(Canvas canvas, List<Object3D> figures) {
+    private List<DrawingPart> arrangeDrawingParts(List<Object3D> figures) {
         ArrayList<DrawingPart> drawingParts = new ArrayList<>();
         for (int i = 0; i < figures.size(); i++) {
             Object3D figure = figures.get(i);
@@ -48,7 +49,10 @@ public class DrawingService {
                 drawingParts = sortingService.mergeSortedDrawingParts(drawingParts, figure.drawingParts);
             }
         }
+        return drawingParts;
+    }
 
+    private void drawParts(Canvas canvas, List<DrawingPart> drawingParts) {
         // Draw part depending how many points it has
         // If part has 2 points then it's an edge else it's a wall
         for(int k = 0; k < drawingParts.size(); k++) {
