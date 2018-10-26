@@ -42,7 +42,9 @@ public class DrawingService {
         for (int i = 0; i < figures.size(); i++) {
             Object3D figure = figures.get(i);
             sortingService.sortParts(figure.drawingParts);
-            if(i > 0) {
+            if(i == 0) {
+                drawingParts = figure.drawingParts;
+            } else {
                 drawingParts = sortingService.mergeSortedDrawingParts(drawingParts, figure.drawingParts);
             }
         }

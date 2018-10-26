@@ -130,28 +130,27 @@ public abstract class Object3D implements GameObject, Rotatable {
                         parts.get(0),
                         wallPaint,
                         getClass()));
+                break;
             } else {
-                for (int j = 0; j < parts.size(); j++) {
-                    DrawingPart drawingPart;
-                    if (parts.get(j).length <= 2) {
-                        drawingPart = new DrawingPart(
-                                x,
-                                y,
-                                z,
-                                parts.get(j),
-                                edgePaint,
-                                getClass());
-                        drawingParts.add(drawingPart);
-                    } else {
-                        drawingPart = new DrawingPart(
-                                x,
-                                y,
-                                z,
-                                parts.get(j),
-                                wallPaint,
-                                getClass());
-                        drawingParts.add(drawingPart);
-                    }
+                DrawingPart drawingPart;
+                if (parts.get(i).length <= 2) {
+                    drawingPart = new DrawingPart(
+                            x,
+                            y,
+                            z,
+                            parts.get(i),
+                            edgePaint,
+                            getClass());
+                    drawingParts.add(drawingPart);
+                } else {
+                    drawingPart = new DrawingPart(
+                            x,
+                            y,
+                            z,
+                            parts.get(i),
+                            wallPaint,
+                            getClass());
+                    drawingParts.add(drawingPart);
                 }
             }
         }
