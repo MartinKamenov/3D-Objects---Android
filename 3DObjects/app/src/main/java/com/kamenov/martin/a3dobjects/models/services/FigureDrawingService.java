@@ -16,7 +16,11 @@ public class FigureDrawingService {
         this.savingService = savingService;
     }
 
-    public void setFigureConfiguration() {
+    public ArrayList<Object3D> getConfiguration(int index) {
+        return (ArrayList<Object3D>)savingService.load(index);
+    }
+
+    private void setFigureConfiguration() {
         ArrayList<ArrayList<Object3D>> figuresConfigurations = new ArrayList<ArrayList<Object3D>>(){
             /*new ArrayList<> () {
                 //new Cube(0, 0, 0, 100, )

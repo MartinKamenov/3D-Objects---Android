@@ -13,6 +13,7 @@ import com.kamenov.martin.a3dobjects.models.game_objects_3d.Piramid;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
+import com.kamenov.martin.a3dobjects.models.services.FigureDrawingService;
 import com.kamenov.martin.a3dobjects.models.services.PaintService;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class CommandParser {
     private final EditText mConsole;
     private boolean isCreatingComplexObject;
     private ArrayList<Object3D> complexObjectFigures;
+    private FigureDrawingService figureDrawingService;
     private boolean lastCommandWasConsoleWrite;
     private float coX;
     private float coY;
@@ -56,7 +58,8 @@ public class CommandParser {
             "load"
     };
 
-    public CommandParser(Starter starter, FigureFactory figureFactory, EditText console) {
+    public CommandParser(Starter starter, FigureFactory figureFactory,
+                         EditText console, FigureDrawingService figureDrawingService) {
         this.mFigureFactory = figureFactory;
         this.mStarter = starter;
         this.mConsole = console;
@@ -132,7 +135,13 @@ public class CommandParser {
                     }
                     break;
                 case "load":
-
+                    try {
+                        int index = Integer.parseInt(commandWords[1]);
+                        figureDrawingService.getConfiguration(index);
+                        writeLine("Successfully loaded");
+                    } catch (Exception ex) {
+                        writeLine("Couldn't find a configuration with this id");
+                    }
                     break;
             }
         } else {
