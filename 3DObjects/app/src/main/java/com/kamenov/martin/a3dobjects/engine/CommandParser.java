@@ -63,6 +63,7 @@ public class CommandParser {
         this.mFigureFactory = figureFactory;
         this.mStarter = starter;
         this.mConsole = console;
+        this.figureDrawingService = figureDrawingService;
         lastCommandWasConsoleWrite = false;
         isCreatingComplexObject = false;
     }
@@ -137,7 +138,7 @@ public class CommandParser {
                 case "load":
                     try {
                         int index = Integer.parseInt(commandWords[1]);
-                        figureDrawingService.getConfiguration(index);
+                        mFigureFactory.setFigures(figureDrawingService.getConfiguration(index));
                         writeLine("Successfully loaded");
                     } catch (Exception ex) {
                         writeLine("Couldn't find a configuration with this id");

@@ -105,6 +105,10 @@ public class FigureFactory {
         return this.figures;
     }
 
+    public void setFigures(ArrayList<Object3D> figures) {
+        this.figures = figures;
+    }
+
     public void clearFigures() {
         this.figures = new ArrayList<>();
     }
