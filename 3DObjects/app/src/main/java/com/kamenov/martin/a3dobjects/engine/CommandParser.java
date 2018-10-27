@@ -51,7 +51,8 @@ public class CommandParser {
             "clear",
             "cls",
             "help",
-            "status"
+            "status",
+            "load"
     };
 
     private String[] colors = {
@@ -144,6 +145,9 @@ public class CommandParser {
                     } else {
                         showAllFigures();
                     }
+                    break;
+                case "load":
+
                     break;
             }
         } else {
