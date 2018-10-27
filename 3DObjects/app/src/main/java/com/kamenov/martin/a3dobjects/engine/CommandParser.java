@@ -13,6 +13,7 @@ import com.kamenov.martin.a3dobjects.models.game_objects_3d.Piramid;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
+import com.kamenov.martin.a3dobjects.models.services.PaintService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,22 +54,6 @@ public class CommandParser {
             "help",
             "status",
             "load"
-    };
-
-    private String[] colors = {
-            "red",
-            "blue",
-            "green",
-            "white",
-            "black"
-    };
-
-    private String[] colorRepresentations = {
-            "#ff0000",
-            "#0000ff",
-            "#00ff00",
-            "#ffffff",
-            "#000000"
     };
 
     public CommandParser(Starter starter, FigureFactory figureFactory, EditText console) {
@@ -200,8 +185,8 @@ public class CommandParser {
             switch (commandWords[0]) {
                 case "cube":
                     float edgeLength = Float.valueOf(commandWords[4]);
-                    Paint edgePaint = createEdgePaint(commandWords[5]);
-                    Paint wallPaint = createWallPaint(commandWords[6]);
+                    Paint edgePaint = PaintService.createEdgePaint(commandWords[5]);
+                    Paint wallPaint = PaintService.createWallPaint(commandWords[6]);
                     float rotation = Float.valueOf(commandWords[7]);
                     if(!isCreatingComplexObject) {
                         mFigureFactory
@@ -218,8 +203,8 @@ public class CommandParser {
                     float aLength = Float.valueOf(commandWords[4]);
                     float bLength = Float.valueOf(commandWords[5]);
                     float cLength = Float.valueOf(commandWords[6]);
-                    edgePaint = createEdgePaint(commandWords[7]);
-                    wallPaint = createWallPaint(commandWords[8]);
+                    edgePaint = PaintService.createEdgePaint(commandWords[7]);
+                    wallPaint = PaintService.createWallPaint(commandWords[8]);
                     rotation = Float.valueOf(commandWords[9]);
                     if(!isCreatingComplexObject) {
                         mFigureFactory
@@ -233,8 +218,8 @@ public class CommandParser {
                     }
                     break;
                 case "pira":
-                    edgePaint = createEdgePaint(commandWords[4]);
-                    wallPaint = createWallPaint(commandWords[5]);
+                    edgePaint = PaintService.createEdgePaint(commandWords[4]);
+                    wallPaint = PaintService.createWallPaint(commandWords[5]);
                     rotation = Float.valueOf(commandWords[6]);
                     aLength = Float.valueOf(commandWords[7]);
                     bLength = Float.valueOf(commandWords[8]);
@@ -251,8 +236,8 @@ public class CommandParser {
                     }
                     break;
                 case "plane":
-                    edgePaint = createEdgePaint(commandWords[4]);
-                    wallPaint = createWallPaint(commandWords[5]);
+                    edgePaint = PaintService.createEdgePaint(commandWords[4]);
+                    wallPaint = PaintService.createWallPaint(commandWords[5]);
                     rotation = Float.valueOf(commandWords[6]);
                     aLength = Float.valueOf(commandWords[7]);
                     bLength = Float.valueOf(commandWords[8]);
@@ -269,8 +254,8 @@ public class CommandParser {
                     }
                     break;
                 case "sphere":
-                    edgePaint = createEdgePaint(commandWords[4]);
-                    wallPaint = createWallPaint(commandWords[5]);
+                    edgePaint = PaintService.createEdgePaint(commandWords[4]);
+                    wallPaint = PaintService.createWallPaint(commandWords[5]);
                     rotation = Float.valueOf(commandWords[6]);
                     float radius = Float.valueOf(commandWords[7]);
                     if(!isCreatingComplexObject) {
@@ -290,8 +275,8 @@ public class CommandParser {
                     coX = x;
                     coY = y;
                     coZ = z;
-                    coEdgePaint = createEdgePaint(commandWords[4]);
-                    coWallPaint = createWallPaint(commandWords[5]);
+                    coEdgePaint = PaintService.createEdgePaint(commandWords[4]);
+                    coWallPaint = PaintService.createWallPaint(commandWords[5]);
                     coRotation = Float.valueOf(commandWords[6]);
                     complexObjectFigures = new ArrayList<>();
                     isCreatingComplexObject = true;
@@ -325,35 +310,6 @@ public class CommandParser {
                     break;
             }
         }
-    }
-
-    private Paint createEdgePaint(String color) {
-        Paint paint = new Paint();
-        paint.setColor(parseColor(color));
-        paint.setStrokeWidth(5);
-        paint.setStyle(Paint.Style.STROKE);
-        return paint;
-    }
-
-    private Paint createWallPaint(String color) {
-        Paint paint = new Paint();
-        paint.setColor(parseColor(color));
-        paint.setStyle(Paint.Style.FILL);
-        return paint;
-    }
-
-    private int parseColor(String colorName) {
-        for(int i = 0; i < colors.length; i++) {
-            if(colors[i].equals(colorName)) {
-                return Color.parseColor(colorRepresentations[i]);
-            }
-        }
-
-        if((colorName.length() == 7 || colorName.length() == 9) && colorName.charAt(0) == '#') {
-            return Color.parseColor(colorName);
-        }
-
-        return Color.parseColor("#00000000");
     }
 
     private void clearConsole() {
