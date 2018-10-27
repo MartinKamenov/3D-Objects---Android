@@ -113,45 +113,25 @@ public abstract class Object3D implements GameObject, Rotatable {
     protected void setDrawingParts() {
         drawingParts = new ArrayList<>();
         for(int i = 0; i < parts.size(); i++) {
-            if(getClass() == Sphere.class) {
-                drawingParts.add(new DrawingPart(
+            DrawingPart drawingPart;
+            if (parts.get(i).length <= 2) {
+                drawingPart = new DrawingPart(
                         x,
                         y,
                         z,
-                        ((Sphere)this).radius,
-                        parts.get(0),
+                        parts.get(i),
                         edgePaint,
-                        getClass()));
-                drawingParts.add(new DrawingPart(
+                        getClass());
+                drawingParts.add(drawingPart);
+            } else {
+                drawingPart = new DrawingPart(
                         x,
                         y,
                         z,
-                        ((Sphere)this).radius,
-                        parts.get(0),
+                        parts.get(i),
                         wallPaint,
-                        getClass()));
-                break;
-            } else {
-                DrawingPart drawingPart;
-                if (parts.get(i).length <= 2) {
-                    drawingPart = new DrawingPart(
-                            x,
-                            y,
-                            z,
-                            parts.get(i),
-                            edgePaint,
-                            getClass());
-                    drawingParts.add(drawingPart);
-                } else {
-                    drawingPart = new DrawingPart(
-                            x,
-                            y,
-                            z,
-                            parts.get(i),
-                            wallPaint,
-                            getClass());
-                    drawingParts.add(drawingPart);
-                }
+                        getClass());
+                drawingParts.add(drawingPart);
             }
         }
     }

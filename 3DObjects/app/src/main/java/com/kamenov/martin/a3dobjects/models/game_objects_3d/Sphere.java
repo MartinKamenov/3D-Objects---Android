@@ -3,6 +3,7 @@ package com.kamenov.martin.a3dobjects.models.game_objects_3d;
 import android.graphics.Paint;
 
 import com.kamenov.martin.a3dobjects.models.DeepPoint;
+import com.kamenov.martin.a3dobjects.models.DrawingPart;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
 
 import java.util.ArrayList;
@@ -24,5 +25,25 @@ public class Sphere extends Object3D {
         parts.add(new DeepPoint[]{edgeAndWall});
 
         setDrawingParts();
+    }
+
+    @Override
+    protected void setDrawingParts() {
+        drawingParts.add(new DrawingPart(
+                x,
+                y,
+                z,
+                radius,
+                parts.get(0),
+                edgePaint,
+                getClass()));
+        drawingParts.add(new DrawingPart(
+                x,
+                y,
+                z,
+                radius,
+                parts.get(0),
+                wallPaint,
+                getClass()));
     }
 }

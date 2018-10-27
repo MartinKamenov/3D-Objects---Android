@@ -3,6 +3,7 @@ package com.kamenov.martin.a3dobjects.models.game_objects_3d;
 import android.graphics.Paint;
 
 import com.kamenov.martin.a3dobjects.models.DeepPoint;
+import com.kamenov.martin.a3dobjects.models.DrawingPart;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
 
 import java.util.ArrayList;
@@ -43,7 +44,21 @@ public class ComplexObject extends Object3D {
             }
             for(int j = 0; j < objects.get(i).parts.size(); j++)
             {
-                parts.add(objects.get(i).parts.get(j));
+                DeepPoint[] part = objects.get(i).parts.get(j);
+                parts.add(part);
+            }
+
+            setDrawingParts();
+        }
+    }
+
+    @Override
+    protected void setDrawingParts() {
+        drawingParts = new ArrayList<>();
+        for(int i = 0; i < objects.size(); i++) {
+            Object3D object = objects.get(i);
+            for(int j = 0; j < object.drawingParts.size(); j++) {
+                drawingParts.add(object.drawingParts.get(j));
             }
         }
     }
