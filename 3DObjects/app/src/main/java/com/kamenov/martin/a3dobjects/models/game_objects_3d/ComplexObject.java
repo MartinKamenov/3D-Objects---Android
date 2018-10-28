@@ -59,26 +59,45 @@ public class ComplexObject extends Object3D {
         int index = 0;
         for(int i = 0; i < objects.size(); i++) {
             Object3D object = objects.get(i);
-            for(int j = 0; j < object.parts.size(); j++) {
-                DrawingPart drawingPart;
-                if (index < parts.size() && parts.get(index).length <= 2) {
-                    drawingPart = new DrawingPart(
-                            x,
-                            y,
-                            z,
-                            parts.get(index++),
-                            object.edgePaint,
-                            object.getClass());
-                } else {
-                    drawingPart = new DrawingPart(
-                            x,
-                            y,
-                            z,
-                            parts.get(index++),
-                            object.wallPaint,
-                            object.getClass());
+            if (object.getClass() == Sphere.class) {
+                drawingParts.add(new DrawingPart(
+                        x,
+                        y,
+                        z,
+                        ((Sphere)object).radius,
+                        parts.get(0),
+                        object.edgePaint,
+                        object.getClass()));
+                drawingParts.add(new DrawingPart(
+                        x,
+                        y,
+                        z,
+                        ((Sphere)object).radius,
+                        parts.get(0),
+                        object.wallPaint,
+                        object.getClass()));
+            } else {
+                for (int j = 0; j < object.parts.size(); j++) {
+                    DrawingPart drawingPart;
+                    if (index < parts.size() && parts.get(index).length <= 2) {
+                        drawingPart = new DrawingPart(
+                                x,
+                                y,
+                                z,
+                                parts.get(index++),
+                                object.edgePaint,
+                                object.getClass());
+                    } else {
+                        drawingPart = new DrawingPart(
+                                x,
+                                y,
+                                z,
+                                parts.get(index++),
+                                object.wallPaint,
+                                object.getClass());
+                    }
+                    drawingParts.add(drawingPart);
                 }
-                drawingParts.add(drawingPart);
             }
         }
     }
