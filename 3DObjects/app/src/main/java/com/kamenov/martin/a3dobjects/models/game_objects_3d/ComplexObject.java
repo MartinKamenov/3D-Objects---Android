@@ -31,25 +31,26 @@ public class ComplexObject extends Object3D {
         int index = 0;
         for(int i = 0; i < objects.size(); i++)
         {
-            float differenceX = objects.get(i).x - x;
-            float differenceY = objects.get(i).y - y;
-            float differenceZ = objects.get(i).z - z;
+            Object3D object = objects.get(i);
+            float differenceX = object.x - x;
+            float differenceY = object.y - y;
+            float differenceZ = object.z - z;
             for(int j = 0; j < objects.get(i).points.length; j++)
             {
-                DeepPoint point = objects.get(i).points[j];
+                DeepPoint point = object.points[j];
                 point.setX(point.getX() + differenceX);
                 point.setY(point.getY() + differenceY);
                 point.setZ(point.getZ() + differenceZ);
                 points[index++] = point;
             }
-            for(int j = 0; j < objects.get(i).parts.size(); j++)
+            for(int j = 0; j < object.parts.size(); j++)
             {
-                DeepPoint[] part = objects.get(i).parts.get(j);
+                DeepPoint[] part = object.parts.get(j);
                 parts.add(part);
             }
-
-            setDrawingParts();
         }
+
+        setDrawingParts();
     }
 
     @Override
@@ -60,7 +61,7 @@ public class ComplexObject extends Object3D {
             Object3D object = objects.get(i);
             for(int j = 0; j < object.parts.size(); j++) {
                 DrawingPart drawingPart;
-                if (parts.get(index).length <= 2) {
+                if (index < parts.size() && parts.get(index).length <= 2) {
                     drawingPart = new DrawingPart(
                             x,
                             y,
