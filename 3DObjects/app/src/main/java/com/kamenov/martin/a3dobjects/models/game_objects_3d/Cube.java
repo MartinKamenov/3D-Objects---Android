@@ -48,5 +48,7 @@ public class Cube extends Object3D {
         parts.add(new DeepPoint[] {b, c, c1, b1});
         parts.add(new DeepPoint[] {c, d, d1, c1});
         parts.add(new DeepPoint[] {d, a, a1, d1});
+
+        setDrawingParts();
     }
 }

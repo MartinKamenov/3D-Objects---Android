@@ -99,6 +99,7 @@ public class CommandParser {
                     } else {
                         mFigureFactory.clearFigures();
                     }
+                    writeLine("Setup cleared");
                     break;
                 case "finish":
                 case "end":

@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import com.kamenov.martin.a3dobjects.models.DeepPoint;
 import com.kamenov.martin.a3dobjects.contracts.GameObject;
 import com.kamenov.martin.a3dobjects.contracts.Rotatable;
+import com.kamenov.martin.a3dobjects.models.DrawingPart;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.services.SortingService;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 public abstract class Object3D implements GameObject, Rotatable {
     public DeepPoint[] points;
     public ArrayList<DeepPoint[]> parts;
+    public ArrayList<DrawingPart> drawingParts;
     public float x;
     public float y;
     public float z;
@@ -104,6 +107,32 @@ public abstract class Object3D implements GameObject, Rotatable {
 
     @Override
     public void update() {
-        //rotateY3D(0.005f);
+        // Write moving logic here
+    }
+
+    protected void setDrawingParts() {
+        drawingParts = new ArrayList<>();
+        for(int i = 0; i < parts.size(); i++) {
+            DrawingPart drawingPart;
+            if (parts.get(i).length <= 2) {
+                drawingPart = new DrawingPart(
+                        x,
+                        y,
+                        z,
+                        parts.get(i),
+                        edgePaint,
+                        getClass());
+                drawingParts.add(drawingPart);
+            } else {
+                drawingPart = new DrawingPart(
+                        x,
+                        y,
+                        z,
+                        parts.get(i),
+                        wallPaint,
+                        getClass());
+                drawingParts.add(drawingPart);
+            }
+        }
     }
 }

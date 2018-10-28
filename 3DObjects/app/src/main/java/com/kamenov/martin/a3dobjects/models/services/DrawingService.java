@@ -34,89 +34,64 @@ public class DrawingService {
     }
 
     public void drawFigures(Canvas canvas, ArrayList<Object3D> figures) {
-        drawParts(canvas, figures);
+        List<DrawingPart> drawingParts = arrangeDrawingParts(figures);
+        drawParts(canvas, drawingParts);
     }
 
-    private void drawParts(Canvas canvas, List<Object3D> figures) {
+    private List<DrawingPart> arrangeDrawingParts(List<Object3D> figures) {
         ArrayList<DrawingPart> drawingParts = new ArrayList<>();
         for (int i = 0; i < figures.size(); i++) {
-            ArrayList<DrawingPart> figureDrawingParts = new ArrayList<>();
             Object3D figure = figures.get(i);
-            sortingService.sortParts(figure.parts);
-
-            if(figure.getClass() == Sphere.class) {
-                figureDrawingParts.add(new DrawingPart(
-                        figure.x,
-                        figure.y,
-                        figure.z,
-                        ((Sphere)figure).radius,
-                        figure.parts.get(0),
-                        figure.edgePaint,
-                        figure.getClass()));
-                figureDrawingParts.add(new DrawingPart(
-                        figure.x,
-                        figure.y,
-                        figure.z,
-                        ((Sphere)figure).radius,
-                        figure.parts.get(0),
-                        figure.wallPaint,
-                        figure.getClass()));
-            } else {
-                for (int j = 0; j < figure.parts.size(); j++) {
-                    DrawingPart drawingPart;
-                    if (figure.parts.get(j).length <= 2) {
-                        drawingPart = new DrawingPart(
-                                figure.x,
-                                figure.y,
-                                figure.z,
-                                figure.parts.get(j),
-                                figure.edgePaint,
-                                figure.getClass());
-                        figureDrawingParts.add(drawingPart);
-                    } else {
-                        drawingPart = new DrawingPart(
-                                figure.x,
-                                figure.y,
-                                figure.z,
-                                figure.parts.get(j),
-                                figure.wallPaint,
-                                figure.getClass());
-                        figureDrawingParts.add(drawingPart);
-                    }
-                }
-            }
-
+            sortingService.sortParts(figure.drawingParts);
             if(i == 0) {
-                drawingParts = figureDrawingParts;
+                drawingParts = figure.drawingParts;
             } else {
-                drawingParts = sortingService.mergeSortedDrawingParts(drawingParts, figureDrawingParts);
+                drawingParts = sortingService.mergeSortedDrawingParts(drawingParts, figure.drawingParts);
             }
         }
+        return drawingParts;
+    }
 
+    private void drawParts(Canvas canvas, List<DrawingPart> drawingParts) {
         // Draw part depending how many points it has
         // If part has 2 points then it's an edge else it's a wall
         for(int k = 0; k < drawingParts.size(); k++) {
             DrawingPart drawingPart = drawingParts.get(k);
-            DeepPoint[] part = drawingPart.part;
+            DeepPoint[] part = drawingPart.parts;
             if (drawingPart.clazz == Sphere.class) {
-                canvas.drawCircle(part[0].getX() + drawingPart.x
-                        , part[0].getY() + drawingPart.y,
-                        drawingPart.radius, drawingPart.paint);
+                drawCircle(canvas, drawingPart);
             }
             else if (part.length == 2) {
-                canvas.drawLine(part[0].getX() + drawingPart.x, part[0].getY() + drawingPart.y,
-                        part[1].getX() + drawingPart.x, part[1].getY() + drawingPart.y, drawingPart.paint);
+                drawLine(canvas, drawingPart);
             } else {
                 // Doesn't draw wall if no wall paint has been added
                 if (drawingPart.paint != null) {
-                    Path wallPath = new Path();
-                    wallPath.moveTo(part[0].getX() + drawingPart.x, part[0].getY() + drawingPart.y);
-                    for (int j = 1; j < part.length; j++) {
-                        wallPath.lineTo(part[j].getX() + drawingPart.x, part[j].getY() + drawingPart.y);
-                    }
-                    canvas.drawPath(wallPath, drawingPart.paint);
+                    drawWall(canvas, drawingPart);
                 }
             }
         }
+    }
+
+    private void drawCircle(Canvas canvas, DrawingPart drawingPart) {
+        DeepPoint[] part = drawingPart.parts;
+        canvas.drawCircle(part[0].getX() + drawingPart.x
+                , part[0].getY() + drawingPart.y,
+                drawingPart.radius, drawingPart.paint);
+    }
+
+    private void drawLine(Canvas canvas, DrawingPart drawingPart) {
+        DeepPoint[] part = drawingPart.parts;
+        canvas.drawLine(part[0].getX() + drawingPart.x, part[0].getY() + drawingPart.y,
+                part[1].getX() + drawingPart.x, part[1].getY() + drawingPart.y, drawingPart.paint);
+    }
+
+    private void drawWall(Canvas canvas, DrawingPart drawingPart) {
+        DeepPoint[] part = drawingPart.parts;
+        Path wallPath = new Path();
+        wallPath.moveTo(part[0].getX() + drawingPart.x, part[0].getY() + drawingPart.y);
+        for (int j = 1; j < part.length; j++) {
+            wallPath.lineTo(part[j].getX() + drawingPart.x, part[j].getY() + drawingPart.y);
+        }
+        canvas.drawPath(wallPath, drawingPart.paint);
     }
 }
