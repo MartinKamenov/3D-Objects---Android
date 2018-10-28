@@ -59,24 +59,39 @@ public class DrawingService {
             DrawingPart drawingPart = drawingParts.get(k);
             DeepPoint[] part = drawingPart.parts;
             if (drawingPart.clazz == Sphere.class) {
-                canvas.drawCircle(part[0].getX() + drawingPart.x
-                        , part[0].getY() + drawingPart.y,
-                        drawingPart.radius, drawingPart.paint);
+                drawCircle(canvas, drawingPart);
             }
             else if (part.length == 2) {
-                canvas.drawLine(part[0].getX() + drawingPart.x, part[0].getY() + drawingPart.y,
-                        part[1].getX() + drawingPart.x, part[1].getY() + drawingPart.y, drawingPart.paint);
+                drawLine(canvas, drawingPart);
             } else {
                 // Doesn't draw wall if no wall paint has been added
                 if (drawingPart.paint != null) {
-                    Path wallPath = new Path();
-                    wallPath.moveTo(part[0].getX() + drawingPart.x, part[0].getY() + drawingPart.y);
-                    for (int j = 1; j < part.length; j++) {
-                        wallPath.lineTo(part[j].getX() + drawingPart.x, part[j].getY() + drawingPart.y);
-                    }
-                    canvas.drawPath(wallPath, drawingPart.paint);
+                    drawWall(canvas, drawingPart);
                 }
             }
         }
+    }
+
+    private void drawCircle(Canvas canvas, DrawingPart drawingPart) {
+        DeepPoint[] part = drawingPart.parts;
+        canvas.drawCircle(part[0].getX() + drawingPart.x
+                , part[0].getY() + drawingPart.y,
+                drawingPart.radius, drawingPart.paint);
+    }
+
+    private void drawLine(Canvas canvas, DrawingPart drawingPart) {
+        DeepPoint[] part = drawingPart.parts;
+        canvas.drawLine(part[0].getX() + drawingPart.x, part[0].getY() + drawingPart.y,
+                part[1].getX() + drawingPart.x, part[1].getY() + drawingPart.y, drawingPart.paint);
+    }
+
+    private void drawWall(Canvas canvas, DrawingPart drawingPart) {
+        DeepPoint[] part = drawingPart.parts;
+        Path wallPath = new Path();
+        wallPath.moveTo(part[0].getX() + drawingPart.x, part[0].getY() + drawingPart.y);
+        for (int j = 1; j < part.length; j++) {
+            wallPath.lineTo(part[j].getX() + drawingPart.x, part[j].getY() + drawingPart.y);
+        }
+        canvas.drawPath(wallPath, drawingPart.paint);
     }
 }
