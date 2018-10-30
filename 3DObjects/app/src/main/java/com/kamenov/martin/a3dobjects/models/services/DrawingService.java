@@ -49,6 +49,7 @@ public class DrawingService {
                 drawingParts = sortingService.mergeSortedDrawingParts(drawingParts, figure.drawingParts);
             }
         }
+
         return drawingParts;
     }
 
