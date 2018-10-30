@@ -65,7 +65,7 @@ public class ComplexObject extends Object3D {
                         y,
                         z,
                         ((Sphere)object).radius,
-                        parts.get(0),
+                        parts.get(index),
                         object.edgePaint,
                         object.getClass()));
                 drawingParts.add(new DrawingPart(
@@ -73,7 +73,7 @@ public class ComplexObject extends Object3D {
                         y,
                         z,
                         ((Sphere)object).radius,
-                        parts.get(0),
+                        parts.get(index++),
                         object.wallPaint,
                         object.getClass()));
             } else {
