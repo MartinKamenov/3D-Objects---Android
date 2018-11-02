@@ -13,10 +13,10 @@ import java.util.List;
  * Created by Martin on 27.10.2018 г..
  */
 
-public class FigureDrawingService {
+public class FigureSavingService {
     private SavingService savingService;
 
-    public FigureDrawingService(SavingService savingService) {
+    public FigureSavingService(SavingService savingService) {
         this.savingService = savingService;
         setFigureConfiguration();
     }
@@ -39,6 +39,14 @@ public class FigureDrawingService {
                 PaintService.createWallPaint("white"), 1));
         return objects;
     }
+
+    /*private ArrayList<Object3D> getSimpleCar() {
+        ArrayList<Object3D> objects = new ArrayList<>();
+        ArrayList<Object3D> parts = new ArrayList<>();
+
+        ComplexObject car = new ComplexObject(Constants.SCREEN_WIDTH/ 2, Constants.SCREEN_HEIGHT / 2, 0
+        ,null, null, 1, parts);
+    }*/
 
     private ArrayList<Object3D> getSolarSystem() {
         float centerX = Constants.SCREEN_WIDTH / 2;

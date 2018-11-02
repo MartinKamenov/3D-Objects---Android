@@ -1,6 +1,5 @@
 package com.kamenov.martin.a3dobjects.engine;
 
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.widget.EditText;
 
@@ -13,7 +12,7 @@ import com.kamenov.martin.a3dobjects.models.game_objects_3d.Piramid;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
-import com.kamenov.martin.a3dobjects.models.services.FigureDrawingService;
+import com.kamenov.martin.a3dobjects.models.services.FigureSavingService;
 import com.kamenov.martin.a3dobjects.models.services.PaintService;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class CommandParser {
     private final EditText mConsole;
     private boolean isCreatingComplexObject;
     private ArrayList<Object3D> complexObjectFigures;
-    private FigureDrawingService figureDrawingService;
+    private FigureSavingService figureSavingService;
     private boolean lastCommandWasConsoleWrite;
     private float coX;
     private float coY;
@@ -59,11 +58,11 @@ public class CommandParser {
     };
 
     public CommandParser(Starter starter, FigureFactory figureFactory,
-                         EditText console, FigureDrawingService figureDrawingService) {
+                         EditText console, FigureSavingService figureSavingService) {
         this.mFigureFactory = figureFactory;
         this.mStarter = starter;
         this.mConsole = console;
-        this.figureDrawingService = figureDrawingService;
+        this.figureSavingService = figureSavingService;
         lastCommandWasConsoleWrite = false;
         isCreatingComplexObject = false;
     }
@@ -139,7 +138,7 @@ public class CommandParser {
                 case "load":
                     try {
                         int index = Integer.parseInt(commandWords[1]);
-                        mFigureFactory.setFigures(figureDrawingService.getConfiguration(index));
+                        mFigureFactory.setFigures(figureSavingService.getConfiguration(index));
                         writeLine("Successfully loaded");
                     } catch (Exception ex) {
                         writeLine("Couldn't find a configuration with this id");

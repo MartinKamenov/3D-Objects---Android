@@ -16,11 +16,8 @@ import com.kamenov.martin.a3dobjects.game.GameActivity;
 import com.kamenov.martin.a3dobjects.R;
 import com.kamenov.martin.a3dobjects.models.Constants;
 import com.kamenov.martin.a3dobjects.models.factories.FigureFactory;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
-import com.kamenov.martin.a3dobjects.models.services.FigureDrawingService;
+import com.kamenov.martin.a3dobjects.models.services.FigureSavingService;
 import com.kamenov.martin.a3dobjects.models.services.SavingService;
-
-import java.util.ArrayList;
 
 public class ChoserActivity extends Activity implements TextWatcher, Starter {
     private EditText mConsole;
@@ -40,7 +37,7 @@ public class ChoserActivity extends Activity implements TextWatcher, Starter {
         mLastConsoleElements = 0;
         mConsole = findViewById(R.id.console);
         mCommandParser = new CommandParser(this, FigureFactory.getInstance(),
-                mConsole, new FigureDrawingService(SavingService.getInstance()));
+                mConsole, new FigureSavingService(SavingService.getInstance()));
         mConsole.addTextChangedListener(this);
     }
 
