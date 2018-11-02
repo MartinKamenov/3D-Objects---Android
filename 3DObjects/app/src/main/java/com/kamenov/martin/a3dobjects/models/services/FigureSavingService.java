@@ -29,6 +29,7 @@ public class FigureSavingService {
         ArrayList<ArrayList<Object3D>> figuresConfigurations = new ArrayList<>();
         figuresConfigurations.add(getSimpleCubeConfiguration());
         figuresConfigurations.add(getSolarSystem());
+        figuresConfigurations.add(getCubeConfiguration());
         savingService.setSavedObjects(figuresConfigurations);
     }
 
@@ -39,14 +40,6 @@ public class FigureSavingService {
                 PaintService.createWallPaint("white"), 1));
         return objects;
     }
-
-    /*private ArrayList<Object3D> getSimpleCar() {
-        ArrayList<Object3D> objects = new ArrayList<>();
-        ArrayList<Object3D> parts = new ArrayList<>();
-
-        ComplexObject car = new ComplexObject(Constants.SCREEN_WIDTH/ 2, Constants.SCREEN_HEIGHT / 2, 0
-        ,null, null, 1, parts);
-    }*/
 
     private ArrayList<Object3D> getSolarSystem() {
         float centerX = Constants.SCREEN_WIDTH / 2;
@@ -85,5 +78,50 @@ public class FigureSavingService {
         }
 
         return sum;
+    }
+
+    private ArrayList<Object3D> getCubeConfiguration() {
+        ArrayList<Object3D> objects = new ArrayList<>();
+        ArrayList<Object3D> parts = new ArrayList<>();
+        float cubeSize = 200;
+        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 + cubeSize,
+                Constants.SCREEN_HEIGHT / 2, 0, cubeSize, PaintService.createEdgePaint("black"),
+                PaintService.createWallPaint("red"), 1));
+        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 + (cubeSize * 2),
+                Constants.SCREEN_HEIGHT / 2 + cubeSize, 0, cubeSize, PaintService.createEdgePaint("red"),
+                PaintService.createWallPaint("black"), 1));
+        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 + (cubeSize * 2),
+                Constants.SCREEN_HEIGHT / 2 - cubeSize, 0, cubeSize, PaintService.createEdgePaint("red"),
+                PaintService.createWallPaint("black"), 1));
+        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 - cubeSize,
+                Constants.SCREEN_HEIGHT / 2, 0, cubeSize, PaintService.createEdgePaint("black"),
+                PaintService.createWallPaint("blue"), 1));
+        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 - (cubeSize * 2),
+                Constants.SCREEN_HEIGHT / 2 + cubeSize, 0, cubeSize, PaintService.createEdgePaint("blue"),
+                PaintService.createWallPaint("black"), 1));
+        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 - (cubeSize * 2),
+                Constants.SCREEN_HEIGHT / 2 - cubeSize, 0, cubeSize, PaintService.createEdgePaint("blue"),
+                PaintService.createWallPaint("black"), 1));
+        parts.add(new Cube(Constants.SCREEN_WIDTH / 2,
+                Constants.SCREEN_HEIGHT / 2 + cubeSize, 0, cubeSize, PaintService.createEdgePaint("black"),
+                PaintService.createWallPaint("white"), 1));
+        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 + cubeSize,
+                Constants.SCREEN_HEIGHT / 2 + (cubeSize * 2), 0, cubeSize, PaintService.createEdgePaint("white"),
+                PaintService.createWallPaint("black"), 1));
+        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 - cubeSize,
+                Constants.SCREEN_HEIGHT / 2 + (cubeSize * 2), 0, cubeSize, PaintService.createEdgePaint("white"),
+                PaintService.createWallPaint("black"), 1));
+        parts.add(new Cube(Constants.SCREEN_WIDTH / 2,
+                Constants.SCREEN_HEIGHT / 2 - cubeSize, 0, cubeSize, PaintService.createEdgePaint("black"),
+                PaintService.createWallPaint("green"), 1));
+        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 + cubeSize,
+                Constants.SCREEN_HEIGHT / 2 - (cubeSize * 2), 0, cubeSize, PaintService.createEdgePaint("green"),
+                PaintService.createWallPaint("black"), 1));
+        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 - cubeSize,
+                Constants.SCREEN_HEIGHT / 2 - (cubeSize * 2), 0, cubeSize, PaintService.createEdgePaint("green"),
+                PaintService.createWallPaint("black"), 1));
+        objects.add(new ComplexObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
+                null, null, 1, parts));
+        return objects;
     }
 }
