@@ -130,9 +130,10 @@ public class FigureSavingService {
 
     public ArrayList<Object3D> getPartComplexObject() {
         ArrayList<Object3D> objects = new ArrayList<>();
-        DeepPoint[] points = new DeepPoint[2];
-        points[0] = new DeepPoint(Constants.SCREEN_WIDTH / 2 + 100, Constants.SCREEN_HEIGHT / 2 + 100, 0);
-        points[1] = new DeepPoint(Constants.SCREEN_WIDTH / 2 - 100, Constants.SCREEN_HEIGHT / 2 - 100, 0);
+        DeepPoint[] points = new DeepPoint[3];
+        points[0] = new DeepPoint(100, 100, 0);
+        points[1] = new DeepPoint(100, -100, 0);
+        points[2] = new DeepPoint(-100, 0, 0);
         ArrayList<DeepPoint[]> parts = new ArrayList<>();
         parts.add(points);
         PartsObject partsObject = new PartsObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
