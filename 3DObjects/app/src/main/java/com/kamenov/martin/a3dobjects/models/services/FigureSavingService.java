@@ -1,8 +1,10 @@
 package com.kamenov.martin.a3dobjects.models.services;
 
 import com.kamenov.martin.a3dobjects.models.Constants;
+import com.kamenov.martin.a3dobjects.models.DeepPoint;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.ComplexObject;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.PartsObject;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
 
@@ -30,6 +32,7 @@ public class FigureSavingService {
         figuresConfigurations.add(getSimpleCubeConfiguration());
         figuresConfigurations.add(getSolarSystem());
         figuresConfigurations.add(getCubeConfiguration());
+        figuresConfigurations.add(getPartComplexObject());
         savingService.setSavedObjects(figuresConfigurations);
     }
 
@@ -122,6 +125,19 @@ public class FigureSavingService {
                 PaintService.createWallPaint("black"), 1));
         objects.add(new ComplexObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
                 null, null, 1, parts));
+        return objects;
+    }
+
+    public ArrayList<Object3D> getPartComplexObject() {
+        ArrayList<Object3D> objects = new ArrayList<>();
+        DeepPoint[] points = new DeepPoint[2];
+        points[0] = new DeepPoint(Constants.SCREEN_WIDTH / 2 + 100, Constants.SCREEN_HEIGHT / 2 + 100, 0);
+        points[1] = new DeepPoint(Constants.SCREEN_WIDTH / 2 - 100, Constants.SCREEN_HEIGHT / 2 - 100, 0);
+        ArrayList<DeepPoint[]> parts = new ArrayList<>();
+        parts.add(points);
+        PartsObject partsObject = new PartsObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
+                PaintService.createEdgePaint("red"), PaintService.createWallPaint("blue"), 1, points, parts);
+        objects.add(partsObject);
         return objects;
     }
 }
