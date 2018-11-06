@@ -6,6 +6,7 @@ import android.graphics.Path;
 
 import com.kamenov.martin.a3dobjects.models.DeepPoint;
 import com.kamenov.martin.a3dobjects.models.DrawingPart;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cylinder;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
 
@@ -62,6 +63,9 @@ public class DrawingService {
             if (drawingPart.clazz == Sphere.class) {
                 drawCircle(canvas, drawingPart);
             }
+            else if (drawingPart.clazz == Cylinder.class) {
+                drawOval(canvas, drawingPart);
+            }
             else if (part.length == 2) {
                 drawLine(canvas, drawingPart);
             } else {
@@ -71,6 +75,13 @@ public class DrawingService {
                 }
             }
         }
+    }
+
+    private void drawOval(Canvas canvas, DrawingPart drawingPart) {
+        DeepPoint[] part = drawingPart.parts;
+        canvas.drawOval(part[0].getX() + drawingPart.x,
+                part[1].getY() + drawingPart.y, part[2].getX() + drawingPart.x,
+                part[3].getY() + drawingPart.y, drawingPart.paint);
     }
 
     private void drawCircle(Canvas canvas, DrawingPart drawingPart) {
