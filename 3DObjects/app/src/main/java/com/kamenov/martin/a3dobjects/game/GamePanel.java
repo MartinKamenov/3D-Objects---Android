@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.kamenov.martin.a3dobjects.contracts.GamePanelState;
 import com.kamenov.martin.a3dobjects.models.factories.FigureFactory;
 import com.kamenov.martin.a3dobjects.models.game_objects.Background;
 import com.kamenov.martin.a3dobjects.contracts.GameObject;
@@ -29,9 +30,11 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ga
     private float y1;
     private float x2;
     private float y2;
+    private GamePanelState gamePanelState;
 
     public GamePanel(Context context, DrawingService drawingService) {
         super(context);
+        gamePanelState = GamePanelState.Rotating;
         x1 = -1;
         x2 = -1;
         this.drawingService = drawingService;
@@ -59,10 +62,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ga
                 for(int i = 0; i < figures.size(); i++)
                 {
                     Object3D figure = figures.get(i);
-                    // Used for moving
-                    // figure.move(deltaX, deltaY, 0);
-                    figure.rotateX3D(deltaY/100);
-                    figure.rotateY3D(deltaX/100);
+                    moveObject(deltaX, deltaY, figure, gamePanelState);
                 }
                 draw();
                 x1 = x2;
@@ -76,15 +76,21 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ga
                 for(int i = 0; i < figures.size(); i++)
                 {
                     Object3D figure = figures.get(i);
-                    // Used for moving
-                    // figure.move(deltaX, deltaY, 0);
-                    figure.rotateX3D(deltaY/100);
-                    figure.rotateY3D(deltaX/100);
+                    moveObject(deltaX, deltaY, figure, gamePanelState);
                 }
                 draw();
                 break;
         }
         return true;
+    }
+
+    private void moveObject(float deltaX, float deltaY, Object3D figure, GamePanelState gamePanelState) {
+        if(gamePanelState == GamePanelState.Rotating) {
+            figure.rotateX3D(deltaY/100);
+            figure.rotateY3D(deltaX/100);
+        } else {
+            figure.move(deltaX, deltaY, 0);
+        }
     }
 
     @Override
@@ -142,5 +148,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ga
                 }
             }
         }
+    }
+
+    public void setGamePanelState(GamePanelState gamePanelState) {
+        this.gamePanelState = gamePanelState;
     }
 }
