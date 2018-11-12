@@ -39,6 +39,8 @@ public class Cylinder extends Object3D {
         parts.add(base);
         parts.add(top);
 
+        // setRotateY(false);
+
         setDrawingParts();
     }
 }
