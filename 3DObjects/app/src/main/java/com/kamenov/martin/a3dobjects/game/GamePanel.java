@@ -58,7 +58,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ga
 
                 for(int i = 0; i < figures.size(); i++)
                 {
-                    Rotatable figure = figures.get(i);
+                    Object3D figure = figures.get(i);
+                    // Used for moving
+                    // figure.move(deltaX, deltaY, 0);
                     figure.rotateX3D(deltaY/100);
                     figure.rotateY3D(deltaX/100);
                 }
@@ -73,7 +75,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ga
                 deltaY = y2 - y1;
                 for(int i = 0; i < figures.size(); i++)
                 {
-                    Rotatable figure = figures.get(i);
+                    Object3D figure = figures.get(i);
+                    // Used for moving
+                    // figure.move(deltaX, deltaY, 0);
                     figure.rotateX3D(deltaY/100);
                     figure.rotateY3D(deltaX/100);
                 }

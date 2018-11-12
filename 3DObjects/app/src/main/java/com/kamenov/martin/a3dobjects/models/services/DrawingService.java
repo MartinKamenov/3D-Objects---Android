@@ -42,6 +42,8 @@ public class DrawingService {
         ArrayList<DrawingPart> drawingParts = new ArrayList<>();
         for (int i = 0; i < figures.size(); i++) {
             Object3D figure = figures.get(i);
+            // Should be used if we need moving
+            // figure.setDrawingParts();
             sortingService.sortParts(figure.drawingParts);
             if(i == 0) {
                 drawingParts = figure.drawingParts;

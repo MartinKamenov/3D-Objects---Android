@@ -28,7 +28,7 @@ public class Sphere extends Object3D {
     }
 
     @Override
-    protected void setDrawingParts() {
+    public void setDrawingParts() {
         drawingParts = new ArrayList<>();
         drawingParts.add(new DrawingPart(
                 x,
