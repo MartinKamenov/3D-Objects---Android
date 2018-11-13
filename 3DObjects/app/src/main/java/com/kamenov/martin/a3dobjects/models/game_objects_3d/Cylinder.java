@@ -21,7 +21,7 @@ public class Cylinder extends Object3D {
         this.height = height;
         this.radius = radius;
         float halfHeight = height/2;
-        DeepPoint a = new DeepPoint(0 - radius, 0, 0 - halfHeight);
+        /* DeepPoint a = new DeepPoint(0 - radius, 0, 0 - halfHeight);
         DeepPoint b = new DeepPoint(0, 0 - radius, 0 - halfHeight);
         DeepPoint c = new DeepPoint(0 + radius, 0, 0 - halfHeight);
         DeepPoint d = new DeepPoint(0, 0 + radius, 0 - halfHeight);
@@ -37,10 +37,35 @@ public class Cylinder extends Object3D {
         DeepPoint[] base = new DeepPoint[]{a, b, c, d};
         DeepPoint[] top = new DeepPoint[]{a1, b1, c1, d1};
         parts.add(base);
-        parts.add(top);
+        parts.add(top);*/
+        DeepPoint a = new DeepPoint(0, 0, 0 - halfHeight);
+        DeepPoint b = new DeepPoint(0, 0, 0 + halfHeight);
 
-        // setRotateY(false);
 
         setDrawingParts();
     }
+
+    @Override
+    public void rotateZ3D(float theta)
+    {
+        super.rotateZ3D(theta);
+    }
+
+    @Override
+    public void rotateX3D(float theta)
+    {
+        super.rotateX3D(theta);
+    }
+
+    @Override
+    public void rotateY3D(float theta)
+    {
+        super.rotateY3D(theta);
+    }
+
+    @Override
+    public void setDrawingParts() {
+
+    }
+
 }
