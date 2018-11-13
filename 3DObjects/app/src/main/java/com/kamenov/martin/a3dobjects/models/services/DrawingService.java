@@ -60,11 +60,8 @@ public class DrawingService {
         for(int k = 0; k < drawingParts.size(); k++) {
             DrawingPart drawingPart = drawingParts.get(k);
             DeepPoint[] part = drawingPart.parts;
-            if (drawingPart.clazz == Sphere.class) {
+            if (drawingPart.clazz == Sphere.class || drawingPart.clazz == Cylinder.class) {
                 drawCircle(canvas, drawingPart);
-            }
-            else if (drawingPart.clazz == Cylinder.class) {
-                drawOval(canvas, drawingPart);
             }
             else if (part.length == 2) {
                 drawLine(canvas, drawingPart);

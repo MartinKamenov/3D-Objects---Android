@@ -3,6 +3,7 @@ package com.kamenov.martin.a3dobjects.models.game_objects_3d;
 import android.graphics.Paint;
 
 import com.kamenov.martin.a3dobjects.models.DeepPoint;
+import com.kamenov.martin.a3dobjects.models.DrawingPart;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
 
 import java.util.ArrayList;
@@ -40,32 +41,36 @@ public class Cylinder extends Object3D {
         parts.add(top);*/
         DeepPoint a = new DeepPoint(0, 0, 0 - halfHeight);
         DeepPoint b = new DeepPoint(0, 0, 0 + halfHeight);
+        points = new DeepPoint[] {a, b};
 
+        parts = new ArrayList<>();
+        parts.add(new DeepPoint[] {a});
+        parts.add(new DeepPoint[] {b});
 
         setDrawingParts();
     }
 
     @Override
-    public void rotateZ3D(float theta)
-    {
-        super.rotateZ3D(theta);
-    }
-
-    @Override
-    public void rotateX3D(float theta)
-    {
-        super.rotateX3D(theta);
-    }
-
-    @Override
-    public void rotateY3D(float theta)
-    {
-        super.rotateY3D(theta);
-    }
-
-    @Override
     public void setDrawingParts() {
-
+        drawingParts = new ArrayList<>();
+        for(int i = 0; i < parts.size(); i++) {
+            drawingParts.add(new DrawingPart(
+                    x,
+                    y,
+                    z,
+                    radius,
+                    parts.get(i),
+                    edgePaint,
+                    getClass()));
+            drawingParts.add(new DrawingPart(
+                    x,
+                    y,
+                    z,
+                    radius,
+                    parts.get(i),
+                    wallPaint,
+                    getClass()));
+        }
     }
 
 }
