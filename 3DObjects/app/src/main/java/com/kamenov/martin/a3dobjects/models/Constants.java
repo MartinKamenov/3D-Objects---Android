@@ -24,5 +24,5 @@ public class Constants {
             "#000000"
     };
 
-    public static float ROTATINGCOEF = 1;
+    public static float ROTATINGCOEF = 0.3f;
 }
