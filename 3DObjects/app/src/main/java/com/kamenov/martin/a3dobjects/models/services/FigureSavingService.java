@@ -38,9 +38,11 @@ public class FigureSavingService {
 
     private ArrayList<Object3D> getSimpleCubeConfiguration() {
         ArrayList<Object3D> objects = new ArrayList<>();
-        objects.add(new Cube(Constants.SCREEN_WIDTH / 2,
+        Cube cube = new Cube(Constants.SCREEN_WIDTH / 2,
                 Constants.SCREEN_HEIGHT / 2, 0, 100, PaintService.createEdgePaint("red"),
-                PaintService.createWallPaint("white"), 1));
+                PaintService.createWallPaint("white"), 1);
+        // cube.rotateY3D(45);
+        objects.add(cube);
         return objects;
     }
 

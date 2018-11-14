@@ -40,12 +40,12 @@ public abstract class Object3D implements GameObject, Rotatable {
         rotateZ = true;
     }
 
-    public void rotateZ3D(float theta)
+    public void rotateZ3D(float thetaAngles)
     {
         if(rotateZ) {
-            theta *= rotation;
-            float sin_t = (float) Math.sin(theta);
-            float cos_t = (float) Math.cos(theta);
+            thetaAngles *= rotation;
+            float sin_t = (float) Math.sin(Math.toRadians(thetaAngles));
+            float cos_t = (float) Math.cos(Math.toRadians(thetaAngles));
 
             for (int i = 0; i < points.length; i++) {
                 DeepPoint point = points[i];
@@ -57,12 +57,12 @@ public abstract class Object3D implements GameObject, Rotatable {
         }
     }
 
-    public void rotateX3D(float theta)
+    public void rotateX3D(float thetaAngles)
     {
         if(rotateX) {
-            theta *= rotation;
-            float sin_t = (float) Math.sin(theta);
-            float cos_t = (float) Math.cos(theta);
+            thetaAngles *= rotation;
+            float sin_t = (float) Math.sin(Math.toRadians(thetaAngles));
+            float cos_t = (float) Math.cos(Math.toRadians(thetaAngles));
 
             for (int i = 0; i < points.length; i++) {
                 DeepPoint point = points[i];
@@ -74,12 +74,12 @@ public abstract class Object3D implements GameObject, Rotatable {
         }
     }
 
-    public void rotateY3D(float theta)
+    public void rotateY3D(float thetaAngles)
     {
         if(rotateY) {
-            theta *= rotation;
-            float sin_t = (float) Math.sin(theta);
-            float cos_t = (float) Math.cos(theta);
+            thetaAngles *= rotation;
+            float sin_t = (float) Math.sin(Math.toRadians(thetaAngles));
+            float cos_t = (float) Math.cos(Math.toRadians(thetaAngles));
 
             for (int i = 0; i < points.length; i++) {
                 DeepPoint point = points[i];
