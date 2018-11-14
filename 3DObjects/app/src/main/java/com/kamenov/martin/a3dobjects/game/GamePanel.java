@@ -8,6 +8,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.kamenov.martin.a3dobjects.contracts.GamePanelState;
+import com.kamenov.martin.a3dobjects.models.Constants;
 import com.kamenov.martin.a3dobjects.models.factories.FigureFactory;
 import com.kamenov.martin.a3dobjects.models.game_objects.Background;
 import com.kamenov.martin.a3dobjects.contracts.GameObject;
@@ -86,8 +87,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ga
 
     private void moveObject(float deltaX, float deltaY, Object3D figure, GamePanelState gamePanelState) {
         if(gamePanelState == GamePanelState.Rotating) {
-            figure.rotateX3D(deltaY/100);
-            figure.rotateY3D(deltaX/100);
+            figure.rotateX3D(deltaY * Constants.ROTATINGCOEF);
+            figure.rotateY3D(deltaX * Constants.ROTATINGCOEF);
         } else {
             figure.move(deltaX, deltaY, 0);
         }
