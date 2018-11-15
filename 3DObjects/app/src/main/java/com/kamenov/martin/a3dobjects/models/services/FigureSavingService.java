@@ -1,5 +1,7 @@
 package com.kamenov.martin.a3dobjects.models.services;
 
+import android.graphics.Paint;
+
 import com.kamenov.martin.a3dobjects.models.Constants;
 import com.kamenov.martin.a3dobjects.models.DeepPoint;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.ComplexObject;
@@ -9,6 +11,7 @@ import com.kamenov.martin.a3dobjects.models.game_objects_3d.PartsObject;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
+import com.kamenov.martin.a3dobjects.sampleObjects.CarSample;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +38,7 @@ public class FigureSavingService {
         figuresConfigurations.add(getSolarSystem());
         figuresConfigurations.add(getCubeConfiguration());
         figuresConfigurations.add(getPartComplexObject());
-        figuresConfigurations.add(getCarObject());
+        figuresConfigurations.add(CarSample.getCarSample());
         savingService.setSavedObjects(figuresConfigurations);
     }
 
@@ -144,46 +147,6 @@ public class FigureSavingService {
         PartsObject partsObject = new PartsObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
                 PaintService.createEdgePaint("red"), PaintService.createWallPaint("blue"), 1, points, parts);
         objects.add(partsObject);
-        return objects;
-    }
-
-    public ArrayList<Object3D> getCarObject() {
-        ArrayList<Object3D> objects = new ArrayList<>();
-        ArrayList<Object3D> parts = new ArrayList<>();
-        Parallelepiped body = new Parallelepiped(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, -25, 100, 300, 50,
-                PaintService.createEdgePaint("red"),
-                PaintService.createWallPaint("white"),
-                1);
-        Plane roof = new Plane(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2 + 25, 50,
-                PaintService.createEdgePaint("red"),
-                PaintService.createWallPaint("white"),
-                1, 100, 150
-                );
-        Plane frontGlass = new Plane(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2 - 75, 25,
-                PaintService.createEdgePaint("red"),
-                PaintService.createWallPaint("white"),
-                1, 100, 75
-        );
-        frontGlass.rotateX3D(45);
-        Plane backGlass = new Plane(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2 + 125, 25,
-                PaintService.createEdgePaint("red"),
-                PaintService.createWallPaint("white"),
-                1, 100, 75
-        );
-        backGlass.rotateX3D(-45);
-        parts.add(body);
-        parts.add(roof);
-        parts.add(frontGlass);
-        parts.add(backGlass);
-        ComplexObject car = new ComplexObject(
-                Constants.SCREEN_WIDTH / 2,
-                Constants.SCREEN_HEIGHT / 2,
-                0,
-                PaintService.createEdgePaint("red"),
-                PaintService.createWallPaint("blue"),
-                1,
-                parts);
-        objects.add(car);
         return objects;
     }
 }
