@@ -15,30 +15,19 @@ import java.util.ArrayList;
 public class Cylinder extends Object3D {
     public float height;
     public float radius;
+    private float rotatedX;
+    private float rotatedY;
+    private float rotatedZ;
 
     public Cylinder(float x, float y, float z, Paint edgePaint, Paint wallPaint, float rotation,
                     float height, float radius) {
         super(x, y, z, edgePaint, wallPaint, rotation);
+        this.rotatedX = 0;
+        this.rotatedY = 0;
+        this.rotatedZ = 0;
         this.height = height;
         this.radius = radius;
-        float halfHeight = height/2;
-        /* DeepPoint a = new DeepPoint(0 - radius, 0, 0 - halfHeight);
-        DeepPoint b = new DeepPoint(0, 0 - radius, 0 - halfHeight);
-        DeepPoint c = new DeepPoint(0 + radius, 0, 0 - halfHeight);
-        DeepPoint d = new DeepPoint(0, 0 + radius, 0 - halfHeight);
-        DeepPoint a1 = new DeepPoint(0 - radius, 0, 0 + halfHeight);
-        DeepPoint b1 = new DeepPoint(0, 0 - radius, 0 + halfHeight);
-        DeepPoint c1 = new DeepPoint(0 + radius, 0, 0 + halfHeight);
-        DeepPoint d1 = new DeepPoint(0, 0 + radius, 0 + halfHeight);
-        points = new DeepPoint[] {
-            a, b ,c, d, a1, b1, c1, d1
-        };
-        parts = new ArrayList<>();
-        // Defines the two ovals of the cylinder
-        DeepPoint[] base = new DeepPoint[]{a, b, c, d};
-        DeepPoint[] top = new DeepPoint[]{a1, b1, c1, d1};
-        parts.add(base);
-        parts.add(top);*/
+        float halfHeight = height / 2;
         DeepPoint a = new DeepPoint(0, 0, 0 - halfHeight);
         DeepPoint b = new DeepPoint(0, 0, 0 + halfHeight);
         points = new DeepPoint[] {a, b};
@@ -73,4 +62,21 @@ public class Cylinder extends Object3D {
         }
     }
 
+    @Override
+    public void rotateX3D(float thetaAngles) {
+        super.rotateX3D(thetaAngles);
+        rotatedX += thetaAngles;
+    }
+
+    @Override
+    public void rotateY3D(float thetaAngles) {
+        super.rotateY3D(thetaAngles);
+        rotatedY += thetaAngles;
+    }
+
+    @Override
+    public void rotateZ3D(float thetaAngles) {
+        super.rotateZ3D(thetaAngles);
+        rotatedZ += thetaAngles;
+    }
 }
