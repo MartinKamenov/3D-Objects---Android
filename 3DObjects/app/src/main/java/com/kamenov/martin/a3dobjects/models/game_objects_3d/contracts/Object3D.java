@@ -6,8 +6,6 @@ import com.kamenov.martin.a3dobjects.models.DeepPoint;
 import com.kamenov.martin.a3dobjects.contracts.GameObject;
 import com.kamenov.martin.a3dobjects.contracts.Rotatable;
 import com.kamenov.martin.a3dobjects.models.DrawingPart;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
-import com.kamenov.martin.a3dobjects.models.services.SortingService;
 
 import java.util.ArrayList;
 
@@ -42,12 +40,12 @@ public abstract class Object3D implements GameObject, Rotatable {
         rotateZ = true;
     }
 
-    public void rotateZ3D(float theta)
+    public void rotateZ3D(float thetaAngles)
     {
         if(rotateZ) {
-            theta *= rotation;
-            float sin_t = (float) Math.sin(theta);
-            float cos_t = (float) Math.cos(theta);
+            thetaAngles *= rotation;
+            float sin_t = (float) Math.sin(Math.toRadians(thetaAngles));
+            float cos_t = (float) Math.cos(Math.toRadians(thetaAngles));
 
             for (int i = 0; i < points.length; i++) {
                 DeepPoint point = points[i];
@@ -59,12 +57,12 @@ public abstract class Object3D implements GameObject, Rotatable {
         }
     }
 
-    public void rotateX3D(float theta)
+    public void rotateX3D(float thetaAngles)
     {
         if(rotateX) {
-            theta *= rotation;
-            float sin_t = (float) Math.sin(theta);
-            float cos_t = (float) Math.cos(theta);
+            thetaAngles *= rotation;
+            float sin_t = (float) Math.sin(Math.toRadians(thetaAngles));
+            float cos_t = (float) Math.cos(Math.toRadians(thetaAngles));
 
             for (int i = 0; i < points.length; i++) {
                 DeepPoint point = points[i];
@@ -76,12 +74,12 @@ public abstract class Object3D implements GameObject, Rotatable {
         }
     }
 
-    public void rotateY3D(float theta)
+    public void rotateY3D(float thetaAngles)
     {
         if(rotateY) {
-            theta *= rotation;
-            float sin_t = (float) Math.sin(theta);
-            float cos_t = (float) Math.cos(theta);
+            thetaAngles *= rotation;
+            float sin_t = (float) Math.sin(Math.toRadians(thetaAngles));
+            float cos_t = (float) Math.cos(Math.toRadians(thetaAngles));
 
             for (int i = 0; i < points.length; i++) {
                 DeepPoint point = points[i];
@@ -105,12 +103,41 @@ public abstract class Object3D implements GameObject, Rotatable {
         this.rotateZ = rotateZ;
     }
 
+    public void move(float pixels, MovingDirection movingDirection) {
+        switch (movingDirection) {
+            case Up:
+                this.y -= pixels;
+                break;
+            case Down:
+                this.y += pixels;
+                break;
+            case Left:
+                this.x -= pixels;
+                break;
+            case Right:
+                this.x += pixels;
+                break;
+            case Further:
+                this.z += pixels;
+                break;
+            case Closer:
+                this.z -= pixels;
+                break;
+        }
+    }
+
+    public void move(float deltaX, float deltaY, float deltaZ) {
+        this.x += deltaX;
+        this.y += deltaY;
+        this.z += deltaZ;
+    }
+
     @Override
     public void update() {
         // Write moving logic here
     }
 
-    protected void setDrawingParts() {
+    public void setDrawingParts() {
         drawingParts = new ArrayList<>();
         for(int i = 0; i < parts.size(); i++) {
             DrawingPart drawingPart;

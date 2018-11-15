@@ -1,13 +1,18 @@
 package com.kamenov.martin.a3dobjects.models.services;
 
+import android.graphics.Paint;
+
 import com.kamenov.martin.a3dobjects.models.Constants;
 import com.kamenov.martin.a3dobjects.models.DeepPoint;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.ComplexObject;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cylinder;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.PartsObject;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
+import com.kamenov.martin.a3dobjects.sampleObjects.CarSample;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,14 +40,17 @@ public class FigureSavingService {
         figuresConfigurations.add(getCubeConfiguration());
         figuresConfigurations.add(getPartComplexObject());
         figuresConfigurations.add(getSimpleCylinder());
+        figuresConfigurations.add(CarSample.getCarSample());
         savingService.setSavedObjects(figuresConfigurations);
     }
 
     private ArrayList<Object3D> getSimpleCubeConfiguration() {
         ArrayList<Object3D> objects = new ArrayList<>();
-        objects.add(new Cube(Constants.SCREEN_WIDTH / 2,
+        Cube cube = new Cube(Constants.SCREEN_WIDTH / 2,
                 Constants.SCREEN_HEIGHT / 2, 0, 100, PaintService.createEdgePaint("red"),
-                PaintService.createWallPaint("white"), 1));
+                PaintService.createWallPaint("white"), 1);
+        // cube.rotateY3D(45);
+        objects.add(cube);
         return objects;
     }
 

@@ -14,20 +14,6 @@ import java.util.ArrayList;
 public class PartsObject extends Object3D {
 
     public PartsObject(float x, float y, float z, Paint edgePaint, Paint wallPaint, float rotation,
-                       DeepPoint[] points) {
-        super(x, y, z, edgePaint, wallPaint, rotation);
-        this.points = points;
-        setDrawingParts();
-    }
-
-    public PartsObject(float x, float y, float z, Paint edgePaint, Paint wallPaint, float rotation,
-                       ArrayList<DeepPoint[]> parts) {
-        super(x, y, z, edgePaint, wallPaint, rotation);
-        this.parts = parts;
-        setDrawingParts();
-    }
-
-    public PartsObject(float x, float y, float z, Paint edgePaint, Paint wallPaint, float rotation,
                        DeepPoint[] points, ArrayList<DeepPoint[]> parts) {
         super(x, y, z, edgePaint, wallPaint, rotation);
         this.points = points;

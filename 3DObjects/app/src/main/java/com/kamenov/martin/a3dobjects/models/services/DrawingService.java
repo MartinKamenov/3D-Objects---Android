@@ -18,12 +18,14 @@ import java.util.List;
  */
 
 public class DrawingService {
+    public boolean shouldUpdate;
     private static DrawingService instance;
     private SortingService sortingService;
 
     // Dependencies: SortingService
     private DrawingService(SortingService sortingService) {
         this.sortingService = sortingService;
+        shouldUpdate = false;
     }
 
     public static DrawingService getInstance(SortingService sortingService) {
@@ -43,6 +45,10 @@ public class DrawingService {
         ArrayList<DrawingPart> drawingParts = new ArrayList<>();
         for (int i = 0; i < figures.size(); i++) {
             Object3D figure = figures.get(i);
+            // Should be used if we need moving
+            if(shouldUpdate) {
+                figure.setDrawingParts();
+            }
             sortingService.sortParts(figure.drawingParts);
             if(i == 0) {
                 drawingParts = figure.drawingParts;

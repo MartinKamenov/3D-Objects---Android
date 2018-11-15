@@ -54,7 +54,7 @@ public class ComplexObject extends Object3D {
     }
 
     @Override
-    protected void setDrawingParts() {
+    public void setDrawingParts() {
         drawingParts = new ArrayList<>();
         int index = 0;
         for(int i = 0; i < objects.size(); i++) {
