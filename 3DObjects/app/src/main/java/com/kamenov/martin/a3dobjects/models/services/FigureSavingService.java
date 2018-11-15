@@ -6,6 +6,7 @@ import com.kamenov.martin.a3dobjects.models.Constants;
 import com.kamenov.martin.a3dobjects.models.DeepPoint;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.ComplexObject;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cylinder;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.PartsObject;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
@@ -38,6 +39,7 @@ public class FigureSavingService {
         figuresConfigurations.add(getSolarSystem());
         figuresConfigurations.add(getCubeConfiguration());
         figuresConfigurations.add(getPartComplexObject());
+        figuresConfigurations.add(getSimpleCylinder());
         figuresConfigurations.add(CarSample.getCarSample());
         savingService.setSavedObjects(figuresConfigurations);
     }
@@ -136,7 +138,7 @@ public class FigureSavingService {
         return objects;
     }
 
-    public ArrayList<Object3D> getPartComplexObject() {
+    private ArrayList<Object3D> getPartComplexObject() {
         ArrayList<Object3D> objects = new ArrayList<>();
         DeepPoint[] points = new DeepPoint[3];
         points[0] = new DeepPoint(100, 100, 0);
@@ -146,6 +148,14 @@ public class FigureSavingService {
         parts.add(points);
         PartsObject partsObject = new PartsObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
                 PaintService.createEdgePaint("red"), PaintService.createWallPaint("blue"), 1, points, parts);
+        objects.add(partsObject);
+        return objects;
+    }
+
+    private ArrayList<Object3D> getSimpleCylinder() {
+        ArrayList<Object3D> objects = new ArrayList<>();
+        Cylinder partsObject = new Cylinder(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
+                PaintService.createEdgePaint("red"), PaintService.createWallPaint("blue"), 1, 200, 100);
         objects.add(partsObject);
         return objects;
     }
