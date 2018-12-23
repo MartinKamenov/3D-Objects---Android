@@ -41,6 +41,7 @@ public class FigureSavingService {
         figuresConfigurations.add(getPartComplexObject());
         figuresConfigurations.add(getSimpleCylinder());
         figuresConfigurations.add(CarSample.getCarSample());
+        figuresConfigurations.add(getFirstRocketSample());
         savingService.setSavedObjects(figuresConfigurations);
     }
 
@@ -157,6 +158,22 @@ public class FigureSavingService {
         Cylinder partsObject = new Cylinder(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
                 PaintService.createEdgePaint("red"), PaintService.createWallPaint("blue"), 1, 200, 100);
         objects.add(partsObject);
+        return objects;
+    }
+
+    private ArrayList<Object3D> getFirstRocketSample() {
+        float width = 40;
+        float height = 200;
+        Paint edgePaint = PaintService.createEdgePaint("#ffffff");
+        Paint bodyPaint = PaintService.createWallPaint("#ca8dff");
+        ArrayList<Object3D> objects = new ArrayList<>();
+        ArrayList<Object3D> parts = new ArrayList<>();
+        Parallelepiped body = new Parallelepiped(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
+                width, height, width, edgePaint, bodyPaint, 1);
+        parts.add(body);
+        ComplexObject rocket = new ComplexObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
+                edgePaint, bodyPaint, 1, parts);
+        objects.add(rocket);
         return objects;
     }
 }
