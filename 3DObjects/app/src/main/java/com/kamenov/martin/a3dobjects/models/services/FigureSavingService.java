@@ -9,9 +9,11 @@ import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cylinder;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.PartsObject;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Piramid;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
+import com.kamenov.martin.a3dobjects.models.services.contracts.Dimension;
 import com.kamenov.martin.a3dobjects.sampleObjects.CarSample;
 
 import java.util.ArrayList;
@@ -162,15 +164,32 @@ public class FigureSavingService {
     }
 
     private ArrayList<Object3D> getFirstRocketSample() {
-        float width = 40;
-        float height = 200;
+        float width = 80;
+        float height = 300;
+        float rareWidth = width / 2;
+        float rareHeight = height / 2;
         Paint edgePaint = PaintService.createEdgePaint("#ffffff");
         Paint bodyPaint = PaintService.createWallPaint("#ca8dff");
         ArrayList<Object3D> objects = new ArrayList<>();
         ArrayList<Object3D> parts = new ArrayList<>();
-        Parallelepiped body = new Parallelepiped(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
-                width, height, width, edgePaint, bodyPaint, 1);
-        parts.add(body);
+        int bodyPartsCount = 10;
+        ComplexObject bodyObject = BreakingService.breakParaToSmaller(Constants.SCREEN_WIDTH / 2,
+                Constants.SCREEN_HEIGHT / 2,
+                0, width, width, height, edgePaint, bodyPaint, 1, bodyPartsCount, Dimension.Z
+        );
+        ComplexObject left = BreakingService.breakParaToSmaller(Constants.SCREEN_WIDTH / 2 - (width / 2) - (rareWidth / 2),
+                Constants.SCREEN_HEIGHT / 2, - (rareHeight / 2),
+                rareWidth, rareWidth, rareHeight, edgePaint, bodyPaint, 1, bodyPartsCount / 2, Dimension.Z);
+        ComplexObject right = BreakingService.breakParaToSmaller(Constants.SCREEN_WIDTH / 2 + (width / 2) + (rareWidth / 2),
+                Constants.SCREEN_HEIGHT / 2, - (rareHeight / 2),
+                rareWidth, rareWidth, rareHeight, edgePaint, bodyPaint, 1, bodyPartsCount / 2, Dimension.Z);
+        Piramid front = new Piramid(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0 + (height / 2),
+                edgePaint, bodyPaint, 1, width, width, height / 3);
+
+        parts.add(bodyObject);
+        parts.add(front);
+        parts.add(left);
+        parts.add(right);
         ComplexObject rocket = new ComplexObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
                 edgePaint, bodyPaint, 1, parts);
         objects.add(rocket);
