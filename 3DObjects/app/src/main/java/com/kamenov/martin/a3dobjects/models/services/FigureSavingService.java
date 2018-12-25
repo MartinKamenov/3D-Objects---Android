@@ -173,27 +173,16 @@ public class FigureSavingService {
         ArrayList<Object3D> objects = new ArrayList<>();
         ArrayList<Object3D> parts = new ArrayList<>();
         int bodyPartsCount = 10;
-        /*ArrayList<Object3D> bodyParts = new ArrayList<>();
-
-        float startHeight = -((bodyPartsCount/2) * (height/bodyPartsCount)) + ((height/bodyPartsCount) / 2);
-        for(int i = 0; i < bodyPartsCount; i++) {
-            Parallelepiped bodyPart = new Parallelepiped(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2,
-                    startHeight + (i * (height/bodyPartsCount)),
-                    width, width, height / bodyPartsCount, edgePaint, bodyPaint, 1);
-            bodyParts.add(bodyPart);
-        }
-        ComplexObject bodyObject = new ComplexObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
-                edgePaint, bodyPaint, 1, bodyParts);*/
         ComplexObject bodyObject = BreakingService.breakParaToSmaller(Constants.SCREEN_WIDTH / 2,
                 Constants.SCREEN_HEIGHT / 2,
                 0, width, width, height, edgePaint, bodyPaint, 1, bodyPartsCount, Dimension.Z
         );
-        Parallelepiped left = new Parallelepiped(Constants.SCREEN_WIDTH / 2 - (width / 2) - (rareWidth / 2),
+        ComplexObject left = BreakingService.breakParaToSmaller(Constants.SCREEN_WIDTH / 2 - (width / 2) - (rareWidth / 2),
                 Constants.SCREEN_HEIGHT / 2, - (rareHeight / 2),
-                rareWidth, rareWidth, rareHeight, edgePaint, bodyPaint, 1);
-        Parallelepiped right = new Parallelepiped(Constants.SCREEN_WIDTH / 2 + (width / 2) + (rareWidth / 2),
+                rareWidth, rareWidth, rareHeight, edgePaint, bodyPaint, 1, bodyPartsCount / 2, Dimension.Z);
+        ComplexObject right = BreakingService.breakParaToSmaller(Constants.SCREEN_WIDTH / 2 + (width / 2) + (rareWidth / 2),
                 Constants.SCREEN_HEIGHT / 2, - (rareHeight / 2),
-                rareWidth, rareWidth, rareHeight, edgePaint, bodyPaint, 1);
+                rareWidth, rareWidth, rareHeight, edgePaint, bodyPaint, 1, bodyPartsCount / 2, Dimension.Z);
         Piramid front = new Piramid(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0 + (height / 2),
                 edgePaint, bodyPaint, 1, width, width, height / 3);
 

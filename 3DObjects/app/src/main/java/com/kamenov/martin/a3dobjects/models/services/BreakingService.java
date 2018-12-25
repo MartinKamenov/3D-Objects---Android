@@ -22,7 +22,8 @@ public class BreakingService {
             case X:
                 float startWidth = x - (width / 2) + ((width / count) / 2);
                 for(int i = 0; i < count; i++) {
-                    Parallelepiped part = new Parallelepiped(x + startWidth + i * (width / count),
+                    float xPosition = startWidth + i * (width / count);
+                    Parallelepiped part = new Parallelepiped(xPosition,
                             y,
                             z,
                             width / count, height, depth, edgePaint, wallPaint, 1);
@@ -32,19 +33,21 @@ public class BreakingService {
             case Y:
                 float startHeight = y - (height / 2) + ((height / count) / 2);
                 for(int i = 0; i < count; i++) {
-                    Parallelepiped part = new Parallelepiped(x,
-                            y + startHeight + i * (height / count),
+                    float yPosition = startHeight + i * (height / count);
+                            Parallelepiped part = new Parallelepiped(x,
+                            yPosition,
                             z,
                             width, height / count, depth, edgePaint, wallPaint, 1);
                     parts.add(part);
                 }
                 break;
             case Z:
-                float startDepth = z - (depth / 2) + ((depth / count) / 2);
+                float startDepth = (z - (depth / 2)) + ((depth / count) / 2);
                 for(int i = 0; i < count; i++) {
+                    float zPosition = startDepth + i * (depth / count);
                     Parallelepiped part = new Parallelepiped(x,
                             y,
-                            z + startDepth + i * (depth / count),
+                            zPosition,
                             width, height, depth / count, edgePaint, wallPaint, 1);
                     parts.add(part);
                 }
