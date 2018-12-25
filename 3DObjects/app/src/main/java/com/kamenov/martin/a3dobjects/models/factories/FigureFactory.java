@@ -6,7 +6,7 @@ import com.kamenov.martin.a3dobjects.models.Constants;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.ComplexObject;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.Piramid;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Pyramid;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
@@ -57,11 +57,11 @@ public class FigureFactory {
         return para;
     }
 
-    public Piramid createPyramid(float x, float y, float z, Paint edgePaint,
+    public Pyramid createPyramid(float x, float y, float z, Paint edgePaint,
                                  Paint wallPaint, float rotation, float aLength, float bLength, float h) {
         x += Constants.SCREEN_WIDTH / 2;
         y += Constants.SCREEN_HEIGHT / 2;
-        Piramid pyramid = new Piramid(x, y, z, edgePaint, wallPaint, rotation, aLength, bLength, h);
+        Pyramid pyramid = new Pyramid(x, y, z, edgePaint, wallPaint, rotation, aLength, bLength, h);
         if(shouldBeAdded) {
             figures.add(pyramid);
         }

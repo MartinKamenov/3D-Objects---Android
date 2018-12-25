@@ -7,17 +7,14 @@ import com.kamenov.martin.a3dobjects.models.DeepPoint;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.ComplexObject;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cylinder;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.PartsObject;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.Piramid;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Pyramid;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
 import com.kamenov.martin.a3dobjects.models.services.contracts.Dimension;
 import com.kamenov.martin.a3dobjects.sampleObjects.CarSample;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Martin on 27.10.2018 г..
@@ -183,7 +180,7 @@ public class FigureSavingService {
         ComplexObject right = BreakingService.breakParaToSmaller(Constants.SCREEN_WIDTH / 2 + (width / 2) + (rareWidth / 2),
                 Constants.SCREEN_HEIGHT / 2, - (rareHeight / 2),
                 rareWidth, rareWidth, rareHeight, edgePaint, bodyPaint, 1, bodyPartsCount / 2, Dimension.Z);
-        Piramid front = new Piramid(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0 + (height / 2),
+        Pyramid front = new Pyramid(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0 + (height / 2),
                 edgePaint, bodyPaint, 1, width, width, height / 3);
 
         parts.add(bodyObject);

@@ -8,7 +8,7 @@ import com.kamenov.martin.a3dobjects.engine.contracts.Starter;
 import com.kamenov.martin.a3dobjects.models.factories.FigureFactory;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Cube;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.Piramid;
+import com.kamenov.martin.a3dobjects.models.game_objects_3d.Pyramid;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
@@ -41,7 +41,7 @@ public class CommandParser {
             "start",
             "cube",
             "para",
-            "pira",
+            "pyra",
             "plane",
             "sphere",
             "co",
@@ -83,7 +83,7 @@ public class CommandParser {
                     break;
                 case "cube":
                 case "para":
-                case "pira":
+                case "pyra":
                 case "plane":
                 case "sphere":
                 case "co":
@@ -227,7 +227,7 @@ public class CommandParser {
                         writeLine("Parallelepiped was added");
                     }
                     break;
-                case "pira":
+                case "pyra":
                     edgePaint = PaintService.createEdgePaint(commandWords[4]);
                     wallPaint = PaintService.createWallPaint(commandWords[5]);
                     rotation = Float.valueOf(commandWords[6]);
@@ -239,7 +239,7 @@ public class CommandParser {
                                 .createPyramid(x, y, z, edgePaint, wallPaint, rotation, aLength, bLength, h);
                         writeLine("Pyramid was created");
                     } else {
-                        Piramid pyramid = mFigureFactory
+                        Pyramid pyramid = mFigureFactory
                                 .createPyramid(x, y, z, edgePaint, wallPaint, rotation, aLength, bLength, h);
                         complexObjectFigures.add(pyramid);
                         writeLine("Pyramid was added");
@@ -302,7 +302,7 @@ public class CommandParser {
                 case "para":
                     writeLine("Params: x, y, z, aLength, bLength, cLength, colorEdge, colorWall, rotation");
                     break;
-                case "pira":
+                case "pyra":
                     writeLine("Params: x, y, z, edgeColor, wallColor, rotation, aLength, bLength, h");
                     break;
                 case "plane":

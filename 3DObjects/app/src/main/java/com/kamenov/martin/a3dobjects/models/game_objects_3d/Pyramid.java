@@ -11,8 +11,8 @@ import java.util.ArrayList;
  * Created by Martin on 18.3.2018 г..
  */
 
-public class Piramid extends Object3D {
-    public Piramid(float x, float y, float z, Paint edgePaint, Paint wallPaint, float rotation, float aLength, float bLength, float h) {
+public class Pyramid extends Object3D {
+    public Pyramid(float x, float y, float z, Paint edgePaint, Paint wallPaint, float rotation, float aLength, float bLength, float h) {
         super(x, y, z, edgePaint, wallPaint, rotation);
         DeepPoint a = new DeepPoint(0-aLength/2, 0-bLength/2, 0);
         DeepPoint b = new DeepPoint(0-aLength/2, 0+bLength/2, 0);
