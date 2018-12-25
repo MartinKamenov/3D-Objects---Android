@@ -13,6 +13,7 @@ import com.kamenov.martin.a3dobjects.models.game_objects_3d.Piramid;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.Sphere;
 import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
+import com.kamenov.martin.a3dobjects.models.services.contracts.Dimension;
 import com.kamenov.martin.a3dobjects.sampleObjects.CarSample;
 
 import java.util.ArrayList;
@@ -171,21 +172,35 @@ public class FigureSavingService {
         Paint bodyPaint = PaintService.createWallPaint("#ca8dff");
         ArrayList<Object3D> objects = new ArrayList<>();
         ArrayList<Object3D> parts = new ArrayList<>();
-        Parallelepiped body = new Parallelepiped(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
-                width, width, height, edgePaint, bodyPaint, 1);
+        int bodyPartsCount = 10;
+        /*ArrayList<Object3D> bodyParts = new ArrayList<>();
+
+        float startHeight = -((bodyPartsCount/2) * (height/bodyPartsCount)) + ((height/bodyPartsCount) / 2);
+        for(int i = 0; i < bodyPartsCount; i++) {
+            Parallelepiped bodyPart = new Parallelepiped(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2,
+                    startHeight + (i * (height/bodyPartsCount)),
+                    width, width, height / bodyPartsCount, edgePaint, bodyPaint, 1);
+            bodyParts.add(bodyPart);
+        }
+        ComplexObject bodyObject = new ComplexObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
+                edgePaint, bodyPaint, 1, bodyParts);*/
+        ComplexObject bodyObject = BreakingService.breakParaToSmaller(Constants.SCREEN_WIDTH / 2,
+                Constants.SCREEN_HEIGHT / 2,
+                0, width, width, height, edgePaint, bodyPaint, 1, bodyPartsCount, Dimension.Z
+        );
         Parallelepiped left = new Parallelepiped(Constants.SCREEN_WIDTH / 2 - (width / 2) - (rareWidth / 2),
                 Constants.SCREEN_HEIGHT / 2, - (rareHeight / 2),
                 rareWidth, rareWidth, rareHeight, edgePaint, bodyPaint, 1);
-        Parallelepiped rigth = new Parallelepiped(Constants.SCREEN_WIDTH / 2 + (width / 2) + (rareWidth / 2),
+        Parallelepiped right = new Parallelepiped(Constants.SCREEN_WIDTH / 2 + (width / 2) + (rareWidth / 2),
                 Constants.SCREEN_HEIGHT / 2, - (rareHeight / 2),
                 rareWidth, rareWidth, rareHeight, edgePaint, bodyPaint, 1);
         Piramid front = new Piramid(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0 + (height / 2),
                 edgePaint, bodyPaint, 1, width, width, height / 3);
 
-        parts.add(body);
+        parts.add(bodyObject);
         parts.add(front);
         parts.add(left);
-        parts.add(rigth);
+        parts.add(right);
         ComplexObject rocket = new ComplexObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
                 edgePaint, bodyPaint, 1, parts);
         objects.add(rocket);
