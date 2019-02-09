@@ -10,14 +10,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 
-import com.kamenov.martin.a3dobjects.engine.CommandParser;
-import com.kamenov.martin.a3dobjects.engine.contracts.Starter;
+import com.kamenov.martin.a3dobjects.command_promt_engine.CommandParser;
+import com.kamenov.martin.a3dobjects.command_promt_engine.contracts.Starter;
 import com.kamenov.martin.a3dobjects.game.GameActivity;
 import com.kamenov.martin.a3dobjects.R;
-import com.kamenov.martin.a3dobjects.models.Constants;
-import com.kamenov.martin.a3dobjects.models.factories.FigureFactory;
-import com.kamenov.martin.a3dobjects.models.services.FigureSavingService;
-import com.kamenov.martin.a3dobjects.models.services.SavingService;
+import com.kamenov.martin.a3dobjects.constants.Constants;
+import com.kamenov.martin.a3dobjects.engine.services.factories.FigureFactory;
+import com.kamenov.martin.a3dobjects.engine.services.FigureSavingService;
+import com.kamenov.martin.a3dobjects.engine.services.SavingService;
 
 public class ChoserActivity extends Activity implements TextWatcher, Starter {
     private EditText mConsole;

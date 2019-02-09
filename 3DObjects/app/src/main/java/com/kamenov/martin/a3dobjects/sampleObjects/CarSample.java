@@ -2,14 +2,14 @@ package com.kamenov.martin.a3dobjects.sampleObjects;
 
 import android.graphics.Paint;
 
-import com.kamenov.martin.a3dobjects.models.Constants;
-import com.kamenov.martin.a3dobjects.models.DeepPoint;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.ComplexObject;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.Parallelepiped;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.PartsObject;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.Plane;
-import com.kamenov.martin.a3dobjects.models.game_objects_3d.contracts.Object3D;
-import com.kamenov.martin.a3dobjects.models.services.PaintService;
+import com.kamenov.martin.a3dobjects.constants.Constants;
+import com.kamenov.martin.a3dobjects.engine.models.game_objects.contracts.DeepPoint;
+import com.kamenov.martin.a3dobjects.engine.models.game_objects.ComplexObject;
+import com.kamenov.martin.a3dobjects.engine.models.game_objects.Parallelepiped;
+import com.kamenov.martin.a3dobjects.engine.models.game_objects.PartsObject;
+import com.kamenov.martin.a3dobjects.engine.models.game_objects.Plane;
+import com.kamenov.martin.a3dobjects.engine.models.game_objects.contracts.Object3D;
+import com.kamenov.martin.a3dobjects.engine.services.PaintService;
 
 import java.util.ArrayList;
 
