@@ -2,7 +2,6 @@ package com.kamenov.martin.a3dobjects.game;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -12,9 +11,9 @@ import android.widget.RelativeLayout;
 
 import com.kamenov.martin.a3dobjects.R;
 import com.kamenov.martin.a3dobjects.contracts.GamePanelState;
-import com.kamenov.martin.a3dobjects.models.Constants;
-import com.kamenov.martin.a3dobjects.models.services.DrawingService;
-import com.kamenov.martin.a3dobjects.models.services.SortingService;
+import com.kamenov.martin.a3dobjects.engine.GamePanel;
+import com.kamenov.martin.a3dobjects.engine.services.DrawingService;
+import com.kamenov.martin.a3dobjects.engine.services.SortingService;
 
 public class GameActivity extends Activity implements View.OnClickListener {
 
