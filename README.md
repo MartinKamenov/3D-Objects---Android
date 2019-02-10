@@ -44,3 +44,5 @@ At this moment users can use engine to draw rotate and move different simple and
 - PaintService(knows how to generate paints for different objects)
 - SortingService(used by drawing service and arranges objects so they are sorted by depth parameter)
 - BreakingService(breaks object to smaller objects so every one is calculated more precisely where it is relative to others)
+- CanvasService(updates and draws the GamePanel state)
+Canvas Service only has method updateAndDraw which requires GamePanel as param.
