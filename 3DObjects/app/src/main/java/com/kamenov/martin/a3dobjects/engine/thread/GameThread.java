@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 import com.kamenov.martin.a3dobjects.engine.GamePanel;
+import com.kamenov.martin.a3dobjects.engine.services.CanvasService;
 
 /**
  * Created by Martin on 6.3.2018 г..
@@ -11,20 +12,12 @@ import com.kamenov.martin.a3dobjects.engine.GamePanel;
 
 public class GameThread extends Thread {
     public static final int MAX_FPS = 30;
-    private GamePanel gamePanel;
-    private SurfaceHolder surfaceHolder;
+    private final GamePanel gamePanel;
     private boolean running;
-    private Canvas canvas;
     private double averageFPS;
-    private int counter = 0;
 
-    public GameThread(SurfaceHolder surfaceHolder, GamePanel panel) {
-        this.surfaceHolder = surfaceHolder;
+    public GameThread(GamePanel panel) {
         this.gamePanel = panel;
-    }
-
-    public void setRunning(boolean running) {
-        this.running = running;
     }
 
     @Override
@@ -38,28 +31,7 @@ public class GameThread extends Thread {
 
         while (running) {
             startTime = System.nanoTime();
-            canvas = null;
-
-            try {
-                canvas = this.surfaceHolder.lockCanvas();
-                synchronized (surfaceHolder) {
-                    this.gamePanel.update();
-                    this.gamePanel.draw(canvas);
-                }
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-            finally {
-                if(canvas!=null) {
-                    try {
-                        surfaceHolder.unlockCanvasAndPost(canvas);
-                    }
-                    catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+            CanvasService.updateAndDraw(gamePanel);
 
             timeMillis = (System.nanoTime() - startTime) / 1000000;
             waitTime = targetTime - timeMillis;
@@ -81,5 +53,9 @@ public class GameThread extends Thread {
                 totalTime = 0;
             }
         }
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
     }
 }
