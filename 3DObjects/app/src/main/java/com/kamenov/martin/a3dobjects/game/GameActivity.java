@@ -14,6 +14,7 @@ import com.kamenov.martin.a3dobjects.contracts.GamePanelState;
 import com.kamenov.martin.a3dobjects.engine.GamePanel;
 import com.kamenov.martin.a3dobjects.engine.services.DrawingService;
 import com.kamenov.martin.a3dobjects.engine.services.SortingService;
+import com.kamenov.martin.a3dobjects.engine.services.factories.FigureFactory;
 
 public class GameActivity extends Activity implements View.OnClickListener {
 
@@ -28,7 +29,7 @@ public class GameActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_game);
         RelativeLayout relativeLayout = findViewById(R.id.container);
         drawingService = DrawingService.getInstance(SortingService.getInstance());
-        gamePanel = new GamePanel(this, drawingService);
+        gamePanel = new GamePanel(this, drawingService, FigureFactory.getInstance());
         relativeLayout.addView(gamePanel);
         LinearLayout buttonContainer = findViewById(R.id.button_container);
         buttonContainer.bringToFront();

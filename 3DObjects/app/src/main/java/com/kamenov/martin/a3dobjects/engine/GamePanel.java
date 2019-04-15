@@ -9,7 +9,7 @@ import android.view.SurfaceView;
 
 import com.kamenov.martin.a3dobjects.contracts.GamePanelState;
 import com.kamenov.martin.a3dobjects.constants.Constants;
-import com.kamenov.martin.a3dobjects.engine.services.factories.FigureFactory;
+import com.kamenov.martin.a3dobjects.engine.services.factories.IFigureFactory;
 import com.kamenov.martin.a3dobjects.sampleObjects.Background;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.contracts.GameObject;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.contracts.Rotatable;
@@ -34,13 +34,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback, Ga
     private float y2;
     private GamePanelState gamePanelState;
 
-    public GamePanel(Context context, DrawingService drawingService) {
+    public GamePanel(Context context, DrawingService drawingService, IFigureFactory figureFactory) {
         super(context);
         gamePanelState = GamePanelState.Rotating;
         x1 = -1;
         x2 = -1;
         this.drawingService = drawingService;
-        figures = FigureFactory.getInstance().getFigures();
+        figures = figureFactory.getFigures();
         background = new Background(Color.BLACK);
 
         getHolder().addCallback(this);

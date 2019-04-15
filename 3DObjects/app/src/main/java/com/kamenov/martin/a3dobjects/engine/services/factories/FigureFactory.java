@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by Martin on 12.10.2018 г..
  */
 
-public class FigureFactory {
+public class FigureFactory implements IFigureFactory{
     public boolean shouldBeAdded;
     private static FigureFactory figureFactory;
     private ArrayList<Object3D> figures;
@@ -101,19 +101,23 @@ public class FigureFactory {
         return complexObject;
     }
 
+    @Override
     public ArrayList<Object3D> getFigures() {
         return this.figures;
     }
 
+    @Override
     public void setFigures(ArrayList<Object3D> figures) {
         this.figures = figures;
     }
 
+    @Override
     public void clearFigures() {
         this.figures = new ArrayList<>();
     }
 
-    private void removeFigure(int i) {
+    @Override
+    public void removeFigure(int i) {
         this.figures.remove(i);
     }
 }
