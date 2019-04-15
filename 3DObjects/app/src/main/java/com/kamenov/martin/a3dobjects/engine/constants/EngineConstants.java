@@ -1,10 +1,10 @@
-package com.kamenov.martin.a3dobjects.constants;
+package com.kamenov.martin.a3dobjects.engine.constants;
 
 /**
  * Created by Martin on 11.3.2018 г..
  */
 
-public class Constants {
+public class EngineConstants {
     public static int SCREEN_WIDTH;
     public static int SCREEN_HEIGHT;
 
@@ -16,7 +16,7 @@ public class Constants {
             "black"
     };
 
-    public static String[] COLORREPRESENTATIONS = {
+    public static String[] COLOR_REPRESENTATIONS = {
             "#ff0000",
             "#0000ff",
             "#00ff00",

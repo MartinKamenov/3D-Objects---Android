@@ -3,7 +3,7 @@ package com.kamenov.martin.a3dobjects.engine.services;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.kamenov.martin.a3dobjects.constants.Constants;
+import com.kamenov.martin.a3dobjects.engine.constants.EngineConstants;
 
 /**
  * Created by Martin on 27.10.2018 г..
@@ -29,9 +29,9 @@ public class PaintService {
 
 
     private static int parseColor(String colorName) {
-        for(int i = 0; i < Constants.COLORS.length; i++) {
-            if(Constants.COLORS[i].equals(colorName)) {
-                return Color.parseColor(Constants.COLORREPRESENTATIONS[i]);
+        for(int i = 0; i < EngineConstants.COLORS.length; i++) {
+            if(EngineConstants.COLORS[i].equals(colorName)) {
+                return Color.parseColor(EngineConstants.COLOR_REPRESENTATIONS[i]);
             }
         }
 

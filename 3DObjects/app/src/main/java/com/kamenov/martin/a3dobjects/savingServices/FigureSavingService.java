@@ -2,7 +2,7 @@ package com.kamenov.martin.a3dobjects.savingServices;
 
 import android.graphics.Paint;
 
-import com.kamenov.martin.a3dobjects.constants.Constants;
+import com.kamenov.martin.a3dobjects.engine.constants.EngineConstants;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.contracts.DeepPoint;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.ComplexObject;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.Cube;
@@ -48,8 +48,8 @@ public class FigureSavingService {
 
     private ArrayList<Object3D> getSimpleCubeConfiguration() {
         ArrayList<Object3D> objects = new ArrayList<>();
-        Cube cube = new Cube(Constants.SCREEN_WIDTH / 2,
-                Constants.SCREEN_HEIGHT / 2, 0, 100, PaintService.createEdgePaint("red"),
+        Cube cube = new Cube(EngineConstants.SCREEN_WIDTH / 2,
+                EngineConstants.SCREEN_HEIGHT / 2, 0, 100, PaintService.createEdgePaint("red"),
                 PaintService.createWallPaint("white"), 1);
         // cube.rotateY3D(45);
         objects.add(cube);
@@ -57,8 +57,8 @@ public class FigureSavingService {
     }
 
     private ArrayList<Object3D> getSolarSystem() {
-        float centerX = Constants.SCREEN_WIDTH / 2;
-        float centerY = Constants.SCREEN_HEIGHT / 2;
+        float centerX = EngineConstants.SCREEN_WIDTH / 2;
+        float centerY = EngineConstants.SCREEN_HEIGHT / 2;
         ArrayList<Object3D> objects = new ArrayList<>();
         objects.add(new Sphere(centerX,
                 centerY, 0, PaintService.createEdgePaint("#ffe500"),
@@ -99,43 +99,43 @@ public class FigureSavingService {
         ArrayList<Object3D> objects = new ArrayList<>();
         ArrayList<Object3D> parts = new ArrayList<>();
         float cubeSize = 200;
-        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 + cubeSize,
-                Constants.SCREEN_HEIGHT / 2, 0, cubeSize, PaintService.createEdgePaint("black"),
+        parts.add(new Cube(EngineConstants.SCREEN_WIDTH / 2 + cubeSize,
+                EngineConstants.SCREEN_HEIGHT / 2, 0, cubeSize, PaintService.createEdgePaint("black"),
                 PaintService.createWallPaint("red"), 1));
-        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 + (cubeSize * 2),
-                Constants.SCREEN_HEIGHT / 2 + cubeSize, 0, cubeSize, PaintService.createEdgePaint("red"),
+        parts.add(new Cube(EngineConstants.SCREEN_WIDTH / 2 + (cubeSize * 2),
+                EngineConstants.SCREEN_HEIGHT / 2 + cubeSize, 0, cubeSize, PaintService.createEdgePaint("red"),
                 PaintService.createWallPaint("black"), 1));
-        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 + (cubeSize * 2),
-                Constants.SCREEN_HEIGHT / 2 - cubeSize, 0, cubeSize, PaintService.createEdgePaint("red"),
+        parts.add(new Cube(EngineConstants.SCREEN_WIDTH / 2 + (cubeSize * 2),
+                EngineConstants.SCREEN_HEIGHT / 2 - cubeSize, 0, cubeSize, PaintService.createEdgePaint("red"),
                 PaintService.createWallPaint("black"), 1));
-        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 - cubeSize,
-                Constants.SCREEN_HEIGHT / 2, 0, cubeSize, PaintService.createEdgePaint("black"),
+        parts.add(new Cube(EngineConstants.SCREEN_WIDTH / 2 - cubeSize,
+                EngineConstants.SCREEN_HEIGHT / 2, 0, cubeSize, PaintService.createEdgePaint("black"),
                 PaintService.createWallPaint("blue"), 1));
-        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 - (cubeSize * 2),
-                Constants.SCREEN_HEIGHT / 2 + cubeSize, 0, cubeSize, PaintService.createEdgePaint("blue"),
+        parts.add(new Cube(EngineConstants.SCREEN_WIDTH / 2 - (cubeSize * 2),
+                EngineConstants.SCREEN_HEIGHT / 2 + cubeSize, 0, cubeSize, PaintService.createEdgePaint("blue"),
                 PaintService.createWallPaint("black"), 1));
-        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 - (cubeSize * 2),
-                Constants.SCREEN_HEIGHT / 2 - cubeSize, 0, cubeSize, PaintService.createEdgePaint("blue"),
+        parts.add(new Cube(EngineConstants.SCREEN_WIDTH / 2 - (cubeSize * 2),
+                EngineConstants.SCREEN_HEIGHT / 2 - cubeSize, 0, cubeSize, PaintService.createEdgePaint("blue"),
                 PaintService.createWallPaint("black"), 1));
-        parts.add(new Cube(Constants.SCREEN_WIDTH / 2,
-                Constants.SCREEN_HEIGHT / 2 + cubeSize, 0, cubeSize, PaintService.createEdgePaint("black"),
+        parts.add(new Cube(EngineConstants.SCREEN_WIDTH / 2,
+                EngineConstants.SCREEN_HEIGHT / 2 + cubeSize, 0, cubeSize, PaintService.createEdgePaint("black"),
                 PaintService.createWallPaint("white"), 1));
-        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 + cubeSize,
-                Constants.SCREEN_HEIGHT / 2 + (cubeSize * 2), 0, cubeSize, PaintService.createEdgePaint("white"),
+        parts.add(new Cube(EngineConstants.SCREEN_WIDTH / 2 + cubeSize,
+                EngineConstants.SCREEN_HEIGHT / 2 + (cubeSize * 2), 0, cubeSize, PaintService.createEdgePaint("white"),
                 PaintService.createWallPaint("black"), 1));
-        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 - cubeSize,
-                Constants.SCREEN_HEIGHT / 2 + (cubeSize * 2), 0, cubeSize, PaintService.createEdgePaint("white"),
+        parts.add(new Cube(EngineConstants.SCREEN_WIDTH / 2 - cubeSize,
+                EngineConstants.SCREEN_HEIGHT / 2 + (cubeSize * 2), 0, cubeSize, PaintService.createEdgePaint("white"),
                 PaintService.createWallPaint("black"), 1));
-        parts.add(new Cube(Constants.SCREEN_WIDTH / 2,
-                Constants.SCREEN_HEIGHT / 2 - cubeSize, 0, cubeSize, PaintService.createEdgePaint("black"),
+        parts.add(new Cube(EngineConstants.SCREEN_WIDTH / 2,
+                EngineConstants.SCREEN_HEIGHT / 2 - cubeSize, 0, cubeSize, PaintService.createEdgePaint("black"),
                 PaintService.createWallPaint("green"), 1));
-        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 + cubeSize,
-                Constants.SCREEN_HEIGHT / 2 - (cubeSize * 2), 0, cubeSize, PaintService.createEdgePaint("green"),
+        parts.add(new Cube(EngineConstants.SCREEN_WIDTH / 2 + cubeSize,
+                EngineConstants.SCREEN_HEIGHT / 2 - (cubeSize * 2), 0, cubeSize, PaintService.createEdgePaint("green"),
                 PaintService.createWallPaint("black"), 1));
-        parts.add(new Cube(Constants.SCREEN_WIDTH / 2 - cubeSize,
-                Constants.SCREEN_HEIGHT / 2 - (cubeSize * 2), 0, cubeSize, PaintService.createEdgePaint("green"),
+        parts.add(new Cube(EngineConstants.SCREEN_WIDTH / 2 - cubeSize,
+                EngineConstants.SCREEN_HEIGHT / 2 - (cubeSize * 2), 0, cubeSize, PaintService.createEdgePaint("green"),
                 PaintService.createWallPaint("black"), 1));
-        objects.add(new ComplexObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
+        objects.add(new ComplexObject(EngineConstants.SCREEN_WIDTH / 2, EngineConstants.SCREEN_HEIGHT / 2, 0,
                 null, null, 1, parts));
         return objects;
     }
@@ -148,7 +148,7 @@ public class FigureSavingService {
         points[2] = new DeepPoint(-100, 0, 0);
         ArrayList<DeepPoint[]> parts = new ArrayList<>();
         parts.add(points);
-        PartsObject partsObject = new PartsObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
+        PartsObject partsObject = new PartsObject(EngineConstants.SCREEN_WIDTH / 2, EngineConstants.SCREEN_HEIGHT / 2, 0,
                 PaintService.createEdgePaint("red"), PaintService.createWallPaint("blue"), 1, points, parts);
         objects.add(partsObject);
         return objects;
@@ -156,7 +156,7 @@ public class FigureSavingService {
 
     private ArrayList<Object3D> getSimpleCylinder() {
         ArrayList<Object3D> objects = new ArrayList<>();
-        Cylinder partsObject = new Cylinder(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
+        Cylinder partsObject = new Cylinder(EngineConstants.SCREEN_WIDTH / 2, EngineConstants.SCREEN_HEIGHT / 2, 0,
                 PaintService.createEdgePaint("red"), PaintService.createWallPaint("blue"), 1, 200, 100);
         objects.add(partsObject);
         return objects;
@@ -172,24 +172,24 @@ public class FigureSavingService {
         ArrayList<Object3D> objects = new ArrayList<>();
         ArrayList<Object3D> parts = new ArrayList<>();
         int bodyPartsCount = 10;
-        ComplexObject bodyObject = BreakingService.breakParaToSmaller(Constants.SCREEN_WIDTH / 2,
-                Constants.SCREEN_HEIGHT / 2,
+        ComplexObject bodyObject = BreakingService.breakParaToSmaller(EngineConstants.SCREEN_WIDTH / 2,
+                EngineConstants.SCREEN_HEIGHT / 2,
                 0, width, width, height, edgePaint, bodyPaint, 1, bodyPartsCount, Dimension.Z
         );
-        ComplexObject left = BreakingService.breakParaToSmaller(Constants.SCREEN_WIDTH / 2 - (width / 2) - (rareWidth / 2),
-                Constants.SCREEN_HEIGHT / 2, - (rareHeight / 2),
+        ComplexObject left = BreakingService.breakParaToSmaller(EngineConstants.SCREEN_WIDTH / 2 - (width / 2) - (rareWidth / 2),
+                EngineConstants.SCREEN_HEIGHT / 2, - (rareHeight / 2),
                 rareWidth, rareWidth, rareHeight, edgePaint, bodyPaint, 1, bodyPartsCount / 2, Dimension.Z);
-        ComplexObject right = BreakingService.breakParaToSmaller(Constants.SCREEN_WIDTH / 2 + (width / 2) + (rareWidth / 2),
-                Constants.SCREEN_HEIGHT / 2, - (rareHeight / 2),
+        ComplexObject right = BreakingService.breakParaToSmaller(EngineConstants.SCREEN_WIDTH / 2 + (width / 2) + (rareWidth / 2),
+                EngineConstants.SCREEN_HEIGHT / 2, - (rareHeight / 2),
                 rareWidth, rareWidth, rareHeight, edgePaint, bodyPaint, 1, bodyPartsCount / 2, Dimension.Z);
-        Pyramid front = new Pyramid(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0 + (height / 2),
+        Pyramid front = new Pyramid(EngineConstants.SCREEN_WIDTH / 2, EngineConstants.SCREEN_HEIGHT / 2, 0 + (height / 2),
                 edgePaint, bodyPaint, 1, width, width, height / 3);
 
         parts.add(bodyObject);
         parts.add(front);
         parts.add(left);
         parts.add(right);
-        ComplexObject rocket = new ComplexObject(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0,
+        ComplexObject rocket = new ComplexObject(EngineConstants.SCREEN_WIDTH / 2, EngineConstants.SCREEN_HEIGHT / 2, 0,
                 edgePaint, bodyPaint, 1, parts);
         objects.add(rocket);
         return objects;

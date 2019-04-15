@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.kamenov.martin.a3dobjects.constants.Constants;
+import com.kamenov.martin.a3dobjects.engine.constants.EngineConstants;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.contracts.GameObject;
 
 /**
@@ -33,8 +33,8 @@ public class Background implements GameObject {
         };*/
         for(int i = 0; i < colors.length; i++) {
             paint.setColor(Color.parseColor(colors[i]));
-            canvas.drawRect(0, i * (Constants.SCREEN_HEIGHT / colors.length),
-                    Constants.SCREEN_WIDTH, (i * (Constants.SCREEN_HEIGHT / colors.length)) + (Constants.SCREEN_HEIGHT / colors.length), paint);
+            canvas.drawRect(0, i * (EngineConstants.SCREEN_HEIGHT / colors.length),
+                    EngineConstants.SCREEN_WIDTH, (i * (EngineConstants.SCREEN_HEIGHT / colors.length)) + (EngineConstants.SCREEN_HEIGHT / colors.length), paint);
         }
     }
 

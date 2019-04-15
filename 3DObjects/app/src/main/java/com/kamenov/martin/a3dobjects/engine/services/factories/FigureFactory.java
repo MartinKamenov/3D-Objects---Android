@@ -2,7 +2,7 @@ package com.kamenov.martin.a3dobjects.engine.services.factories;
 
 import android.graphics.Paint;
 
-import com.kamenov.martin.a3dobjects.constants.Constants;
+import com.kamenov.martin.a3dobjects.engine.constants.EngineConstants;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.ComplexObject;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.Cube;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.Parallelepiped;
@@ -36,8 +36,8 @@ public class FigureFactory implements IFigureFactory{
     }
 
     public Cube createCube(float x, float y, float z, float edgeLength, Paint edgePaint, Paint wallPaint, float rotation) {
-        x += Constants.SCREEN_WIDTH / 2;
-        y += Constants.SCREEN_HEIGHT / 2;
+        x += EngineConstants.SCREEN_WIDTH / 2;
+        y += EngineConstants.SCREEN_HEIGHT / 2;
         Cube cube = new Cube(x, y, z, edgeLength, edgePaint, wallPaint, rotation);
         if(shouldBeAdded) {
             figures.add(cube);
@@ -48,8 +48,8 @@ public class FigureFactory implements IFigureFactory{
     public Parallelepiped createParallelepiped(float x, float y, float z,
                                             float aLength, float bLength, float cLength,
                                             Paint edgePaint, Paint wallPaint, float rotation) {
-        x += Constants.SCREEN_WIDTH / 2;
-        y += Constants.SCREEN_HEIGHT / 2;
+        x += EngineConstants.SCREEN_WIDTH / 2;
+        y += EngineConstants.SCREEN_HEIGHT / 2;
         Parallelepiped para = new Parallelepiped(x, y, z, aLength, bLength, cLength, edgePaint, wallPaint, rotation);
         if(shouldBeAdded) {
             figures.add(para);
@@ -59,8 +59,8 @@ public class FigureFactory implements IFigureFactory{
 
     public Pyramid createPyramid(float x, float y, float z, Paint edgePaint,
                                  Paint wallPaint, float rotation, float aLength, float bLength, float h) {
-        x += Constants.SCREEN_WIDTH / 2;
-        y += Constants.SCREEN_HEIGHT / 2;
+        x += EngineConstants.SCREEN_WIDTH / 2;
+        y += EngineConstants.SCREEN_HEIGHT / 2;
         Pyramid pyramid = new Pyramid(x, y, z, edgePaint, wallPaint, rotation, aLength, bLength, h);
         if(shouldBeAdded) {
             figures.add(pyramid);
@@ -70,8 +70,8 @@ public class FigureFactory implements IFigureFactory{
 
     public Plane createPlane(float x, float y, float z, Paint edgePaint, Paint wallPaint,
                               float rotation, float aLength, float bLength) {
-        x += Constants.SCREEN_WIDTH / 2;
-        y += Constants.SCREEN_HEIGHT / 2;
+        x += EngineConstants.SCREEN_WIDTH / 2;
+        y += EngineConstants.SCREEN_HEIGHT / 2;
         Plane plane = new Plane(x, y, z, edgePaint, wallPaint, rotation, aLength, bLength);
         if(shouldBeAdded) {
             figures.add(plane);
@@ -81,8 +81,8 @@ public class FigureFactory implements IFigureFactory{
 
     public Sphere createSphere(float x, float y, float z, Paint edgePaint, Paint wallPaint,
                                float rotation, float radius) {
-        x += Constants.SCREEN_WIDTH / 2;
-        y += Constants.SCREEN_HEIGHT / 2;
+        x += EngineConstants.SCREEN_WIDTH / 2;
+        y += EngineConstants.SCREEN_HEIGHT / 2;
         Sphere sphere = new Sphere(x, y, z, edgePaint, wallPaint, rotation, radius);
         if(shouldBeAdded) {
             figures.add(sphere);
@@ -92,8 +92,8 @@ public class FigureFactory implements IFigureFactory{
 
     public ComplexObject createComplexObject(float x, float y, float z, Paint edgePaint,
                                              Paint wallPaint, float rotation, ArrayList<Object3D> objects) {
-        x += Constants.SCREEN_WIDTH / 2;
-        y += Constants.SCREEN_HEIGHT / 2;
+        x += EngineConstants.SCREEN_WIDTH / 2;
+        y += EngineConstants.SCREEN_HEIGHT / 2;
         ComplexObject complexObject = new ComplexObject(x, y, z, edgePaint, wallPaint, rotation, objects);
         if(shouldBeAdded) {
             figures.add(complexObject);

@@ -2,7 +2,7 @@ package com.kamenov.martin.a3dobjects.sampleObjects;
 
 import android.graphics.Paint;
 
-import com.kamenov.martin.a3dobjects.constants.Constants;
+import com.kamenov.martin.a3dobjects.engine.constants.EngineConstants;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.contracts.DeepPoint;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.ComplexObject;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.Parallelepiped;
@@ -21,41 +21,41 @@ public class CarSample {
     public static ArrayList<Object3D> getCarSample() {
         ArrayList<Object3D> objects = new ArrayList<>();
         ArrayList<Object3D> parts = new ArrayList<>();
-        Parallelepiped body = new Parallelepiped(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, -25, 100, 300, 50,
+        Parallelepiped body = new Parallelepiped(EngineConstants.SCREEN_WIDTH / 2, EngineConstants.SCREEN_HEIGHT / 2, -25, 100, 300, 50,
                 edgePaint,
                 wallPaint,
                 1);
-        Plane roof = new Plane(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2 + 25, 50,
+        Plane roof = new Plane(EngineConstants.SCREEN_WIDTH / 2, EngineConstants.SCREEN_HEIGHT / 2 + 25, 50,
                 edgePaint,
                 wallPaint,
                 1, 100, 150
         );
-        Plane frontGlass = new Plane(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2 - 75, 25,
+        Plane frontGlass = new Plane(EngineConstants.SCREEN_WIDTH / 2, EngineConstants.SCREEN_HEIGHT / 2 - 75, 25,
                 edgePaint,
                 wallPaint,
                 1, 100, 75
         );
         frontGlass.rotateX3D(45);
-        Plane backGlass = new Plane(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2 + 125, 25,
+        Plane backGlass = new Plane(EngineConstants.SCREEN_WIDTH / 2, EngineConstants.SCREEN_HEIGHT / 2 + 125, 25,
                 edgePaint,
                 wallPaint,
                 1, 100, 75
         );
         DeepPoint[] leftGlassPoints = new DeepPoint[]{
-                new DeepPoint(Constants.SCREEN_WIDTH / 2 - 50, Constants.SCREEN_HEIGHT / 2 + 100, 50),
-                new DeepPoint(Constants.SCREEN_WIDTH / 2 - 50, Constants.SCREEN_HEIGHT / 2 - 50, 50),
-                new DeepPoint(Constants.SCREEN_WIDTH / 2 - 50, Constants.SCREEN_HEIGHT / 2 - 100, 0),
-                new DeepPoint(Constants.SCREEN_WIDTH / 2 - 50, Constants.SCREEN_HEIGHT / 2 + 150, 0),
+                new DeepPoint(EngineConstants.SCREEN_WIDTH / 2 - 50, EngineConstants.SCREEN_HEIGHT / 2 + 100, 50),
+                new DeepPoint(EngineConstants.SCREEN_WIDTH / 2 - 50, EngineConstants.SCREEN_HEIGHT / 2 - 50, 50),
+                new DeepPoint(EngineConstants.SCREEN_WIDTH / 2 - 50, EngineConstants.SCREEN_HEIGHT / 2 - 100, 0),
+                new DeepPoint(EngineConstants.SCREEN_WIDTH / 2 - 50, EngineConstants.SCREEN_HEIGHT / 2 + 150, 0),
         };
         ArrayList<DeepPoint[]> leftGlassParts = new ArrayList<>();
         leftGlassParts.add(leftGlassPoints);
         PartsObject leftGlass = new PartsObject(0, 0, 0,
                 edgePaint, wallPaint, 1, leftGlassPoints, leftGlassParts);
         DeepPoint[] rightGlassPoints = new DeepPoint[]{
-                new DeepPoint(Constants.SCREEN_WIDTH / 2 + 50, Constants.SCREEN_HEIGHT / 2 + 100, 50),
-                new DeepPoint(Constants.SCREEN_WIDTH / 2 + 50, Constants.SCREEN_HEIGHT / 2 - 50, 50),
-                new DeepPoint(Constants.SCREEN_WIDTH / 2 + 50, Constants.SCREEN_HEIGHT / 2 - 100, 0),
-                new DeepPoint(Constants.SCREEN_WIDTH / 2 + 50, Constants.SCREEN_HEIGHT / 2 + 150, 0),
+                new DeepPoint(EngineConstants.SCREEN_WIDTH / 2 + 50, EngineConstants.SCREEN_HEIGHT / 2 + 100, 50),
+                new DeepPoint(EngineConstants.SCREEN_WIDTH / 2 + 50, EngineConstants.SCREEN_HEIGHT / 2 - 50, 50),
+                new DeepPoint(EngineConstants.SCREEN_WIDTH / 2 + 50, EngineConstants.SCREEN_HEIGHT / 2 - 100, 0),
+                new DeepPoint(EngineConstants.SCREEN_WIDTH / 2 + 50, EngineConstants.SCREEN_HEIGHT / 2 + 150, 0),
         };
         ArrayList<DeepPoint[]> rightGlassParts = new ArrayList<>();
         leftGlassParts.add(rightGlassPoints);
@@ -71,21 +71,21 @@ public class CarSample {
         parts.add(leftGlass);
         parts.add(rightGlass);
         parts.add(createTyre(
-                Constants.SCREEN_WIDTH / 2 - 55,
-                Constants.SCREEN_HEIGHT / 2 - 100));
+                EngineConstants.SCREEN_WIDTH / 2 - 55,
+                EngineConstants.SCREEN_HEIGHT / 2 - 100));
         parts.add(createTyre(
-                Constants.SCREEN_WIDTH / 2 - 55,
-                Constants.SCREEN_HEIGHT / 2 + 100));
+                EngineConstants.SCREEN_WIDTH / 2 - 55,
+                EngineConstants.SCREEN_HEIGHT / 2 + 100));
         parts.add(createTyre(
-                Constants.SCREEN_WIDTH / 2 + 55,
-                Constants.SCREEN_HEIGHT / 2 - 100));
+                EngineConstants.SCREEN_WIDTH / 2 + 55,
+                EngineConstants.SCREEN_HEIGHT / 2 - 100));
         parts.add(createTyre(
-                Constants.SCREEN_WIDTH / 2 + 55,
-                Constants.SCREEN_HEIGHT / 2 + 100));
+                EngineConstants.SCREEN_WIDTH / 2 + 55,
+                EngineConstants.SCREEN_HEIGHT / 2 + 100));
 
         ComplexObject car = new ComplexObject(
-                Constants.SCREEN_WIDTH / 2,
-                Constants.SCREEN_HEIGHT / 2,
+                EngineConstants.SCREEN_WIDTH / 2,
+                EngineConstants.SCREEN_HEIGHT / 2,
                 0,
                 edgePaint,
                 PaintService.createWallPaint("blue"),
