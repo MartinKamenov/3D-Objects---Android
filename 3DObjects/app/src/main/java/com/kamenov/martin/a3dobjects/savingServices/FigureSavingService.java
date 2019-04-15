@@ -1,4 +1,4 @@
-package com.kamenov.martin.a3dobjects.engine.services;
+package com.kamenov.martin.a3dobjects.savingServices;
 
 import android.graphics.Paint;
 
@@ -12,6 +12,8 @@ import com.kamenov.martin.a3dobjects.engine.models.game_objects.Pyramid;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.Sphere;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.contracts.Object3D;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.contracts.Dimension;
+import com.kamenov.martin.a3dobjects.engine.services.BreakingService;
+import com.kamenov.martin.a3dobjects.engine.services.PaintService;
 import com.kamenov.martin.a3dobjects.sampleObjects.CarSample;
 
 import java.util.ArrayList;

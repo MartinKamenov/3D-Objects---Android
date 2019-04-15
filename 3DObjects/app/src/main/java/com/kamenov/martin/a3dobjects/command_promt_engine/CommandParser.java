@@ -12,7 +12,7 @@ import com.kamenov.martin.a3dobjects.engine.models.game_objects.Pyramid;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.Plane;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.Sphere;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.contracts.Object3D;
-import com.kamenov.martin.a3dobjects.engine.services.FigureSavingService;
+import com.kamenov.martin.a3dobjects.savingServices.FigureSavingService;
 import com.kamenov.martin.a3dobjects.engine.services.PaintService;
 
 import java.util.ArrayList;
