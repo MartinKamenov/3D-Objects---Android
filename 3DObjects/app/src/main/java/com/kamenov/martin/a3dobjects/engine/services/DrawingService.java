@@ -3,6 +3,7 @@ package com.kamenov.martin.a3dobjects.engine.services;
 import android.graphics.Canvas;
 import android.graphics.Path;
 
+import com.kamenov.martin.a3dobjects.engine.constants.EngineConstants;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.contracts.DeepPoint;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.contracts.DrawingPart;
 import com.kamenov.martin.a3dobjects.engine.models.game_objects.Cylinder;
@@ -77,6 +78,32 @@ public class DrawingService {
                 }
             }
         }
+    }
+
+    private ArrayList<DrawingPart> removeNotVisibleDrawingParts(ArrayList<DrawingPart> drawingParts) {
+        ArrayList<DrawingPart> visibleDrawingParts = new ArrayList<>();
+        for(int i = 0; i < drawingParts.size(); i++) {
+            if(drawingPartIsOnScreen(drawingParts.get(i))) {
+                visibleDrawingParts.add(drawingParts.get(i));
+            }
+        }
+
+
+        return visibleDrawingParts;
+    }
+
+    private boolean drawingPartIsOnScreen(DrawingPart drawingPart) {
+        boolean isOnScreen = false;
+        for(int i = 0; i < drawingPart.parts.length; i++) {
+            DeepPoint point = drawingPart.parts[i];
+            if(point.getX() >= 0 && point.getX() <= EngineConstants.SCREEN_WIDTH &&
+                    point.getY() >= 0 && point.getY() <= EngineConstants.SCREEN_HEIGHT) {
+                isOnScreen = true;
+                break;
+            }
+        }
+
+        return isOnScreen;
     }
 
     private void drawOval(Canvas canvas, DrawingPart drawingPart) {
